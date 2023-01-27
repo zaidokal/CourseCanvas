@@ -62,7 +62,7 @@ export const Login = (props) => {
           <div className={styles.AccountButton}>
             <AccountButton
               text={"Login"}
-              linkTo={"/SearchPage"}
+              linkTo={"/HomePage"}
               // onClick={handleSubmit}
             />
           </div>
