@@ -68,12 +68,12 @@ export const Login = (props) => {
           </div>
         </form>
 
-        <ChangeButton text={"Update Password?"} linkTo={"/ChangePassword"} />
+        {/* <ChangeButton text={"Update Password?"} linkTo={"/ChangePassword"} />
 
         <ChangeButton
           text={"Don't have an account? Register here."}
           linkTo={"/register"}
-        />
+        /> */}
       </div>
     </>
   );
