@@ -10,7 +10,8 @@ import { Login } from "./views/Login";
 const App = () => {
   return (
     <Routes>
-      <Route exact path="/" element={<HomePage />} />
+      <Route exact path="/" element={<Login />} />
+      <Route exact path="/homepage" element={<HomePage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/ChangePassword" element={<ChangePassword />} />
