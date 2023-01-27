@@ -62,18 +62,18 @@ export const Login = (props) => {
           <div className={styles.AccountButton}>
             <AccountButton
               text={"Login"}
-              linkTo={"/SearchPage"}
+              linkTo={"/HomePage"}
               // onClick={handleSubmit}
             />
           </div>
         </form>
 
-        <ChangeButton text={"Update Password?"} linkTo={"/ChangePassword"} />
+        {/* <ChangeButton text={"Update Password?"} linkTo={"/ChangePassword"} />
 
         <ChangeButton
           text={"Don't have an account? Register here."}
           linkTo={"/register"}
-        />
+        /> */}
       </div>
     </>
   );

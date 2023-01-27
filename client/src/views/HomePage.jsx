@@ -13,11 +13,11 @@ const HomePage = () => {
       <div className={styles.AccountDiv1}>
         <Link>
           <div>
-            <AccountButton
+            {/* <AccountButton
               className={styles.Button}
               linkTo={"/login"}
               text={"LOGIN"}
-            />
+            /> */}
           </div>
         </Link>
       </div>
