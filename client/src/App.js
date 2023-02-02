@@ -4,8 +4,8 @@ import "./App.css";
 import HomePage from "./views/HomePage";
 import { Register } from "./views/Register";
 import { ChangePassword } from "./views/ChangePassword";
-
 import { Login } from "./views/Login";
+import COTemplate from "./views/COTemplate";
 
 const App = () => {
   return (
@@ -15,6 +15,7 @@ const App = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/ChangePassword" element={<ChangePassword />} />
+      <Route path="/COTemplate" element={<COTemplate />} />
     </Routes>
   );
 };
