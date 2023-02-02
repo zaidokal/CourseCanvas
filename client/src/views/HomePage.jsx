@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./HomePage.module.css";
 import { Link } from "react-router-dom";
 import NewButton from "../HomePage";
-// import AccountButton from "../components/AccountButton";
+import AccountButton from "../components/AccountButton";
 
 const HomePage = () => {
   return (
@@ -20,11 +20,11 @@ const HomePage = () => {
       <div className={styles.AccountDiv1}>
         <Link>
           <div>
-            {/* <AccountButton
+            <AccountButton
               className={styles.Button}
-              linkTo={"/login"}
-              text={"LOGIN"}
-            /> */}
+              linkTo={"/COTemplate"}
+              text={"COTemplate"}
+            />
           </div>
         </Link>
       </div>
