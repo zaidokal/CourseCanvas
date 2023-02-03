@@ -68,6 +68,70 @@ const COTemplate = () => {
     });
   };
 
+  const onSubmit = () => {
+    axios
+      .put(`http://localhost:8000/secure/create-outline/${id}`, {
+        courseName: userInput.courseName,
+        year: userInput.year,
+        description: userInput.description,
+        instructor: userInput.instructor,
+        instructorDetails: userInput.instructorDetails,
+        consultationHours: userInput.consultationHours,
+        academicCalendar: userInput.academicCalendar,
+        contactHours: userInput.contactHours,
+        antirequisite: userInput.antirequisite,
+        prerequisites: userInput.prerequisites,
+        corequisite: userInput.corequisite,
+        ceab: userInput.ceab,
+        textbook: userInput.textbook,
+        requiredReferences: userInput.requiredReferences,
+        recommendedReferences: userInput.recommendedReferences,
+        knowledgeBase: userInput.knowledgeBase,
+        engineeringTools: userInput.engineeringTools,
+        impact: userInput.impact,
+        problemAnalysis: userInput.problemAnalysis,
+        individualAndTeamWork: userInput.individualAndTeamWork,
+        ethicsEquity: userInput.ethicsEquity,
+        investigation: userInput.investigation,
+        communicationSkills: userInput.communicationSkills,
+        economicsProject: userInput.economicsProject,
+        design: userInput.design,
+        professionalism: userInput.professionalism,
+        lifeLongLearning: userInput.lifeLongLearning,
+        topic1: userInput.topic1,
+        topic1a: userInput.topic1a,
+        topic1b: userInput.topic1b,
+        topic2: userInput.topic2,
+        topic2a: userInput.topic2a,
+        topic2b: userInput.topic2b,
+        topic3: userInput.topic3,
+        topic3a: userInput.topic3a,
+        topic3b: userInput.topic3b,
+        topic4: userInput.topic4,
+        topic4a: userInput.topic4a,
+        topic4b: userInput.topic4b,
+        homeworkAssignments: userInput.homeworkAssignments,
+        quizzes: userInput.quizzes,
+        laboratory: userInput.laboratory,
+        midterm: userInput.midterm,
+        homeworkAssignmentsDesc: userInput.homeworkAssignmentsDesc,
+        quizzesDesc: userInput.quizzesDesc,
+        laboratoryDesc: userInput.laboratoryDesc,
+        midtermDesc: userInput.midtermDesc,
+        lateSubmission: userInput.lateSubmission,
+        lockerNum: userInput.lockerNum,
+        electronicDevices: userInput.electronicDevices,
+        clickers: userInput.clickers,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        alert("Bad Request, please fill out ALL required fields.");
+        console.log(err.response);
+      });
+  };
+
   return (
     <>
       <div className={styles.header}>
