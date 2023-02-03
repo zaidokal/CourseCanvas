@@ -5,10 +5,6 @@ const UserAccount = require("./models/UserAccount");
 const Validator = require("validatorjs");
 
 router.get("/test", (req, res) => {
-  if (!req.session.email) {
-    res.send("User not logged in.");
-  }
-
   res.send("User logged in.");
 });
 
@@ -61,20 +57,27 @@ router.post("/auth/login", async (req, res) => {
 
     const userAccount = await UserAccount.findOne({ email });
 
+    req.session.email = email;
+
     if (!userAccount) {
-      return res.status(400).send({ message: "Invalid Credentials." });
+      return res.status(400).send("Invalid Credentials.");
     }
 
     const match = await bcrypt.compare(password, userAccount.password);
 
     if (!match) {
-      return res.status(400).send({ message: "Invalid Credentials." });
+      return res.status(400).send("Invalid Credentials.");
     }
 
-    req.session.email = email;
-    // res.send({ message: "Authentication Successful." });
+    if (req.session.email) {
+      // res.send("Authentication Successful.");
+      res.redirect("/api/test");
+    } else {
+      res.redirect("/api/auth/login");
+      res.send("Login failed.");
+    }
 
-    res.redirect("/api/test"); // Redirect to test page is login is successful.
+    // res.redirect("/api/test"); // Redirect to test page is login is successful.
   } catch (err) {
     console.error(err);
     res.status(500).send({ message: "Server error" });
@@ -82,9 +85,11 @@ router.post("/auth/login", async (req, res) => {
 });
 
 router.get("/auth/logout", (req, res) => {
+  console.log(req.session);
   req.session.destroy(() => {
     res.send("Successfully Logged Out");
   });
+  console.log(req.session);
 });
 
 module.exports = router;
