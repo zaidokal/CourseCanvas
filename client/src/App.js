@@ -12,6 +12,7 @@ const App = () => {
     <Routes>
       <Route exact path="/" element={<Login />} />
       <Route exact path="/homepage" element={<HomePage />} />
+      <Route path='/:id' element={<ViewSingleOutline />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/ChangePassword" element={<ChangePassword />} />
