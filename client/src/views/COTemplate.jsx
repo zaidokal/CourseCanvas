@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./COTemplate.module.css";
 
 const COTemplate = () => {
+  const [userInput, setUserInput] = useState({
+    title: "",
+  });
+
   return (
     <>
       <div>
@@ -14,6 +18,7 @@ const COTemplate = () => {
           <strong>
             <input
               className={styles.input}
+              value={userInput.title}
               placeholder="ECE XXXXA/B: Course Title"
             ></input>
           </strong>
