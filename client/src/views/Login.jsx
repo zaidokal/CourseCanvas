@@ -4,7 +4,7 @@ import styles from "./Login.module.css";
 import AccountButton from "../components/AccountButton";
 import ChangeButton from "../components/ChangeButton";
 // import BackgroundOpacity from "../components/BackgroundOpacity";
-// import axios from "axios";
+import axios from "axios";
 
 export const Login = (props) => {
   const [userInput, setUserInput] = useState({
@@ -22,17 +22,18 @@ export const Login = (props) => {
     });
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   axios
-  //     .post("http://localhost:8000/api/auth/login", userInput)
-  //     .then((res) => {
-  //       alert(res.data);
-  //     })
-  //     .catch((err) => {
-  //       alert(err);
-  //     });
-  // };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(userInput);
+    axios
+      .post("http://localhost:8000/api/auth/login", userInput)
+      .then((res) => {
+        alert(res.data);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  };
 
   return (
     <>
@@ -40,16 +41,14 @@ export const Login = (props) => {
       {/* <BackgroundOpacity /> */}
 
       <div className={styles.MainDiv}>
-        <form
-        // onSubmit={handleSubmit}
-        >
+        <form onSubmit={handleSubmit}>
           <input
             className={styles.EmailBox}
             type="email"
             name="email"
             value={userInput.email}
             placeholder="Email"
-            // onChange={handleChange}
+            onChange={handleChange}
           />
           <input
             className={styles.PasswordBox}
@@ -57,13 +56,13 @@ export const Login = (props) => {
             name="password"
             value={userInput.password}
             placeholder="Password"
-            // onChange={handleChange}
+            onChange={handleChange}
           />
           <div className={styles.AccountButton}>
             <AccountButton
               text={"Login"}
               linkTo={"/HomePage"}
-              // onClick={handleSubmit}
+              onClick={handleSubmit}
             />
           </div>
         </form>
