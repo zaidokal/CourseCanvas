@@ -1,0 +1,68 @@
+.input {
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: Times;
+  display: inline;
+
+  padding: 6px;
+  width: auto;
+  min-width: 0;
+  border: none;
+}
+
+.input2 {
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: Times;
+  display: inline;
+
+  padding: 6px;
+  width: 400px;
+  min-width: 0;
+  border: none;
+}
+
+.input3 {
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: Times;
+  display: inline;
+
+  padding: 6px;
+  width: 10px;
+  min-width: 0;
+  border: none;
+}
+
+.input4 {
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: Times;
+  display: inline;
+
+  /* padding: 6px; */
+  width: 20px;
+  min-width: 0;
+  border: none;
+}
+
+input::placeholder {
+  color: red;
+}
+
+.Description {
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: Times;
+  display: inline;
+
+  padding: 6px;
+  width: 100%;
+  min-width: 0;
+  border: none;
+}

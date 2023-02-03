@@ -2,6 +2,7 @@ const express = require("express");
 const routes = require("./routes");
 const connectDB = require('./config/db');
 const bodyParser = require("body-parser");
+const session = require('express-session');
 
 const app = express();
 
@@ -16,6 +17,12 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     next();
 });
+
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true,
+}));
 
 app.use("/", express.static("public"));
 app.use("/api", routes);
