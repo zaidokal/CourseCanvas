@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AccountButton from "../components/AccountButton";
 import styles from "./COTemplate.module.css";
+import axios from "axios";
 
 const COTemplate = () => {
   const [userInput, setUserInput] = useState({
@@ -70,7 +71,7 @@ const COTemplate = () => {
 
   const onSubmit = () => {
     axios
-      .put(`http://localhost:8000/secure/create-outline/${id}`, {
+      .post(`http://localhost:8000/api/secure/create-outline`, {
         courseName: userInput.courseName,
         year: userInput.year,
         description: userInput.description,
@@ -98,26 +99,30 @@ const COTemplate = () => {
         design: userInput.design,
         professionalism: userInput.professionalism,
         lifeLongLearning: userInput.lifeLongLearning,
-        topic1: userInput.topic1,
-        topic1a: userInput.topic1a,
-        topic1b: userInput.topic1b,
-        topic2: userInput.topic2,
-        topic2a: userInput.topic2a,
-        topic2b: userInput.topic2b,
-        topic3: userInput.topic3,
-        topic3a: userInput.topic3a,
-        topic3b: userInput.topic3b,
-        topic4: userInput.topic4,
-        topic4a: userInput.topic4a,
-        topic4b: userInput.topic4b,
-        homeworkAssignments: userInput.homeworkAssignments,
-        quizzes: userInput.quizzes,
-        laboratory: userInput.laboratory,
-        midterm: userInput.midterm,
-        homeworkAssignmentsDesc: userInput.homeworkAssignmentsDesc,
-        quizzesDesc: userInput.quizzesDesc,
-        laboratoryDesc: userInput.laboratoryDesc,
-        midtermDesc: userInput.midtermDesc,
+        topics: {
+          topic1: userInput.topic1,
+          topic1a: userInput.topic1a,
+          topic1b: userInput.topic1b,
+          topic2: userInput.topic2,
+          topic2a: userInput.topic2a,
+          topic2b: userInput.topic2b,
+          topic3: userInput.topic3,
+          topic3a: userInput.topic3a,
+          topic3b: userInput.topic3b,
+          topic4: userInput.topic4,
+          topic4a: userInput.topic4a,
+          topic4b: userInput.topic4b,
+        },
+        assessments: {
+          homeworkAssignments: userInput.homeworkAssignments,
+          quizzes: userInput.quizzes,
+          laboratory: userInput.laboratory,
+          midterm: userInput.midterm,
+          homeworkAssignmentsDesc: userInput.homeworkAssignmentsDesc,
+          quizzesDesc: userInput.quizzesDesc,
+          laboratoryDesc: userInput.laboratoryDesc,
+          midtermDesc: userInput.midtermDesc,
+        },
         lateSubmission: userInput.lateSubmission,
         lockerNum: userInput.lockerNum,
         electronicDevices: userInput.electronicDevices,
@@ -138,7 +143,7 @@ const COTemplate = () => {
         <AccountButton
           text={"Create"}
           linkTo={"/HomePage"}
-          // onClick={handleSubmit}
+          onClick={onSubmit}
         />
       </div>
 
