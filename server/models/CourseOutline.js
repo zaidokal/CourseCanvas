@@ -1,11 +1,15 @@
 const mongoose = require("mongoose");
 
 const CourseOutlineSchema = new mongoose.Schema({
-  course_code: {
+  userId: {
     type: String,
     required: true,
   },
-  years: {
+  courseName: {
+    type: String,
+    required: true,
+  },
+  year: {
     type: String,
     required: true,
   },
@@ -37,7 +41,7 @@ const CourseOutlineSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  prerequisite: {
+  prerequisites: {
     type: String,
     required: true,
   },
@@ -117,38 +121,6 @@ const CourseOutlineSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.Mixed,
     required: true,
   },
-  homeworkAssignments: {
-    type: String,
-    required: true,
-  },
-  quizzes: {
-    type: String,
-    required: true,
-  },
-  laboratory: {
-    type: String,
-    required: true,
-  },
-  midterm: {
-    type: String,
-    required: true,
-  },
-  homeworkAssignmentsDesc: {
-    type: String,
-    required: true,
-  },
-  quizzesDesc: {
-    type: String,
-    required: true,
-  },
-  laboratoryDesc: {
-    type: String,
-    required: true,
-  },
-  midtermDesc: {
-    type: String,
-    required: true,
-  },
   lateSubmission: {
     type: String,
     required: true,
@@ -165,6 +137,10 @@ const CourseOutlineSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  createdDate: {
+    type: Date,
+    default: Date.now(),
+  }
 });
 
 module.exports = Memory = mongoose.model("courseOutline", CourseOutlineSchema);

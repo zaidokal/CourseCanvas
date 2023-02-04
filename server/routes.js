@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const UserAccount = require("./models/UserAccount");
 const Validator = require("validatorjs");
+const CourseOutline = require("./models/CourseOutline");
 
 router.get("/test", (req, res) => {
   res.send("User logged in.");
@@ -10,7 +11,7 @@ router.get("/test", (req, res) => {
 
 router.post("/auth/register", async (req, res) => {
   try {
-    const { first_name, last_name, email, password } = req.body;
+    const { first_name, last_name, email, password, user_id, user_type } = req.body;
 
     const existingAccount = await UserAccount.findOne({ email });
 
@@ -37,6 +38,8 @@ router.post("/auth/register", async (req, res) => {
         last_name,
         email,
         password: hashedPassword,
+        user_id,
+        user_type,
       });
 
       await userAccount.save();
@@ -90,6 +93,15 @@ router.get("/auth/logout", (req, res) => {
     res.send("Successfully Logged Out");
   });
   console.log(req.session);
+});
+
+router.post('/secure/create-outline', (req, res) => {
+  CourseOutline.create({
+    userId: req.session.email,
+    ...req.body,
+  })
+    .then(outline => res.json({ msg: 'Outline added successfully!' }))
+    .catch(err => res.status(400).json({ err }));
 });
 
 module.exports = router;
