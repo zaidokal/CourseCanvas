@@ -26,7 +26,12 @@ export const Login = (props) => {
     e.preventDefault();
     console.log(userInput);
     axios
-      .post("http://localhost:8000/api/auth/login", userInput)
+      .post("http://localhost:8000/api/auth/login", userInput, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        withCredentials: true,
+      })
       .then((res) => {
         alert(res.data);
       })
