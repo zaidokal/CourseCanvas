@@ -7,6 +7,7 @@ const CourseOutline = require("./models/CourseOutline");
 
 router.get("/test", (req, res) => {
   res.send("User logged in.");
+  console.log(req.session.email);
 });
 
 router.post("/auth/register", async (req, res) => {
@@ -96,6 +97,9 @@ router.get("/auth/logout", (req, res) => {
 });
 
 router.post('/secure/create-outline', (req, res) => {
+
+  console.log(req.session);
+
   CourseOutline.create({
     userId: req.session.email,
     ...req.body,

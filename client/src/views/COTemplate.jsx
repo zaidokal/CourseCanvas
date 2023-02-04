@@ -127,6 +127,11 @@ const COTemplate = () => {
         lockerNum: userInput.lockerNum,
         electronicDevices: userInput.electronicDevices,
         clickers: userInput.clickers,
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        withCredentials: true,
       })
       .then((res) => {
         console.log(res);
