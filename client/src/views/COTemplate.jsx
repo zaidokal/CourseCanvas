@@ -1,13 +1,147 @@
 import React, { useState } from "react";
+import AccountButton from "../components/AccountButton";
 import styles from "./COTemplate.module.css";
 
 const COTemplate = () => {
   const [userInput, setUserInput] = useState({
-    title: "",
+    courseName: "",
+    year: "",
+    description: "",
+    instructor: "",
+    instructorDetails: "",
+    consultationHours: "",
+    academicCalendar: "",
+    contactHours: "",
+    antirequisite: "",
+    prerequisites: "",
+    corequisite: "",
+    ceab: "",
+    textbook: "",
+    requiredReferences: "",
+    recommendedReferences: "",
+    knowledgeBase: "",
+    engineeringTools: "",
+    impact: "",
+    problemAnalysis: "",
+    individualAndTeamWork: "",
+    ethicsEquity: "",
+    investigation: "",
+    communicationSkills: "",
+    economicsProject: "",
+    design: "",
+    professionalism: "",
+    lifeLongLearning: "",
+    topic1: "",
+    topic1a: "",
+    topic1b: "",
+    topic2: "",
+    topic2a: "",
+    topic2b: "",
+    topic3: "",
+    topic3a: "",
+    topic3b: "",
+    topic4: "",
+    topic4a: "",
+    topic4b: "",
+    homeworkAssignments: "",
+    quizzes: "",
+    laboratory: "",
+    midterm: "",
+    homeworkAssignmentsDesc: "",
+    quizzesDesc: "",
+    laboratoryDesc: "",
+    midtermDesc: "",
+    lateSubmission: "",
+    lockerNum: "",
+    electronicDevices: "",
+    clickers: "",
   });
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    console.log(e.target.name + " " + e.target.value);
+    setUserInput((prevState) => {
+      return {
+        ...prevState,
+        [e.target.name]: e.target.value,
+      };
+    });
+  };
+
+  const onSubmit = () => {
+    axios
+      .put(`http://localhost:8000/secure/create-outline/${id}`, {
+        courseName: userInput.courseName,
+        year: userInput.year,
+        description: userInput.description,
+        instructor: userInput.instructor,
+        instructorDetails: userInput.instructorDetails,
+        consultationHours: userInput.consultationHours,
+        academicCalendar: userInput.academicCalendar,
+        contactHours: userInput.contactHours,
+        antirequisite: userInput.antirequisite,
+        prerequisites: userInput.prerequisites,
+        corequisite: userInput.corequisite,
+        ceab: userInput.ceab,
+        textbook: userInput.textbook,
+        requiredReferences: userInput.requiredReferences,
+        recommendedReferences: userInput.recommendedReferences,
+        knowledgeBase: userInput.knowledgeBase,
+        engineeringTools: userInput.engineeringTools,
+        impact: userInput.impact,
+        problemAnalysis: userInput.problemAnalysis,
+        individualAndTeamWork: userInput.individualAndTeamWork,
+        ethicsEquity: userInput.ethicsEquity,
+        investigation: userInput.investigation,
+        communicationSkills: userInput.communicationSkills,
+        economicsProject: userInput.economicsProject,
+        design: userInput.design,
+        professionalism: userInput.professionalism,
+        lifeLongLearning: userInput.lifeLongLearning,
+        topic1: userInput.topic1,
+        topic1a: userInput.topic1a,
+        topic1b: userInput.topic1b,
+        topic2: userInput.topic2,
+        topic2a: userInput.topic2a,
+        topic2b: userInput.topic2b,
+        topic3: userInput.topic3,
+        topic3a: userInput.topic3a,
+        topic3b: userInput.topic3b,
+        topic4: userInput.topic4,
+        topic4a: userInput.topic4a,
+        topic4b: userInput.topic4b,
+        homeworkAssignments: userInput.homeworkAssignments,
+        quizzes: userInput.quizzes,
+        laboratory: userInput.laboratory,
+        midterm: userInput.midterm,
+        homeworkAssignmentsDesc: userInput.homeworkAssignmentsDesc,
+        quizzesDesc: userInput.quizzesDesc,
+        laboratoryDesc: userInput.laboratoryDesc,
+        midtermDesc: userInput.midtermDesc,
+        lateSubmission: userInput.lateSubmission,
+        lockerNum: userInput.lockerNum,
+        electronicDevices: userInput.electronicDevices,
+        clickers: userInput.clickers,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        alert("Bad Request, please fill out ALL required fields.");
+        console.log(err.response);
+      });
+  };
 
   return (
     <>
+      <div className={styles.header}>
+        <AccountButton
+          text={"Create"}
+          linkTo={"/HomePage"}
+          // onClick={handleSubmit}
+        />
+      </div>
+
       <div>
         <p align="center">
           <strong>Western University</strong> <br />
@@ -18,14 +152,22 @@ const COTemplate = () => {
           <strong>
             <input
               className={styles.input}
-              value={userInput.title}
+              value={userInput.courseName}
+              name="courseName"
+              onChange={handleChange}
               placeholder="ECE XXXXA/B: Course Title"
             ></input>
           </strong>
           <br />
           <strong>
             Course Outline 20
-            <input className={styles.input} placeholder="YY-YY"></input>
+            <input
+              className={styles.input}
+              value={userInput.year}
+              name="year"
+              onChange={handleChange}
+              placeholder="YY-YY"
+            ></input>
           </strong>
         </p>
         <p>
@@ -33,17 +175,26 @@ const COTemplate = () => {
         </p>
         <input
           className={styles.Description}
+          value={userInput.description}
+          name="description"
+          onChange={handleChange}
           placeholder="Description..."
         ></input>
         <p>
           <strong>Instructor:</strong>
           <input
             className={styles.input2}
+            value={userInput.instructor}
+            name="instructor"
+            onChange={handleChange}
             placeholder="Dr. Name, P.Eng."
           ></input>
         </p>
         <input
           className={styles.input2}
+          value={userInput.instructorDetails}
+          name="instructorDetails"
+          onChange={handleChange}
           placeholder="TEB XXX, 519-661-2111 ext. XXXXX, XXXX@uwo.ca"
         ></input>
         <br />
@@ -51,32 +202,62 @@ const COTemplate = () => {
 
         <input
           className={styles.input2}
+          value={userInput.consultationHours}
+          name="consultationHours"
+          onChange={handleChange}
           placeholder="Consultation hours:"
         ></input>
         <br />
 
         <p>
           <strong>Academic Calendar Copy:</strong>
-          <input className={styles.input2} placeholder="Add link"></input>
+          <input
+            className={styles.input2}
+            value={userInput.academicCalendar}
+            name="academicCalendar"
+            onChange={handleChange}
+            placeholder="Add link"
+          ></input>
         </p>
         <p>
           <strong>Contact Hours:</strong>
           <input
             className={styles.input2}
+            value={userInput.contactHours}
+            name="contactHours"
+            onChange={handleChange}
             placeholder="X lecture hours, Y laboratory hours, Z tutorial hours, 0.5 course."
           ></input>
         </p>
         <p>
           <strong>Antirequisite:</strong>
-          <input className={styles.input2} placeholder="Add"></input>
+          <input
+            className={styles.input2}
+            value={userInput.antirequisite}
+            name="antirequisite"
+            onChange={handleChange}
+            placeholder="Add"
+          ></input>
         </p>
         <p>
           <strong>Prerequisites:</strong>
-          <input className={styles.input2} placeholder="Add"></input>
+          <input
+            className={styles.input2}
+            value={userInput.prerequisites}
+            name="prerequisites"
+            onChange={handleChange}
+            placeholder="Add"
+          ></input>
         </p>
         <p>
           <strong>Co-requisite:</strong>
-          <input className={styles.input2} placeholder="Add"></input>
+          <input
+            className={styles.input2}
+            value={userInput.corequisite}
+            name="corequisite"
+            onChange={handleChange}
+            placeholder="Add"
+          ></input>
         </p>
         <p>
           Unless you have either the requisites for this course or written
@@ -90,20 +271,41 @@ const COTemplate = () => {
           <strong>CEAB Academic Units:</strong>
           <input
             className={styles.input2}
+            value={userInput.ceab}
+            name="ceab"
+            onChange={handleChange}
             placeholder="Engineering Science X%, Engineering Design Y%."
           ></input>
         </p>
         <p>
           <strong>Required Textbook:</strong>
-          <input className={styles.input2} placeholder="Add"></input>
+          <input
+            className={styles.input2}
+            value={userInput.textbook}
+            name="textbook"
+            onChange={handleChange}
+            placeholder="Add"
+          ></input>
         </p>
         <p>
           <strong>Other Required References:</strong>
-          <input className={styles.input2} placeholder="Add"></input>
+          <input
+            className={styles.input2}
+            value={userInput.requiredReferences}
+            name="requiredReferences"
+            onChange={handleChange}
+            placeholder="Add"
+          ></input>
         </p>
         <p>
           <strong>Recommended References:</strong>
-          <input className={styles.input2} placeholder="Add"></input>
+          <input
+            className={styles.input2}
+            value={userInput.recommendedReferences}
+            name="recommendedReferences"
+            onChange={handleChange}
+            placeholder="Add"
+          ></input>
         </p>
         <strong>
           <br clear="all" />
@@ -114,7 +316,7 @@ const COTemplate = () => {
           </strong>
         </p>
         <div align="center">
-          <table border="0" cellspacing="0" cellpadding="0" width="625">
+          <table border="0" cellSpacing="0" cellPadding="0" width="625">
             <tbody>
               <tr>
                 <td width="176">
@@ -122,7 +324,13 @@ const COTemplate = () => {
                 </td>
                 <td width="32">
                   <p align="center">
-                    <input className={styles.input3} placeholder="x"></input>
+                    <input
+                      className={styles.input3}
+                      value={userInput.knowledgeBase}
+                      name="knowledgeBase"
+                      onChange={handleChange}
+                      placeholder="x"
+                    ></input>
                   </p>
                 </td>
                 <td width="176">
@@ -131,7 +339,13 @@ const COTemplate = () => {
                 <td width="32">
                   <p align="center">
                     {" "}
-                    <input className={styles.input3} placeholder="x"></input>
+                    <input
+                      className={styles.input3}
+                      value={userInput.engineeringTools}
+                      name="engineeringTools"
+                      onChange={handleChange}
+                      placeholder="x"
+                    ></input>
                   </p>
                 </td>
                 <td width="176">
@@ -140,7 +354,13 @@ const COTemplate = () => {
                 <td width="32">
                   <p align="center">
                     {" "}
-                    <input className={styles.input3} placeholder="x"></input>
+                    <input
+                      className={styles.input3}
+                      value={userInput.impact}
+                      name="impact"
+                      onChange={handleChange}
+                      placeholder="x"
+                    ></input>
                   </p>
                 </td>
               </tr>
@@ -151,7 +371,13 @@ const COTemplate = () => {
                 <td width="32">
                   <p align="center">
                     {" "}
-                    <input className={styles.input3} placeholder="x"></input>
+                    <input
+                      className={styles.input3}
+                      value={userInput.problemAnalysis}
+                      name="problemAnalysis"
+                      onChange={handleChange}
+                      placeholder="x"
+                    ></input>
                   </p>
                 </td>
                 <td width="176">
@@ -160,7 +386,13 @@ const COTemplate = () => {
                 <td width="32">
                   <p align="center">
                     {" "}
-                    <input className={styles.input3} placeholder="x"></input>
+                    <input
+                      className={styles.input3}
+                      value={userInput.individualAndTeamWork}
+                      name="individualAndTeamWork"
+                      onChange={handleChange}
+                      placeholder="x"
+                    ></input>
                   </p>
                 </td>
                 <td width="176">
@@ -169,7 +401,13 @@ const COTemplate = () => {
                 <td width="32">
                   <p align="center">
                     {" "}
-                    <input className={styles.input3} placeholder="x"></input>
+                    <input
+                      className={styles.input3}
+                      value={userInput.ethicsEquity}
+                      name="ethicsEquity"
+                      onChange={handleChange}
+                      placeholder="x"
+                    ></input>
                   </p>
                 </td>
               </tr>
@@ -180,7 +418,13 @@ const COTemplate = () => {
                 <td width="32">
                   <p align="center">
                     {" "}
-                    <input className={styles.input3} placeholder="x"></input>
+                    <input
+                      className={styles.input3}
+                      value={userInput.investigation}
+                      name="investigation"
+                      onChange={handleChange}
+                      placeholder="x"
+                    ></input>
                   </p>
                 </td>
                 <td width="176">
@@ -189,7 +433,13 @@ const COTemplate = () => {
                 <td width="32">
                   <p align="center">
                     {" "}
-                    <input className={styles.input3} placeholder="x"></input>
+                    <input
+                      className={styles.input3}
+                      value={userInput.communicationSkills}
+                      name="communicationSkills"
+                      onChange={handleChange}
+                      placeholder="x"
+                    ></input>
                   </p>
                 </td>
                 <td width="176">
@@ -198,7 +448,13 @@ const COTemplate = () => {
                 <td width="32">
                   <p align="center">
                     {" "}
-                    <input className={styles.input3} placeholder="x"></input>
+                    <input
+                      className={styles.input3}
+                      value={userInput.economicsProject}
+                      name="economicsProject"
+                      onChange={handleChange}
+                      placeholder="x"
+                    ></input>
                   </p>
                 </td>
               </tr>
@@ -209,7 +465,13 @@ const COTemplate = () => {
                 <td width="32">
                   <p align="center">
                     {" "}
-                    <input className={styles.input3} placeholder="x"></input>
+                    <input
+                      className={styles.input3}
+                      value={userInput.design}
+                      name="design"
+                      onChange={handleChange}
+                      placeholder="x"
+                    ></input>
                   </p>
                 </td>
                 <td width="176">
@@ -218,7 +480,13 @@ const COTemplate = () => {
                 <td width="32">
                   <p align="center">
                     {" "}
-                    <input className={styles.input3} placeholder="x"></input>
+                    <input
+                      className={styles.input3}
+                      value={userInput.professionalism}
+                      name="professionalism"
+                      onChange={handleChange}
+                      placeholder="x"
+                    ></input>
                   </p>
                 </td>
                 <td width="176">
@@ -227,7 +495,13 @@ const COTemplate = () => {
                 <td width="32">
                   <p align="center">
                     {" "}
-                    <input className={styles.input3} placeholder="x"></input>
+                    <input
+                      className={styles.input3}
+                      value={userInput.lifeLongLearning}
+                      name="lifeLongLearning"
+                      onChange={handleChange}
+                      placeholder="x"
+                    ></input>
                   </p>
                 </td>
               </tr>
@@ -246,7 +520,7 @@ const COTemplate = () => {
           – It is expected that the student can apply the knowledge without
           prompting (e.g. no review).
         </p>
-        <table border="0" cellspacing="0" cellpadding="0">
+        <table border="0" cellSpacing="0" cellPadding="0">
           <tbody>
             <tr>
               <td width="491" valign="top">
@@ -264,7 +538,15 @@ const COTemplate = () => {
               <td width="491" valign="top">
                 <p>
                   <strong>1. </strong>
-                  <strong>Topic 1</strong>
+                  <strong>
+                    <input
+                      className={styles.input}
+                      value={userInput.topic1}
+                      name="topic1"
+                      onChange={handleChange}
+                      placeholder="Topic X"
+                    ></input>
+                  </strong>
                   <strong></strong>
                 </p>
               </td>
@@ -291,6 +573,9 @@ const COTemplate = () => {
                     a.{" "}
                     <input
                       className={styles.Description}
+                      value={userInput.topic1a}
+                      name="topic1a"
+                      onChange={handleChange}
                       placeholder="x"
                     ></input>
                   </strong>
@@ -305,6 +590,9 @@ const COTemplate = () => {
                     b.{" "}
                     <input
                       className={styles.Description}
+                      value={userInput.topic1b}
+                      name="topic1b"
+                      onChange={handleChange}
                       placeholder="x"
                     ></input>
                   </strong>
@@ -320,7 +608,15 @@ const COTemplate = () => {
               <td width="491" valign="top">
                 <p>
                   <strong>2. </strong>
-                  <strong>Topic 1</strong>
+                  <strong>
+                    <input
+                      className={styles.input}
+                      value={userInput.topic2}
+                      name="topic2"
+                      onChange={handleChange}
+                      placeholder="Topic X"
+                    ></input>
+                  </strong>
                   <strong></strong>
                 </p>
               </td>
@@ -347,6 +643,9 @@ const COTemplate = () => {
                     a.{" "}
                     <input
                       className={styles.Description}
+                      value={userInput.topic2a}
+                      name="topic2a"
+                      onChange={handleChange}
                       placeholder="x"
                     ></input>
                   </strong>
@@ -365,6 +664,9 @@ const COTemplate = () => {
                     b.{" "}
                     <input
                       className={styles.Description}
+                      value={userInput.topic2b}
+                      name="topic2b"
+                      onChange={handleChange}
                       placeholder="x"
                     ></input>
                   </strong>
@@ -380,7 +682,15 @@ const COTemplate = () => {
               <td width="491" valign="top">
                 <p>
                   <strong>3. </strong>
-                  <strong>Topic 1</strong>
+                  <strong>
+                    <input
+                      className={styles.input}
+                      value={userInput.topic3}
+                      name="topic3"
+                      onChange={handleChange}
+                      placeholder="Topic X"
+                    ></input>
+                  </strong>
                   <strong></strong>
                 </p>
               </td>
@@ -407,6 +717,9 @@ const COTemplate = () => {
                     a.{" "}
                     <input
                       className={styles.Description}
+                      value={userInput.topic3a}
+                      name="topic3a"
+                      onChange={handleChange}
                       placeholder="x"
                     ></input>
                   </strong>
@@ -425,6 +738,9 @@ const COTemplate = () => {
                     b.{" "}
                     <input
                       className={styles.Description}
+                      value={userInput.topic3b}
+                      name="topic3b"
+                      onChange={handleChange}
                       placeholder="x"
                     ></input>
                   </strong>
@@ -440,7 +756,15 @@ const COTemplate = () => {
               <td width="491" valign="top">
                 <p>
                   <strong>4. </strong>
-                  <strong>Topic 1</strong>
+                  <strong>
+                    <input
+                      className={styles.input}
+                      value={userInput.topic4}
+                      name="topic4"
+                      onChange={handleChange}
+                      placeholder="Topic X"
+                    ></input>
+                  </strong>
                   <strong></strong>
                 </p>
               </td>
@@ -467,6 +791,9 @@ const COTemplate = () => {
                     a.{" "}
                     <input
                       className={styles.Description}
+                      value={userInput.topic4a}
+                      name="topic4a"
+                      onChange={handleChange}
                       placeholder="x"
                     ></input>
                   </strong>
@@ -485,6 +812,9 @@ const COTemplate = () => {
                     b.{" "}
                     <input
                       className={styles.Description}
+                      value={userInput.topic4b}
+                      name="topic4b"
+                      onChange={handleChange}
                       placeholder="x"
                     ></input>
                   </strong>
@@ -502,7 +832,7 @@ const COTemplate = () => {
           <strong>Evaluation</strong>
         </p>
         <div align="center">
-          <table border="0" cellspacing="0" cellpadding="0" width="396">
+          <table border="0" cellSpacing="0" cellPadding="0" width="396">
             <tbody>
               <tr>
                 <td width="276">
@@ -523,7 +853,14 @@ const COTemplate = () => {
                 <td width="120">
                   <p align="center">
                     {" "}
-                    <input className={styles.input4} placeholder="x"></input>%
+                    <input
+                      className={styles.input4}
+                      value={userInput.homeworkAssignments}
+                      name="homeworkAssignments"
+                      onChange={handleChange}
+                      placeholder="x"
+                    ></input>
+                    %
                   </p>
                 </td>
               </tr>
@@ -533,7 +870,14 @@ const COTemplate = () => {
                 </td>
                 <td width="120">
                   <p align="center">
-                    <input className={styles.input4} placeholder="x"></input>%
+                    <input
+                      className={styles.input4}
+                      value={userInput.quizzes}
+                      name="quizzes"
+                      onChange={handleChange}
+                      placeholder="x"
+                    ></input>
+                    %
                   </p>
                 </td>
               </tr>
@@ -543,7 +887,14 @@ const COTemplate = () => {
                 </td>
                 <td width="120">
                   <p align="center">
-                    <input className={styles.input4} placeholder="x"></input>%
+                    <input
+                      className={styles.input4}
+                      value={userInput.laboratory}
+                      name="laboratory"
+                      onChange={handleChange}
+                      placeholder="x"
+                    ></input>
+                    %
                   </p>
                 </td>
               </tr>
@@ -553,7 +904,14 @@ const COTemplate = () => {
                 </td>
                 <td width="120">
                   <p align="center">
-                    <input className={styles.input4} placeholder="x"></input>%
+                    <input
+                      className={styles.input4}
+                      value={userInput.midterm}
+                      name="midterm"
+                      onChange={handleChange}
+                      placeholder="x"
+                    ></input>
+                    %
                   </p>
                 </td>
               </tr>
@@ -578,6 +936,9 @@ const COTemplate = () => {
           <strong>Homework Assignments:</strong>
           <input
             className={styles.Description}
+            value={userInput.homeworkAssignmentsDesc}
+            name="homeworkAssignmentsDesc"
+            onChange={handleChange}
             placeholder="Description"
           ></input>
         </p>
@@ -585,6 +946,9 @@ const COTemplate = () => {
           <strong>Quizzes:</strong>
           <input
             className={styles.Description}
+            value={userInput.quizzesDesc}
+            name="quizzesDesc"
+            onChange={handleChange}
             placeholder="Description"
           ></input>
         </p>
@@ -592,6 +956,9 @@ const COTemplate = () => {
           <strong>Laboratory:</strong>
           <input
             className={styles.Description}
+            value={userInput.laboratoryDesc}
+            name="laboratoryDesc"
+            onChange={handleChange}
             placeholder="Description"
           ></input>
         </p>
@@ -599,6 +966,9 @@ const COTemplate = () => {
           <strong>Midterm Test:</strong>
           <input
             className={styles.Description}
+            value={userInput.midtermDesc}
+            name="midtermDesc"
+            onChange={handleChange}
             placeholder="Description"
           ></input>
         </p>
@@ -611,12 +981,22 @@ const COTemplate = () => {
           <strong>Late Submission Policy: </strong>
           <input
             className={styles.Description}
+            value={userInput.lateSubmission}
+            name="lateSubmission"
+            onChange={handleChange}
             placeholder="Description"
           ></input>
         </p>
         <p>
           <strong>Assignment Submission Locker: </strong>
-          Locker <input className={styles.input} placeholder="XXX"></input>{" "}
+          Locker{" "}
+          <input
+            className={styles.input}
+            value={userInput.lockerNum}
+            name="lockerNum"
+            onChange={handleChange}
+            placeholder="XXX"
+          ></input>{" "}
           located on the second floor of TEB.
         </p>
         <p>
@@ -725,6 +1105,9 @@ const COTemplate = () => {
           <strong>Use of Electronic Devices: </strong>
           <input
             className={styles.Description}
+            value={userInput.electronicDevices}
+            name="electronicDevices"
+            onChange={handleChange}
             placeholder="Description"
           ></input>
         </p>
@@ -732,6 +1115,9 @@ const COTemplate = () => {
           <strong>Use of Personal Response Devices (“Clickers”): </strong>
           <input
             className={styles.Description}
+            value={userInput.clickers}
+            name="clickers"
+            onChange={handleChange}
             placeholder="Description"
           ></input>
         </p>
