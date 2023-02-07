@@ -18,7 +18,6 @@ const App = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/ChangePassword" element={<ChangePassword />} />
       <Route path="/COTemplate" element={<COTemplate />} />
-      <Route path="/ViewSingleOutline" element={<ViewSingleOutline />} />
     </Routes>
   );
 };

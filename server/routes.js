@@ -5,11 +5,13 @@ const UserAccount = require("./models/UserAccount");
 const Validator = require("validatorjs");
 const CourseOutline = require("./models/CourseOutline");
 
+// Route to test session management
 router.get("/test", (req, res) => {
   res.send("User logged in.");
   console.log(req.session.email);
 });
 
+// Route to allow for account creation
 router.post("/auth/register", async (req, res) => {
   try {
     const { first_name, last_name, email, password, user_id, user_type } = req.body;
@@ -55,6 +57,7 @@ router.post("/auth/register", async (req, res) => {
   }
 });
 
+// Route to allow users to login
 router.post("/auth/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -88,6 +91,7 @@ router.post("/auth/login", async (req, res) => {
   }
 });
 
+// Route to allow users to logout
 router.get("/auth/logout", (req, res) => {
   console.log(req.session);
   req.session.destroy(() => {
@@ -96,6 +100,8 @@ router.get("/auth/logout", (req, res) => {
   console.log(req.session);
 });
 
+
+// Route to allow for user creation, tracked based on the current logged in user
 router.post('/secure/create-outline', (req, res) => {
 
   console.log(req.session);
