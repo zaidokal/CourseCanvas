@@ -63,76 +63,73 @@ const ViewSingleOutline = () => {
 
   useEffect(() => {
     axios
-      .get("ENTER URL")
-      .then(
-        (res) => {
-          setUserInput({
-            courseName: res.data.courseName,
-            year: res.data.year,
-            description: res.data.description,
-            instructor: res.data.instructor,
-            instructorDetails: res.data.instructorDetails,
-            consultationHours: res.data.consultationHours,
-            academicCalendar: res.data.academicCalendar,
-            contactHours: res.data.contactHours,
-            antirequisite: res.data.antirequisite,
-            prerequisites: res.data.prerequisites,
-            corequisite: res.data.corequisite,
-            ceab: res.data.ceab,
-            textbook: res.data.textbook,
-            requiredReferences: res.data.requiredReferences,
-            recommendedReferences: res.data.recommendedReferences,
-            knowledgeBase: res.data.knowledgeBase,
-            engineeringTools: res.data.engineeringTools,
-            impact: res.data.impact,
-            problemAnalysis: res.data.problemAnalysis,
-            individualAndTeamWork: res.data.individualAndTeamWork,
-            ethicsEquity: res.data.ethicsEquity,
-            investigation: res.data.investigation,
-            communicationSkills: res.data.communicationSkills,
-            economicsProject: res.data.economicsProject,
-            design: res.data.design,
-            professionalism: res.data.professionalism,
-            lifeLongLearning: res.data.lifeLongLearning,
-            topics: {
-              topic1: res.data.topic1,
-              topic1a: res.data.topic1a,
-              topic1b: res.data.topic1b,
-              topic2: res.data.topic2,
-              topic2a: res.data.topic2a,
-              topic2b: res.data.topic2b,
-              topic3: res.data.topic3,
-              topic3a: res.data.topic3a,
-              topic3b: res.data.topic3b,
-              topic4: res.data.topic4,
-              topic4a: res.data.topic4a,
-              topic4b: res.data.topic4b,
-            },
-            assessments: {
-              homeworkAssignments: res.data.homeworkAssignments,
-              quizzes: res.data.quizzes,
-              laboratory: res.data.laboratory,
-              midterm: res.data.midterm,
-              homeworkAssignmentsDesc: res.data.homeworkAssignmentsDesc,
-              quizzesDesc: res.data.quizzesDesc,
-              laboratoryDesc: res.data.laboratoryDesc,
-              midtermDesc: res.data.midtermDesc,
-            },
-            lateSubmission: res.data.lateSubmission,
-            lockerNum: res.data.lockerNum,
-            electronicDevices: res.data.electronicDevices,
-            clickers: res.data.clickers,
-          });
+      .get(`http://localhost:8000/api/secure/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
+        withCredentials: true,
+      })
+      .then((res) => {
+        setUserInput({
+          courseName: res.data.courseName,
+          year: res.data.year,
+          description: res.data.description,
+          instructor: res.data.instructor,
+          instructorDetails: res.data.instructorDetails,
+          consultationHours: res.data.consultationHours,
+          academicCalendar: res.data.academicCalendar,
+          contactHours: res.data.contactHours,
+          antirequisite: res.data.antirequisite,
+          prerequisites: res.data.prerequisites,
+          corequisite: res.data.corequisite,
+          ceab: res.data.ceab,
+          textbook: res.data.textbook,
+          requiredReferences: res.data.requiredReferences,
+          recommendedReferences: res.data.recommendedReferences,
+          knowledgeBase: res.data.knowledgeBase,
+          engineeringTools: res.data.engineeringTools,
+          impact: res.data.impact,
+          problemAnalysis: res.data.problemAnalysis,
+          individualAndTeamWork: res.data.individualAndTeamWork,
+          ethicsEquity: res.data.ethicsEquity,
+          investigation: res.data.investigation,
+          communicationSkills: res.data.communicationSkills,
+          economicsProject: res.data.economicsProject,
+          design: res.data.design,
+          professionalism: res.data.professionalism,
+          lifeLongLearning: res.data.lifeLongLearning,
+          topics: {
+            topic1: res.data.topic1,
+            topic1a: res.data.topic1a,
+            topic1b: res.data.topic1b,
+            topic2: res.data.topic2,
+            topic2a: res.data.topic2a,
+            topic2b: res.data.topic2b,
+            topic3: res.data.topic3,
+            topic3a: res.data.topic3a,
+            topic3b: res.data.topic3b,
+            topic4: res.data.topic4,
+            topic4a: res.data.topic4a,
+            topic4b: res.data.topic4b,
           },
-          withCredentials: true,
-        }
-      )
+          assessments: {
+            homeworkAssignments: res.data.homeworkAssignments,
+            quizzes: res.data.quizzes,
+            laboratory: res.data.laboratory,
+            midterm: res.data.midterm,
+            homeworkAssignmentsDesc: res.data.homeworkAssignmentsDesc,
+            quizzesDesc: res.data.quizzesDesc,
+            laboratoryDesc: res.data.laboratoryDesc,
+            midtermDesc: res.data.midtermDesc,
+          },
+          lateSubmission: res.data.lateSubmission,
+          lockerNum: res.data.lockerNum,
+          electronicDevices: res.data.electronicDevices,
+          clickers: res.data.clickers,
+        });
+      })
       .catch((err) => {
-        console.log("Error in MemoryList");
+        console.log("Error in MemoryList" + err);
       });
   }, []);
 
