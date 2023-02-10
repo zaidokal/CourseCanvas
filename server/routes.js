@@ -5,14 +5,17 @@ const UserAccount = require("./models/UserAccount");
 const Validator = require("validatorjs");
 const CourseOutline = require("./models/CourseOutline");
 
+// Route to test session management
 router.get("/test", (req, res) => {
   res.send("User logged in.");
   console.log(req.session.email);
 });
 
+// Route to allow for account creation
 router.post("/auth/register", async (req, res) => {
   try {
-    const { first_name, last_name, email, password, user_id, user_type } = req.body;
+    const { first_name, last_name, email, password, user_id, user_type } =
+      req.body;
 
     const existingAccount = await UserAccount.findOne({ email });
 
@@ -55,6 +58,7 @@ router.post("/auth/register", async (req, res) => {
   }
 });
 
+// Route to allow users to login
 router.post("/auth/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -88,6 +92,7 @@ router.post("/auth/login", async (req, res) => {
   }
 });
 
+// Route to allow users to logout
 router.get("/auth/logout", (req, res) => {
   console.log(req.session);
   req.session.destroy(() => {
@@ -96,16 +101,29 @@ router.get("/auth/logout", (req, res) => {
   console.log(req.session);
 });
 
-router.post('/secure/create-outline', (req, res) => {
-
+// Route to allow for user creation, tracked based on the current logged in user
+router.post("/secure/create-outline", (req, res) => {
   console.log(req.session);
 
   CourseOutline.create({
     userId: req.session.email,
     ...req.body,
   })
-    .then(outline => res.json({ msg: 'Outline added successfully!' }))
-    .catch(err => res.status(400).json({ err }));
+    .then((outline) => res.json({ msg: "Outline added successfully!" }))
+    .catch((err) => res.status(400).json({ err }));
+});
+
+router.get("/secure/all-outlines", (req, res) => {
+  console.log(req.session);
+
+  CourseOutline.find({ userId: req.session.email })
+    .then((outlines) => res.json(outlines))
+    .catch((err) =>
+      res.status(404).json({
+        error: err,
+        noMemories: "No Outlines Found.",
+      })
+    );
 });
 
 module.exports = router;
