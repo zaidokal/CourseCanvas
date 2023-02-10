@@ -4,14 +4,15 @@ const bcrypt = require("bcrypt");
 const UserAccount = require("./models/UserAccount");
 const Validator = require("validatorjs");
 const CourseOutline = require("./models/CourseOutline");
+const { ObjectId } = require("mongodb");
 
-// Route to test session management
+// Route to test session management.
 router.get("/test", (req, res) => {
   res.send("User logged in.");
   console.log(req.session.email);
 });
 
-// Route to allow for account creation
+// Route to allow for account creation.
 router.post("/auth/register", async (req, res) => {
   try {
     const { first_name, last_name, email, password, user_id, user_type } =
@@ -58,7 +59,7 @@ router.post("/auth/register", async (req, res) => {
   }
 });
 
-// Route to allow users to login
+// Route to allow users to login.
 router.post("/auth/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -92,16 +93,14 @@ router.post("/auth/login", async (req, res) => {
   }
 });
 
-// Route to allow users to logout
+// Route to allow users to logout.
 router.get("/auth/logout", (req, res) => {
-  console.log(req.session);
   req.session.destroy(() => {
     res.send("Successfully Logged Out");
   });
-  console.log(req.session);
 });
 
-// Route to allow for user creation, tracked based on the current logged in user
+// Route to allow for user creation, tracked based on the current logged in user.
 router.post("/secure/create-outline", (req, res) => {
   console.log(req.session);
 
@@ -113,9 +112,8 @@ router.post("/secure/create-outline", (req, res) => {
     .catch((err) => res.status(400).json({ err }));
 });
 
+// Route to get all course outlines based on who is logged in.
 router.get("/secure/all-outlines", (req, res) => {
-  console.log(req.session);
-
   CourseOutline.find({ userId: req.session.email })
     .then((outlines) => res.json(outlines))
     .catch((err) =>
@@ -124,6 +122,19 @@ router.get("/secure/all-outlines", (req, res) => {
         noMemories: "No Outlines Found.",
       })
     );
+});
+
+// Route to extract data for a single outline.
+router.get("/secure/:outlineID", (req, res) => {
+  const outlineID = req.params.outlineID;
+
+  CourseOutline.findById(ObjectId(outlineID), (err, outline) => {
+    if (err) {
+      res.send("An error has occured trying to fetch the outline.");
+    } else {
+      res.send(outline);
+    }
+  });
 });
 
 module.exports = router;
