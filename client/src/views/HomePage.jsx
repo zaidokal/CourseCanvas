@@ -5,6 +5,7 @@ import NewButton from "../HomePage";
 import AccountButton from "../components/AccountButton";
 import OutlineCard from "../components/OutlineCard";
 import axios from "axios";
+import { REACT_APP_IP, REACT_APP_PORT } from "../config";
 
 const HomePage = () => {
   const [outlineList, setOutlineList] = useState({
@@ -13,7 +14,7 @@ const HomePage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/secure/all-outlines", {
+      .get(`http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/all-outlines`, {
         headers: {
           "Content-Type": "application/json",
         },

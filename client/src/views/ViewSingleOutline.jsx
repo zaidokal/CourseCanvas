@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import styles from "./ViewSingleOutline.module.css";
 import AccountButton from "../components/AccountButton";
+import { REACT_APP_IP, REACT_APP_PORT } from "../config";
 
 const ViewSingleOutline = () => {
   const { id } = useParams();
@@ -63,7 +64,7 @@ const ViewSingleOutline = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/secure/${id}`, {
+      .get(`http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/${id}`, {
         headers: {
           "Content-Type": "application/json",
         },

@@ -5,6 +5,7 @@ import AccountButton from "../components/AccountButton";
 import ChangeButton from "../components/ChangeButton";
 // import BackgroundOpacity from "../components/BackgroundOpacity";
 import axios from "axios";
+import { REACT_APP_IP, REACT_APP_PORT } from "../config";
 
 export const Login = (props) => {
   const [userInput, setUserInput] = useState({
@@ -26,12 +27,16 @@ export const Login = (props) => {
     e.preventDefault();
     console.log(userInput);
     axios
-      .post("http://localhost:8000/api/auth/login", userInput, {
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        withCredentials: true,
-      })
+      .post(
+        `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/auth/login`,
+        userInput,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         alert(res.data);
       })
