@@ -58,83 +58,92 @@ const COTemplate = () => {
     clickers: "",
   });
 
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
   const handleChange = (e) => {
-    e.preventDefault();
-    console.log(e.target.name + " " + e.target.value);
-    setUserInput((prevState) => {
-      return {
-        ...prevState,
-        [e.target.name]: e.target.value,
-      };
+    setUserInput({
+      ...userInput,
+      [e.target.name]: e.target.value,
     });
+
+    // Check if all fields have been filled in
+    const allFieldsFilledIn = Object.values(userInput).every(
+      (value) => value !== ""
+    );
+    setIsButtonDisabled(!allFieldsFilledIn);
   };
 
   const onSubmit = () => {
     axios
-      .post(`http://localhost:8000/api/secure/create-outline`, {
-        courseName: userInput.courseName,
-        year: userInput.year,
-        description: userInput.description,
-        instructor: userInput.instructor,
-        instructorDetails: userInput.instructorDetails,
-        consultationHours: userInput.consultationHours,
-        academicCalendar: userInput.academicCalendar,
-        contactHours: userInput.contactHours,
-        antirequisite: userInput.antirequisite,
-        prerequisites: userInput.prerequisites,
-        corequisite: userInput.corequisite,
-        ceab: userInput.ceab,
-        textbook: userInput.textbook,
-        requiredReferences: userInput.requiredReferences,
-        recommendedReferences: userInput.recommendedReferences,
-        knowledgeBase: userInput.knowledgeBase,
-        engineeringTools: userInput.engineeringTools,
-        impact: userInput.impact,
-        problemAnalysis: userInput.problemAnalysis,
-        individualAndTeamWork: userInput.individualAndTeamWork,
-        ethicsEquity: userInput.ethicsEquity,
-        investigation: userInput.investigation,
-        communicationSkills: userInput.communicationSkills,
-        economicsProject: userInput.economicsProject,
-        design: userInput.design,
-        professionalism: userInput.professionalism,
-        lifeLongLearning: userInput.lifeLongLearning,
-        topics: {
-          topic1: userInput.topic1,
-          topic1a: userInput.topic1a,
-          topic1b: userInput.topic1b,
-          topic2: userInput.topic2,
-          topic2a: userInput.topic2a,
-          topic2b: userInput.topic2b,
-          topic3: userInput.topic3,
-          topic3a: userInput.topic3a,
-          topic3b: userInput.topic3b,
-          topic4: userInput.topic4,
-          topic4a: userInput.topic4a,
-          topic4b: userInput.topic4b,
+      .post(
+        `http://localhost:8000/api/secure/create-outline`,
+        {
+          courseName: userInput.courseName,
+          year: userInput.year,
+          description: userInput.description,
+          instructor: userInput.instructor,
+          instructorDetails: userInput.instructorDetails,
+          consultationHours: userInput.consultationHours,
+          academicCalendar: userInput.academicCalendar,
+          contactHours: userInput.contactHours,
+          antirequisite: userInput.antirequisite,
+          prerequisites: userInput.prerequisites,
+          corequisite: userInput.corequisite,
+          ceab: userInput.ceab,
+          textbook: userInput.textbook,
+          requiredReferences: userInput.requiredReferences,
+          recommendedReferences: userInput.recommendedReferences,
+          knowledgeBase: userInput.knowledgeBase,
+          engineeringTools: userInput.engineeringTools,
+          impact: userInput.impact,
+          problemAnalysis: userInput.problemAnalysis,
+          individualAndTeamWork: userInput.individualAndTeamWork,
+          ethicsEquity: userInput.ethicsEquity,
+          investigation: userInput.investigation,
+          communicationSkills: userInput.communicationSkills,
+          economicsProject: userInput.economicsProject,
+          design: userInput.design,
+          professionalism: userInput.professionalism,
+          lifeLongLearning: userInput.lifeLongLearning,
+          topics: {
+            topic1: userInput.topic1,
+            topic1a: userInput.topic1a,
+            topic1b: userInput.topic1b,
+            topic2: userInput.topic2,
+            topic2a: userInput.topic2a,
+            topic2b: userInput.topic2b,
+            topic3: userInput.topic3,
+            topic3a: userInput.topic3a,
+            topic3b: userInput.topic3b,
+            topic4: userInput.topic4,
+            topic4a: userInput.topic4a,
+            topic4b: userInput.topic4b,
+          },
+          assessments: {
+            homeworkAssignments: userInput.homeworkAssignments,
+            quizzes: userInput.quizzes,
+            laboratory: userInput.laboratory,
+            midterm: userInput.midterm,
+            homeworkAssignmentsDesc: userInput.homeworkAssignmentsDesc,
+            quizzesDesc: userInput.quizzesDesc,
+            laboratoryDesc: userInput.laboratoryDesc,
+            midtermDesc: userInput.midtermDesc,
+          },
+          lateSubmission: userInput.lateSubmission,
+          lockerNum: userInput.lockerNum,
+          electronicDevices: userInput.electronicDevices,
+          clickers: userInput.clickers,
         },
-        assessments: {
-          homeworkAssignments: userInput.homeworkAssignments,
-          quizzes: userInput.quizzes,
-          laboratory: userInput.laboratory,
-          midterm: userInput.midterm,
-          homeworkAssignmentsDesc: userInput.homeworkAssignmentsDesc,
-          quizzesDesc: userInput.quizzesDesc,
-          laboratoryDesc: userInput.laboratoryDesc,
-          midtermDesc: userInput.midtermDesc,
-        },
-        lateSubmission: userInput.lateSubmission,
-        lockerNum: userInput.lockerNum,
-        electronicDevices: userInput.electronicDevices,
-        clickers: userInput.clickers,
-      }, {
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        withCredentials: true,
-      })
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         console.log(res);
+        alert("Save successful.");
       })
       .catch((err) => {
         alert("Bad Request, please fill out ALL required fields.");
@@ -145,11 +154,21 @@ const COTemplate = () => {
   return (
     <>
       <div className={styles.header}>
+        ={" "}
         <AccountButton
-          text={"Create"}
-          linkTo={"/HomePage"}
+          text={"Save"}
           onClick={onSubmit}
-        />
+          disabled={isButtonDisabled}
+        >
+          Submit
+        </AccountButton>
+      </div>
+
+      <div className={styles.header}>
+        ={" "}
+        <AccountButton linkTo={"/HomePage"} text={"HomePage"}>
+          Submit
+        </AccountButton>
       </div>
 
       <div>
