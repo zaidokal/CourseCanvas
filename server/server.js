@@ -4,6 +4,7 @@ const connectDB = require("./config/db");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const cors = require("cors");
+import { REACT_APP_IP, REACT_APP_PORT } from "./config";
 
 const app = express();
 
