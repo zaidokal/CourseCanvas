@@ -1,4 +1,4 @@
-let REACT_APP_IP = "34.122.235.54";
+let REACT_APP_IP = "34.70.24.216";
 let REACT_APP_PORT = "8000";
 
 export { REACT_APP_IP, REACT_APP_PORT };
