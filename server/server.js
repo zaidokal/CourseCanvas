@@ -4,9 +4,11 @@ const connectDB = require("./config/db");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const cors = require("cors");
-const { REACT_APP_IP, REACT_APP_PORT } = require("./config");
 
 const app = express();
+
+let REACT_APP_IP = "34.122.235.54";
+let REACT_APP_PORT = "3000";
 
 connectDB();
 
