@@ -72,3 +72,7 @@ input::placeholder {
     display: none;
   }
 }
+
+.MainDiv {
+  margin: 5%;
+}
