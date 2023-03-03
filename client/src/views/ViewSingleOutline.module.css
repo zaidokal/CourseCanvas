@@ -71,6 +71,9 @@ input::placeholder {
   button {
     display: none;
   }
+  .header {
+    display: none;
+  }
 }
 
 .MainDiv {
