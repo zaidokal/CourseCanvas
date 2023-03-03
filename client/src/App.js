@@ -7,6 +7,7 @@ import { ChangePassword } from "./views/ChangePassword";
 import { Login } from "./views/Login";
 import COTemplate from "./views/COTemplate";
 import ViewSingleOutline from "./views/ViewSingleOutline";
+import { AssignInstructor } from "./views/AssignInstructor";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/ChangePassword" element={<ChangePassword />} />
       <Route path="/COTemplate" element={<COTemplate />} />
+      <Route path="/AssignInstructor" element={<AssignInstructor />} />
     </Routes>
   );
 };

@@ -135,7 +135,11 @@ const ViewSingleOutline = () => {
   return (
     <>
       <div className={styles.header}>
-        <AccountButton text={"Create"} linkTo={"/HomePage"} />
+        <AccountButton text={"HomePage"} linkTo={"/HomePage"} />
+      </div>
+
+      <div className={styles.header}>
+        <AccountButton text={"Download"} linkTo={"/HomePage"} />
       </div>
 
       <div>
