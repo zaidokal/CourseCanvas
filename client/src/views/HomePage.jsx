@@ -52,6 +52,12 @@ const HomePage = () => {
               text={"COTemplate"}
             />
           </div>
+          <div className={styles.header}>
+            <AccountButton
+              text={"AssignInstructor"}
+              linkTo={"/AssignInstructor"}
+            />
+          </div>
         </Link>
       </div>
     </>
