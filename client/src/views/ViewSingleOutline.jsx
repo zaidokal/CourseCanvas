@@ -146,7 +146,7 @@ const ViewSingleOutline = () => {
         <AccountButton text={"Download"} onClick={handlePrintClick} />
       </div>
 
-      <div>
+      <div className={styles.MainDiv}>
         <p align="center">
           <strong>Western University</strong> <br />
           <strong>Faculty of Engineering</strong> <br />
