@@ -44,7 +44,6 @@ export const AssignInstructor = (props) => {
                 </select>
                 <p>Selected instructor: {selectedOption}</p>
               </div>
-              ;
             </div>
           </div>
           <div className={styles.header}>
