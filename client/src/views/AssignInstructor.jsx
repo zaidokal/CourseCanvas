@@ -4,11 +4,6 @@ import AccountButton from "../components/AccountButton";
 import ChangeButton from "../components/ChangeButton";
 
 export const AssignInstructor = (props) => {
-  const [userInput, setUserInput] = useState({
-    email: "",
-    password: "",
-  });
-
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleOptionChange = (event) => {
@@ -49,6 +44,7 @@ export const AssignInstructor = (props) => {
                 </select>
                 <p>Selected instructor: {selectedOption}</p>
               </div>
+              ;
             </div>
           </div>
           <div className={styles.header}>
