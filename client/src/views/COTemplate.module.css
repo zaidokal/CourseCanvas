@@ -66,3 +66,7 @@ input::placeholder {
   min-width: 0;
   border: none;
 }
+
+.MainDiv {
+  margin: 5%;
+}
