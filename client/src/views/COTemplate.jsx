@@ -171,7 +171,7 @@ const COTemplate = () => {
         </AccountButton>
       </div>
 
-      <div>
+      <div className={styles.MainDiv}>
         <p align="center">
           <strong>Western University</strong> <br />
           <strong>Faculty of Engineering</strong> <br />
