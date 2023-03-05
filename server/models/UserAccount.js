@@ -25,6 +25,10 @@ const AccountSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  courses: {
+    type: String,
+    required: false,
+  },
 });
 
 module.exports = Memory = mongoose.model("account", AccountSchema);

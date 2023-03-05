@@ -137,4 +137,22 @@ router.get("/secure/:outlineID", (req, res) => {
   });
 });
 
+// Route for decision on course outline approval.
+router.post("/secure/:outlineID", async (req, res) => {
+  const outlineID = req.params.outlineID;
+  const approval = req.body.approval;
+
+  try {
+    const courseOutline = await CourseOutline.findByIdAndUpdate(
+      { _id: outlineID },
+      { approved: approval },
+      { new: true }
+    );
+
+    res.send(courseOutline);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
 module.exports = router;
