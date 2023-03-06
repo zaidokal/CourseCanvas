@@ -26,7 +26,7 @@ const AccountSchema = new mongoose.Schema({
     required: true,
   },
   courses: {
-    type: String,
+    type: [String],
     required: false,
   },
 });
