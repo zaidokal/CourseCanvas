@@ -132,6 +132,10 @@ const ViewSingleOutline = () => {
       });
   }, []);
 
+  const handlePrintClick = () => {
+    window.print();
+  };
+
   return (
     <>
       <div className={styles.header}>
@@ -139,10 +143,15 @@ const ViewSingleOutline = () => {
       </div>
 
       <div className={styles.header}>
-        <AccountButton text={"Download"} linkTo={"/HomePage"} />
+        <AccountButton text={"Download"} onClick={handlePrintClick} />
       </div>
 
-      <div>
+      <div className={styles.header}>
+        <AccountButton text={"Request Approval"} />
+        <p>Approval Status:</p>
+      </div>
+
+      <div className={styles.MainDiv}>
         <p align="center">
           <strong>Western University</strong> <br />
           <strong>Faculty of Engineering</strong> <br />

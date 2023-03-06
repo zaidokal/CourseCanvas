@@ -66,3 +66,16 @@ input::placeholder {
   min-width: 0;
   border: none;
 }
+
+@media print {
+  button {
+    display: none;
+  }
+  .header {
+    display: none;
+  }
+}
+
+.MainDiv {
+  margin: 5%;
+}
