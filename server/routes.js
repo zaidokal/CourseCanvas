@@ -15,8 +15,15 @@ router.get("/test", (req, res) => {
 // Route to allow for account creation.
 router.post("/auth/register", async (req, res) => {
   try {
-    const { first_name, last_name, email, password, user_id, user_type } =
-      req.body;
+    const {
+      first_name,
+      last_name,
+      email,
+      password,
+      user_id,
+      user_type,
+      courses,
+    } = req.body;
 
     const existingAccount = await UserAccount.findOne({ email });
 
@@ -45,6 +52,7 @@ router.post("/auth/register", async (req, res) => {
         password: hashedPassword,
         user_id,
         user_type,
+        courses,
       });
 
       await userAccount.save();
@@ -135,6 +143,62 @@ router.get("/secure/:outlineID", (req, res) => {
       res.send(outline);
     }
   });
+});
+
+// Route for decision on course outline approval.
+router.post("/secure/decision/:outlineID", async (req, res) => {
+  const outlineID = req.params.outlineID;
+  const approval = req.body.approval;
+
+  // First get session email to check if logged in user is an admin.
+  const userEmail = req.session.email;
+  const findUserType = await UserAccount.find({ email: userEmail }).select(
+    "user_type"
+  );
+  const userType = findUserType[0].user_type;
+
+  try {
+    if (userType == "admin") {
+      const courseOutline = await CourseOutline.findByIdAndUpdate(
+        { _id: outlineID },
+        { approved: approval },
+        { new: true }
+      );
+
+      res.send(courseOutline);
+    } else {
+      res.send("Administrator privileges required.");
+    }
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+// Route to filter instructors based on the courses they can teach.
+router.get("/secure/instructors/:course", async (req, res) => {
+  const course = req.params.course;
+
+  // First get session email to check if logged in user is an admin.
+  const userEmail = req.session.email;
+  const findUserType = await UserAccount.find({ email: userEmail }).select(
+    "user_type"
+  );
+  const userType = findUserType[0].user_type;
+
+  try {
+    if (userType == "admin") {
+      // In the .select, the - in -_id excludes sending the id and only returns first name and last name.
+      UserAccount.find({ courses: course })
+        .select("-_id first_name last_name")
+        .then((instructors) => {
+          res.send(instructors);
+        });
+    } else {
+      res.send("Administrator privileges required.");
+    }
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
 module.exports = router;
