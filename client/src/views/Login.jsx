@@ -28,11 +28,12 @@ export const Login = (props) => {
     axios
       .post("http://localhost:8000/api/auth/login", userInput, {
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
         withCredentials: true,
       })
       .then((res) => {
+        window.location.href = "/HomePage";
         alert(res.data);
       })
       .catch((err) => {
