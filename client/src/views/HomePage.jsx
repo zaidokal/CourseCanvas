@@ -60,6 +60,16 @@ const HomePage = () => {
           </div>
         </Link>
       </div>
+
+      <Link>
+        <div>
+          <AccountButton
+            className={styles.Button}
+            linkTo={"/AdminApproval"}
+            text={"Admin Approval"}
+          />
+        </div>
+      </Link>
     </>
   );
 };
