@@ -24,7 +24,7 @@ export const Login = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userInput);
+    // console.log(userInput);
     axios
       .post("http://localhost:8000/api/auth/login", userInput, {
         headers: {
@@ -34,10 +34,14 @@ export const Login = (props) => {
       })
       .then((res) => {
         window.location.href = "/HomePage";
-        alert(res.data);
+        // alert(res.data);
       })
       .catch((err) => {
-        alert(err);
+        // const errorMessage =
+        //   err.response?.data?.message || "An error occurred.";
+        const errorElement = document.getElementById(styles.loginError);
+        errorElement.textContent =
+          "Please enter the correct username and password";
       });
   };
 
@@ -64,6 +68,9 @@ export const Login = (props) => {
             placeholder="Password"
             onChange={handleChange}
           />
+
+          <div id={styles.loginError}></div>
+
           <div className={styles.AccountButton}>
             <AccountButton
               text={"Login"}
