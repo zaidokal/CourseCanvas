@@ -43,6 +43,7 @@ export const AssignInstructor = (props) => {
                   <option value="Instructor 3">Instructor 3</option>
                 </select>
                 <p>Selected instructor: {selectedOption}</p>
+                <button className={styles.Assign}>Assign Instructor</button>
               </div>
             </div>
           </div>
