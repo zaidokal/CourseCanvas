@@ -59,16 +59,21 @@ const ViewSingleOutline = () => {
     lockerNum: "",
     electronicDevices: "",
     clickers: "",
+    approved: "",
   });
 
   useEffect(() => {
+    const urlA = `http://localhost:8000/api/secure/${id}`;
+    const urlB = "/course-outline/:outlineID";
+
     axios
-      .get(`http://localhost:8000/api/secure/${id}`, {
+      .get(urlA, urlB, {
         headers: {
           "Content-Type": "application/json",
         },
         withCredentials: true,
       })
+
       .then((res) => {
         setUserInput({
           courseName: res.data.courseName,
@@ -125,6 +130,8 @@ const ViewSingleOutline = () => {
           lockerNum: res.data.lockerNum,
           electronicDevices: res.data.electronicDevices,
           clickers: res.data.clickers,
+
+          approved: res.data.approved,
         });
       })
       .catch((err) => {
@@ -150,6 +157,13 @@ const ViewSingleOutline = () => {
         <AccountButton text={"Request Approval"} />
         <p>Approval Status:</p>
       </div>
+
+      <input
+        className={styles.input2}
+        value={userInput.approved}
+        name="approved"
+        placeholder="Status"
+      ></input>
 
       <div className={styles.MainDiv}>
         <p align="center">
