@@ -154,7 +154,7 @@ const ViewSingleOutline = () => {
       </div>
 
       <div className={styles.header}>
-        <AccountButton text={"Approval Status"} />
+        <AccountButton text={"Request Approval"} />
         <p>Approval Status:</p>
       </div>
 
