@@ -1,17 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./OutlineCardAdmin.module.css";
+import styles from "./RequestApproval.module.css";
 import axios from "axios";
 
-const OutlineCardAdminApproved = (props) => {
+const RequestApproval = (props) => {
   let outline = props.outline;
 
-  const unapproveCO = () => {
+  const requestCOApproval = () => {
     axios
       .post(
-        `http://localhost:8000/api/secure/decision/${outline._id}`,
+        `http://localhost:8000/api/secure/request/${outline._id}`,
         {
-          approval: false,
+          requestApprove: true,
         },
         {
           headers: {
@@ -33,7 +33,7 @@ const OutlineCardAdminApproved = (props) => {
       .post(
         `http://localhost:8000/api/secure/reply/${outline._id}`,
         {
-          decider: "Not Requested",
+          decider: "Requested",
         },
         {
           headers: {
@@ -57,20 +57,12 @@ const OutlineCardAdminApproved = (props) => {
   return (
     <>
       <div className={styles.container}>
-        <Link
-          to={`/${outline._id}`}
-          style={{ color: "inherit", textDecoration: "inherit" }}
-        >
-          <button className={styles.square} id="createButton">
-            {outline.courseName}
-          </button>
-        </Link>
-        <button className={styles.ApproveBtn} onClick={unapproveCO}>
-          Unapprove
+        <button className={styles.ApproveBtn} onClick={requestCOApproval}>
+          Request
         </button>
       </div>
     </>
   );
 };
 
-export default OutlineCardAdminApproved;
+export default RequestApproval;

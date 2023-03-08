@@ -33,6 +33,8 @@ const AdminApproval = () => {
 
   const displayList = outlineList.outlines
     .filter((out) => out.approved === false)
+    .filter((out) => out.requestApproval === true)
+
     .map((out) => <OutlineCardAdmin outline={out} key={out._id} />);
 
   const displayApprovedList = outlineList.outlines
