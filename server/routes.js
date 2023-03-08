@@ -5,6 +5,7 @@ const UserAccount = require("./models/UserAccount");
 const Validator = require("validatorjs");
 const CourseOutline = require("./models/CourseOutline");
 const { ObjectId } = require("mongodb");
+const Courses = require("./models/Courses");
 
 // Route to test session management.
 router.get("/test", (req, res) => {
@@ -128,6 +129,17 @@ router.get("/secure/all-outlines", (req, res) => {
       res.status(404).json({
         error: err,
         noMemories: "No Outlines Found.",
+      })
+    );
+});
+
+router.get("/secure/course-names", (req, res) => {
+  Course.find({}, "title")
+    .then((courses) => res.json(courses))
+    .catch((err) =>
+      res.status(404).json({
+        error: err,
+        noCourses: "No Course Names Found.",
       })
     );
 });
