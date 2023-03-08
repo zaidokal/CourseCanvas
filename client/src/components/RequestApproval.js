@@ -28,6 +28,29 @@ const RequestApproval = (props) => {
       .catch((err) => {
         console.log(err);
       });
+
+    axios
+      .post(
+        `http://localhost:8000/api/secure/reply/${outline._id}`,
+        {
+          decider: "Requested",
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        // Call the onApprove prop function passed from the parent component
+        props.onApprove(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     window.location.reload();
   };
 
