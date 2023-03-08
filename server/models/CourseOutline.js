@@ -140,7 +140,19 @@ const CourseOutlineSchema = new mongoose.Schema({
   createdDate: {
     type: Date,
     default: Date.now(),
-  }
+  },
+  approved: {
+    type: Boolean,
+    default: false,
+  },
+  requestApproval: {
+    type: Boolean,
+    default: false,
+  },
+  decision: {
+    type: String,
+    default: "Not Requested",
+  },
 });
 
 module.exports = Memory = mongoose.model("courseOutline", CourseOutlineSchema);

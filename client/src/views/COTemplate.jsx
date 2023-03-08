@@ -154,7 +154,7 @@ const COTemplate = () => {
   return (
     <>
       <div className={styles.header}>
-        ={" "}
+        {" "}
         <AccountButton
           text={"Save"}
           onClick={onSubmit}
@@ -165,13 +165,13 @@ const COTemplate = () => {
       </div>
 
       <div className={styles.header}>
-        ={" "}
+        {" "}
         <AccountButton linkTo={"/HomePage"} text={"HomePage"}>
           Submit
         </AccountButton>
       </div>
 
-      <div>
+      <div className={styles.MainDiv}>
         <p align="center">
           <strong>Western University</strong> <br />
           <strong>Faculty of Engineering</strong> <br />

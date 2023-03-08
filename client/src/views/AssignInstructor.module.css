@@ -1,0 +1,45 @@
+.MainDiv {
+  width: 100%;
+  /* overflow: hidden; */
+  height: 100%;
+}
+
+.Courses {
+  width: 30%;
+  float: left;
+  height: 60vh;
+  margin: 5%;
+  background-color: aqua;
+}
+
+.InsideCourses {
+  margin: 5%;
+}
+
+.Description {
+  width: 55%;
+  float: right;
+  height: 60vh;
+  margin-right: 5%;
+  margin-top: 5%;
+  background-color: rgb(204, 0, 255);
+}
+
+.InsideDescription {
+  margin: 5%;
+}
+
+button {
+  width: 80%;
+  margin: 1%;
+}
+
+.Assign {
+  width: 10vw;
+}
+
+.courseNames {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
