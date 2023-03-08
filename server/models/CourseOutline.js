@@ -145,6 +145,10 @@ const CourseOutlineSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  requestApproval: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = Memory = mongoose.model("courseOutline", CourseOutlineSchema);
