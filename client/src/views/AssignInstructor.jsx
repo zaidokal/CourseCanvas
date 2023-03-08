@@ -1,9 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./AssignInstructor.module.css";
 import AccountButton from "../components/AccountButton";
 import ChangeButton from "../components/ChangeButton";
+import axios from "axios";
+import OutlineCardAdmin from "../components/OutlineCardAdmin";
 
 export const AssignInstructor = (props) => {
+  const [courseNames, setCourseNames] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/secure/course-names", {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log(response.data); // log the data returned by the server
+        setCourseNames(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const displayList = courseNames.map((cou) => (
+    <button key={cou._id}>{cou.title}</button>
+  ));
+
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleOptionChange = (event) => {
@@ -16,15 +39,8 @@ export const AssignInstructor = (props) => {
         <form>
           <div className={styles.Courses}>
             <div className={styles.InsideCourses}>
-              <h1>Courses</h1>
-              <button>Hello</button>
-              <button>Hello</button>
-              <button>Hello</button>
-              <button>Hello</button>
-              <button>Hello</button>
-              <button>Hello</button>
-              <button>Hello</button>
-              <button>Hello</button>
+              <h1 className={styles.courseNames}>Courses</h1>
+              {displayList}
             </div>
           </div>
           <div className={styles.Description}>
@@ -43,6 +59,7 @@ export const AssignInstructor = (props) => {
                   <option value="Instructor 3">Instructor 3</option>
                 </select>
                 <p>Selected instructor: {selectedOption}</p>
+                <button className={styles.Assign}>Assign Instructor</button>
               </div>
             </div>
           </div>
@@ -54,3 +71,5 @@ export const AssignInstructor = (props) => {
     </>
   );
 };
+
+export default AssignInstructor;

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import styles from "./ViewSingleOutline.module.css";
 import AccountButton from "../components/AccountButton";
+import RequestApproval from "../components/RequestApproval";
 
 const ViewSingleOutline = () => {
   const { id } = useParams();
@@ -59,16 +60,23 @@ const ViewSingleOutline = () => {
     lockerNum: "",
     electronicDevices: "",
     clickers: "",
+    approved: "",
+    requestApproval: "",
+    decision: "",
   });
 
   useEffect(() => {
+    const urlA = `http://localhost:8000/api/secure/${id}`;
+    const urlB = "/course-outline/:outlineID";
+
     axios
-      .get(`http://localhost:8000/api/secure/${id}`, {
+      .get(urlA, urlB, {
         headers: {
           "Content-Type": "application/json",
         },
         withCredentials: true,
       })
+
       .then((res) => {
         setUserInput({
           courseName: res.data.courseName,
@@ -125,6 +133,10 @@ const ViewSingleOutline = () => {
           lockerNum: res.data.lockerNum,
           electronicDevices: res.data.electronicDevices,
           clickers: res.data.clickers,
+
+          approved: res.data.approved,
+          requestApproval: res.data.requestApproval,
+          decision: res.data.decision,
         });
       })
       .catch((err) => {
@@ -136,21 +148,43 @@ const ViewSingleOutline = () => {
     window.print();
   };
 
+  const outline = { _id: id };
+
+  const handleApproval = (data) => {
+    console.log("Approval data:", data);
+  };
+
   return (
     <>
       <div className={styles.header}>
         <AccountButton text={"HomePage"} linkTo={"/HomePage"} />
       </div>
-
       <div className={styles.header}>
         <AccountButton text={"Download"} onClick={handlePrintClick} />
       </div>
-
       <div className={styles.header}>
         <AccountButton text={"Request Approval"} />
         <p>Approval Status:</p>
       </div>
-
+      <RequestApproval outline={outline} onApprove={handleApproval} />
+      <input
+        className={styles.input2}
+        value={userInput.approved}
+        name="approved"
+        placeholder="Status"
+      ></input>
+      <input
+        className={styles.input2}
+        value={userInput.requestApproval}
+        name="requestApproval"
+        placeholder="Status"
+      ></input>
+      <input
+        className={styles.input2}
+        value={userInput.decision}
+        name="requestApproval"
+        placeholder="Status"
+      ></input>
       <div className={styles.MainDiv}>
         <p align="center">
           <strong>Western University</strong> <br />

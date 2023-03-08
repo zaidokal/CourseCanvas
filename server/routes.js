@@ -5,6 +5,7 @@ const UserAccount = require("./models/UserAccount");
 const Validator = require("validatorjs");
 const CourseOutline = require("./models/CourseOutline");
 const { ObjectId } = require("mongodb");
+const Courses = require("./models/Courses");
 
 // Route to test session management.
 router.get("/test", (req, res) => {
@@ -132,6 +133,17 @@ router.get("/secure/all-outlines", (req, res) => {
     );
 });
 
+router.get("/secure/course-names", (req, res) => {
+  Course.find({}, "title")
+    .then((courses) => res.json(courses))
+    .catch((err) =>
+      res.status(404).json({
+        error: err,
+        noCourses: "No Course Names Found.",
+      })
+    );
+});
+
 // Route to extract data for a single outline.
 router.get("/secure/:outlineID", (req, res) => {
   const outlineID = req.params.outlineID;
@@ -170,6 +182,64 @@ router.post("/secure/decision/:outlineID", async (req, res) => {
       res.send("Administrator privileges required.");
     }
   } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+// Route for decision on course outline approval.
+router.post("/secure/request/:outlineID", async (req, res) => {
+  const outlineID = req.params.outlineID;
+  const requestApprove = req.body.requestApprove;
+
+  // First get session email to check if logged in user is an admin.
+  const userEmail = req.session.email;
+  const findUserType = await UserAccount.find({ email: userEmail }).select(
+    "user_type"
+  );
+  const userType = findUserType[0].user_type;
+
+  try {
+    if (userType == "admin") {
+      const courseOutline = await CourseOutline.findByIdAndUpdate(
+        { _id: outlineID },
+        { requestApproval: requestApprove },
+        { new: true }
+      );
+
+      res.send(courseOutline);
+    } else {
+      res.send("Administrator privileges required.");
+    }
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+// Route for decision on course outline approval.
+router.post("/secure/reply/:outlineID", async (req, res) => {
+  const outlineID = req.params.outlineID;
+  const decider = req.body.decider;
+
+  // First get session email to check if logged in user is an admin.
+  const userEmail = req.session.email;
+  const findUserType = await UserAccount.find({ email: userEmail }).select(
+    "user_type"
+  );
+  const userType = findUserType[0].user_type;
+
+  try {
+    if (userType == "admin") {
+      const courseOutline = await CourseOutline.findByIdAndUpdate(
+        { _id: outlineID },
+        { decision: decider },
+        { new: true }
+      );
+      res.send(courseOutline);
+    } else {
+      res.send("Administrator privileges required.");
+    }
+  } catch (err) {
+    console.error(err);
     res.status(500).send(err);
   }
 });
