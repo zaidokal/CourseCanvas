@@ -62,6 +62,7 @@ const ViewSingleOutline = () => {
     clickers: "",
     approved: "",
     requestApproval: "",
+    decision: "",
   });
 
   useEffect(() => {
@@ -135,6 +136,7 @@ const ViewSingleOutline = () => {
 
           approved: res.data.approved,
           requestApproval: res.data.requestApproval,
+          decision: res.data.decision,
         });
       })
       .catch((err) => {
@@ -174,6 +176,12 @@ const ViewSingleOutline = () => {
       <input
         className={styles.input2}
         value={userInput.requestApproval}
+        name="requestApproval"
+        placeholder="Status"
+      ></input>
+      <input
+        className={styles.input2}
+        value={userInput.decision}
         name="requestApproval"
         placeholder="Status"
       ></input>
