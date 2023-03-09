@@ -144,6 +144,24 @@ router.get("/secure/course-names", (req, res) => {
     );
 });
 
+router.get("/secure/instructor-names", (req, res) => {
+  UserAccount.find(
+    {},
+    {
+      first_name: 1,
+      last_name: 1,
+      user_id: 1,
+    }
+  )
+    .then((courses) => res.json(courses))
+    .catch((err) =>
+      res.status(404).json({
+        error: err,
+        noCourses: "No Course Names Found.",
+      })
+    );
+});
+
 // Route to extract data for a single outline.
 router.get("/secure/:outlineID", (req, res) => {
   const outlineID = req.params.outlineID;
@@ -268,6 +286,21 @@ router.get("/secure/instructors/:course", async (req, res) => {
     }
   } catch (err) {
     res.status(500).send(err);
+  }
+});
+
+router.post("/secure/assignment/:instructor", async (req, res) => {
+  const instructorID = req.params.instructor;
+  const courseTitle = req.body.course_title;
+
+  const user = await UserAccount.find({ user_id: instructorID });
+  console.log(user);
+
+  if (user.courses.contains(courseTitle)) {
+    user.assignedCourses.push(courseTitle);
+  } else {
+    console.log("Not in courses");
+    res.status(500).send("Can't assign instructor to that course");
   }
 });
 

@@ -27,7 +27,11 @@ const AccountSchema = new mongoose.Schema({
   },
   courses: {
     type: [String],
-    required: false,
+    required: true,
+  },
+  assignedCourses: {
+    type: [String],
+    required: true,
   },
 });
 
