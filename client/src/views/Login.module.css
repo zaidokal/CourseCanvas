@@ -1,15 +1,22 @@
 body {
-  /* background-image: url("../Images/LoginBackground.jpg"); */
-  background-size: cover;
-  position: relative;
-  height: 100vh;
-  overflow-y: hidden;
+  /* formatting */
+  margin: 0%;
 }
 .ContainerDiv {
-  background-color: rgb(255, 0, 0);
+  /* formatting */
+  width: 100vw;
+  height: 100vh;
+
+  position: relative;
+  overflow-y: hidden;
+
+  /* design */
+  background-image: url("../Images/LoginBackground.jpg");
+  background-size: cover;
 }
 
 .MainDiv {
+  /* formatting */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -19,57 +26,65 @@ body {
   padding-top: 5%;
   padding-bottom: 5%;
 
-  background-color: #161a1de1;
+  /* design */
+  background-color: #050f16de;
   border-color: rgb(255, 0, 0);
   border-radius: 30px;
 }
 
-.EmailBox {
-  border-radius: 10px;
+.EmailBox,
+.PasswordBox {
+  /* formatting */
   height: 50px;
   width: 300px;
   padding-left: 15px;
-  font-size: 20px;
   padding-bottom: 20p;
   margin: 10px 0px;
-  outline: none;
-  background-color: #ffffff;
-  font-family: Asap-Condensed-Regular;
-  transition: 0.3s;
-}
 
-.PasswordBox {
-  border-radius: 10px;
-  height: 50px;
-  width: 300px;
-  padding-left: 15px;
+  /* design */
+  background-color: #ffffff;
   font-size: 20px;
-  margin: 10px 0px;
-  outline: none;
-  background-color: #d3d3d3;
   font-family: Asap-Condensed-Regular;
   transition: 0.3s;
+  border-radius: 10px;
 }
 
 .AccountButton {
+  /* formatting */
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
   margin-bottom: 20px;
-
   width: 50%;
 }
 
-.EmailBox:hover {
-  background-color: rgb(0, 0, 0);
-  color: rgb(255, 255, 255);
-}
-
+.EmailBox:hover,
 .PasswordBox:hover {
+  /* design */
   background-color: rgb(0, 0, 0);
   color: rgb(255, 255, 255);
 }
 
 #loginError {
+  /* design */
   color: red;
+}
+
+.LoginBtn {
+  /* design */
+  background-color: rgba(7, 89, 243, 0.651);
+  color: #d3d3d3;
+  position: relative;
+  font-size: 16px;
+  font-family: Asap-Condensed-SemiBold;
+  border-radius: 10px;
+  width: 120px;
+  height: 45px;
+  transition: 0.3s;
+}
+
+.LoginBtn:hover {
+  /* design */
+  background-color: #0a37ff;
+  cursor: pointer;
 }
