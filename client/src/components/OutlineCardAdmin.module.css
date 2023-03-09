@@ -1,24 +1,53 @@
-.container {
-  margin: 1vw;
-}
-
 .square {
+  /* formatting */
   width: 150px;
   height: 200px;
+  margin: 10px;
+
+  /* design */
   border-radius: 10px;
   border-style: solid;
-  border-color: rgb(0, 0, 0);
-  background-color: rgb(153, 153, 153);
-  font-size: 40px;
+  background-color: rgb(201, 200, 200);
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+  transition: 0.3s;
+}
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.square:hover {
+  /* formatting */
+  cursor: pointer;
 
-  margin: 10px;
+  /* design */
+  background-color: #a4161a;
+  outline: #a4161a solid 2px;
+  color: white;
 }
 
 .ApproveBtn {
   width: 10vw;
   height: 3vh;
+}
+
+.ApproveBtn {
+  /* formatting */
+  width: 120px;
+  height: 45px;
+
+  /* design */
+  color: #ffffff;
+  position: relative;
+  font-size: 16px;
+  font-family: Asap-Condensed-SemiBold;
+  border-radius: 10px;
+  transition: 0.3s;
+  background-color: rgb(6, 31, 255);
+}
+
+.ApproveBtn:hover {
+  /* formatting */
+  cursor: pointer;
+
+  /* design */
+  background-color: #a4161a;
+  outline: #a4161a solid 2px;
 }

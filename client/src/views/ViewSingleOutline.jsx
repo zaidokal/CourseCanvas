@@ -142,7 +142,7 @@ const ViewSingleOutline = () => {
       .catch((err) => {
         console.log("Error in MemoryList" + err);
       });
-  }, []);
+  });
 
   const handlePrintClick = () => {
     window.print();
@@ -162,23 +162,12 @@ const ViewSingleOutline = () => {
       <div className={styles.header}>
         <AccountButton text={"Download"} onClick={handlePrintClick} />
       </div>
+      <RequestApproval outline={outline} onApprove={handleApproval} />
+
       <div className={styles.header}>
-        <AccountButton text={"Request Approval"} />
         <p>Approval Status:</p>
       </div>
-      <RequestApproval outline={outline} onApprove={handleApproval} />
-      <input
-        className={styles.input2}
-        value={userInput.approved}
-        name="approved"
-        placeholder="Status"
-      ></input>
-      <input
-        className={styles.input2}
-        value={userInput.requestApproval}
-        name="requestApproval"
-        placeholder="Status"
-      ></input>
+
       <input
         className={styles.input2}
         value={userInput.decision}

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./AssignInstructor.module.css";
 import AccountButton from "../components/AccountButton";
-import ChangeButton from "../components/ChangeButton";
 import axios from "axios";
-import OutlineCardAdmin from "../components/OutlineCardAdmin";
 
 export const AssignInstructor = (props) => {
   const [courseNames, setCourseNames] = useState([]);
@@ -23,9 +21,13 @@ export const AssignInstructor = (props) => {
       });
   }, []);
 
-  const displayList = courseNames.map((cou) => (
-    <button key={cou._id}>{cou.title}</button>
-  ));
+  const displayList = (
+    <select>
+      {courseNames.map((cou) => (
+        <option key={cou._id}>{cou.title}</option>
+      ))}
+    </select>
+  );
 
   const [selectedOption, setSelectedOption] = useState("");
 
@@ -35,7 +37,7 @@ export const AssignInstructor = (props) => {
 
   return (
     <>
-      <div className={styles.MainDiv}>
+      <div className={styles.container}>
         <form>
           <div className={styles.Courses}>
             <div className={styles.InsideCourses}>
