@@ -23,9 +23,13 @@ export const AssignInstructor = (props) => {
       });
   }, []);
 
-  const displayList = courseNames.map((cou) => (
-    <button key={cou._id}>{cou.title}</button>
-  ));
+  const displayList = (
+    <select>
+      {courseNames.map((cou) => (
+        <option key={cou._id}>{cou.title}</option>
+      ))}
+    </select>
+  );
 
   const [selectedOption, setSelectedOption] = useState("");
 
