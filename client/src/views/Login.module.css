@@ -1,29 +1,27 @@
+body {
+  /* background-image: url("../Images/LoginBackground.jpg"); */
+  background-size: cover;
+  position: relative;
+  height: 100vh;
+  overflow-y: hidden;
+}
+.ContainerDiv {
+  background-color: rgb(255, 0, 0);
+}
+
 .MainDiv {
-  width: 500px;
-
-  padding-left: 110px;
-  padding-top: 80px;
-  padding-bottom: 100px;
-  border-color: rgb(255, 0, 0);
-  background-color: #161a1d;
-
-  border-radius: 15px;
-
-  margin: 0;
   position: absolute;
   top: 50%;
   left: 50%;
-  -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-}
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 5%;
+  padding-bottom: 5%;
 
-.AccountButton {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-
-  width: 50%;
+  background-color: #161a1de1;
+  border-color: rgb(255, 0, 0);
+  border-radius: 30px;
 }
 
 .EmailBox {
@@ -35,7 +33,7 @@
   padding-bottom: 20p;
   margin: 10px 0px;
   outline: none;
-  background-color: #d3d3d3;
+  background-color: #ffffff;
   font-family: Asap-Condensed-Regular;
   transition: 0.3s;
 }
@@ -53,12 +51,23 @@
   transition: 0.3s;
 }
 
+.AccountButton {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  width: 50%;
+}
+
 .EmailBox:hover {
-  background-color: #f5f3f4;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }
 
 .PasswordBox:hover {
-  background-color: #f5f3f4;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }
 
 #loginError {
