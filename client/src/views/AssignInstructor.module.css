@@ -1,45 +1,68 @@
-.MainDiv {
+.container {
+  /* formatting */
   width: 100%;
-  /* overflow: hidden; */
   height: 100%;
+
+  /* design */
 }
 
 .Courses {
+  /* formatting */
   width: 30%;
   float: left;
   height: 60vh;
   margin: 5%;
+
+  /* design */
   background-color: aqua;
 }
 
 .InsideCourses {
+  /* formatting */
   margin: 5%;
+
+  /* design */
+}
+
+.courseNames {
+  /* formatting */
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+
+  /* design */
 }
 
 .Description {
+  /* formatting */
   width: 55%;
   float: right;
   height: 60vh;
   margin-right: 5%;
   margin-top: 5%;
+
+  /* design */
   background-color: rgb(204, 0, 255);
 }
 
 .InsideDescription {
+  /* formatting */
   margin: 5%;
+
+  /* design */
 }
 
 button {
+  /* formatting */
   width: 80%;
   margin: 1%;
+
+  /* design */
 }
 
 .Assign {
+  /* formatting */
   width: 10vw;
-}
 
-.courseNames {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
+  /* design */
 }

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./HomePage.module.css";
 import { Link } from "react-router-dom";
-import NewButton from "../HomePage";
-import AccountButton from "../components/AccountButton";
 import OutlineCard from "../components/OutlineCard";
 import axios from "axios";
 
@@ -35,41 +33,26 @@ const HomePage = () => {
 
   return (
     <>
-      <div>
-        <h1>Course Outlines</h1>
-      </div>
-
-      <div className={styles.Outlines} id="Outlines">
-        {displayList}
-      </div>
-
-      <div className={styles.AccountDiv1}>
-        <Link>
-          <div>
-            <AccountButton
-              className={styles.Button}
-              linkTo={"/COTemplate"}
-              text={"COTemplate"}
-            />
-          </div>
-          <div className={styles.header}>
-            <AccountButton
-              text={"AssignInstructor"}
-              linkTo={"/AssignInstructor"}
-            />
-          </div>
-        </Link>
-      </div>
-
-      <Link>
-        <div>
-          <AccountButton
-            className={styles.Button}
-            linkTo={"/AdminApproval"}
-            text={"Admin Approval"}
-          />
+      <div className={styles.container}>
+        <div className={styles.AdminDiv}>
+          <Link to="/AssignInstructor">
+            <button className={styles.LinkButtons}>AssignInstructor</button>
+          </Link>
+          <Link to="/AdminApproval">
+            <button className={styles.LinkButtons}>AdminApproval</button>
+          </Link>
         </div>
-      </Link>
+        <div className={styles.title}>Course Outlines</div>
+        <div>
+          <Link to="/COTemplate">
+            <button className={styles.COTemp}>Create Course Outline</button>
+          </Link>
+        </div>
+
+        <div className={styles.Outlines} id="Outlines">
+          {displayList}
+        </div>
+      </div>
     </>
   );
 };
