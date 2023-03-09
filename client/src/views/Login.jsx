@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from "./Login.module.css";
-import AccountButton from "../components/AccountButton";
 import axios from "axios";
 
 export const Login = (props) => {
@@ -64,11 +63,9 @@ export const Login = (props) => {
             <div id={styles.loginError}></div>
 
             <div className={styles.AccountButton}>
-              <AccountButton
-                text={"Login"}
-                linkTo={"/HomePage"}
-                onClick={handleSubmit}
-              />
+              <button className={styles.LoginBtn} onClick={handleSubmit}>
+                Login
+              </button>
             </div>
           </form>
         </div>
