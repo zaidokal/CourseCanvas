@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./AdminApproval.module.css";
-import { Link } from "react-router-dom";
-import NewButton from "../HomePage";
-import AccountButton from "../components/AccountButton";
 import OutlineCardAdmin from "../components/OutlineCardAdmin";
 import OutlineCardAdminApproved from "../components/OutlineCardAdminApproved";
+import AccountButton from "../components/AccountButton";
 
 import axios from "axios";
 
@@ -43,20 +41,25 @@ const AdminApproval = () => {
 
   return (
     <>
-      <div>
-        <h1>Course Outlines</h1>
-      </div>
+      <div className={styles.container}>
+        <div>
+          <h1>Course Outlines</h1>
+        </div>
 
-      <div className={styles.MainDiv}>
-        <div className={styles.UnapprovedContainer}>
-          <div className={styles.Outlines} id="Outlines">
-            {displayList}
+        <div className={styles.MainDiv}>
+          <div className={styles.UnapprovedContainer}>
+            <div className={styles.Outlines} id="Outlines">
+              {displayList}
+            </div>
+          </div>
+          <div className={styles.ApprovedContainer}>
+            <div className={styles.Outlines} id="Outlines">
+              {displayApprovedList}
+            </div>
           </div>
         </div>
-        <div className={styles.ApprovedContainer}>
-          <div className={styles.Outlines} id="Outlines">
-            {displayApprovedList}
-          </div>
+        <div className={styles.header}>
+          <AccountButton text={"HomePage"} linkTo={"/HomePage"} />
         </div>
       </div>
     </>

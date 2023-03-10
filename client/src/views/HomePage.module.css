@@ -1,18 +1,77 @@
-.NewCO {
+.container {
+  /* formatting */
+  margin: 2%;
+}
+
+.AdminDiv {
+  /* formatting */
+  width: 100%;
+
+  /* design */
+}
+
+.LinkButtons {
+  /* formatting */
+  width: 120px;
+  height: 45px;
+
+  /* design */
+  color: #ffffff;
+  position: relative;
+  font-size: 16px;
+  font-family: Asap-Condensed-SemiBold;
+  border-radius: 10px;
+  transition: 0.3s;
+  background-color: rgb(6, 31, 255);
+}
+
+.LinkButtons:hover {
+  /* formatting */
+  cursor: pointer;
+
+  /* design */
+  background-color: #a4161a;
+  outline: #a4161a solid 2px;
+}
+
+.title {
+  /* formatting */
+  margin-top: 1%;
+  margin-bottom: 1%;
+
+  /* design */
+  font: bold;
+  font-size: 40px;
+}
+
+.COTemp {
+  /* formatting */
   width: 150px;
   height: 200px;
+  margin: 10px;
+
+  /* design */
   border-radius: 10px;
   border-style: solid;
-  border-color: rgb(0, 0, 0);
-  background-color: rgb(153, 153, 153);
+  background-color: rgb(201, 200, 200);
   font-size: 20px;
+  color: rgb(0, 0, 0);
+  transition: 0.3s;
+}
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.COTemp:hover {
+  /* formatting */
+  cursor: pointer;
+
+  /* design */
+  background-color: #a4161a;
+  outline: #a4161a solid 2px;
+  color: white;
 }
 
 .Outlines {
+  /* formatting */
   display: flex;
   flex-wrap: wrap;
+  /* design */
 }

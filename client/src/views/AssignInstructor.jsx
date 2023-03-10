@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./AssignInstructor.module.css";
 import AccountButton from "../components/AccountButton";
-import ChangeButton from "../components/ChangeButton";
 import axios from "axios";
-import OutlineCardAdmin from "../components/OutlineCardAdmin";
 
 export const AssignInstructor = (props) => {
   const [courseNames, setCourseNames] = useState([]);
@@ -23,19 +21,87 @@ export const AssignInstructor = (props) => {
       });
   }, []);
 
-  const displayList = courseNames.map((cou) => (
-    <button key={cou._id}>{cou.title}</button>
-  ));
+  const [instructorNames, setInstructorNames] = useState([]);
 
-  const [selectedOption, setSelectedOption] = useState("");
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/secure/instructor-names", {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log(response.data); // log the data returned by the server
+        setInstructorNames(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
+  const [selectedCourse, setSelectedCourse] = useState("");
+  const [selectedInstructor, setSelectedInstructor] = useState("");
+
+  const displayList = (
+    <select
+      value={selectedCourse}
+      onChange={(e) => setSelectedCourse(e.target.value)}
+    >
+      <option>course</option>
+      {courseNames.map((cou) => (
+        <option key={cou._id} value={cou.title}>
+          {cou.title}
+        </option>
+      ))}
+    </select>
+  );
+
+  const displayInstructorList = (
+    <select
+      value={selectedInstructor}
+      onChange={(e) => setSelectedInstructor(e.target.value)}
+    >
+      <option>instructor</option>
+      {instructorNames.map((inst) => (
+        <option key={inst._id} value={inst.user_id}>
+          {inst.first_name + " " + inst.last_name}
+        </option>
+      ))}
+    </select>
+  );
+
+  const handleAssign = (e) => {
+    e.preventDefault();
+    const cou = selectedCourse;
+    const inst = selectedInstructor;
+
+    console.log(cou, inst);
+
+    axios
+      .post(
+        `http://localhost:8000/api/secure/assignment/${inst}`,
+        {
+          course_title: cou.title,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        alert("Save successful.");
+      })
+      .catch((err) => {
+        alert("Bad Request, please fill out ALL required fields.");
+        console.log(err.response);
+      });
   };
 
   return (
     <>
-      <div className={styles.MainDiv}>
+      <div className={styles.container}>
         <form>
           <div className={styles.Courses}>
             <div className={styles.InsideCourses}>
@@ -48,18 +114,10 @@ export const AssignInstructor = (props) => {
               <h1>Description</h1>
               <div>
                 <label htmlFor="dropdown">Select an instructor:</label>
-                <select
-                  id="dropdown"
-                  value={selectedOption}
-                  onChange={handleOptionChange}
-                >
-                  <option value="">--Select--</option>
-                  <option value="Instructor 1">Instructor 1</option>
-                  <option value="Instructor 2">Instructor 2</option>
-                  <option value="Instructor 3">Instructor 3</option>
-                </select>
-                <p>Selected instructor: {selectedOption}</p>
-                <button className={styles.Assign}>Assign Instructor</button>
+                {displayInstructorList}
+                <button className={styles.Assign} onClick={handleAssign}>
+                  Assign Instructor
+                </button>
               </div>
             </div>
           </div>
