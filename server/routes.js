@@ -293,11 +293,12 @@ router.post("/secure/assignment/:instructor", async (req, res) => {
   const instructorID = req.params.instructor;
   const courseTitle = req.body.course_title;
 
-  const user = await UserAccount.find({ user_id: instructorID });
-  console.log(user);
+  const user = await UserAccount.findOne({ user_id: instructorID });
 
-  if (user.courses.contains(courseTitle)) {
+  if (user.courses.includes(courseTitle)) {
     user.assignedCourses.push(courseTitle);
+    await user.save(); // save the updated user object to the database
+    res.status(200).send("Course assigned successfully");
   } else {
     console.log("Not in courses");
     res.status(500).send("Can't assign instructor to that course");
