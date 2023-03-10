@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import styles from "./ViewSingleOutline.module.css";
 import AccountButton from "../components/AccountButton";
 import RequestApproval from "../components/RequestApproval";
+
+import html2pdf from "html2pdf.js";
 
 const ViewSingleOutline = () => {
   const { id } = useParams();
@@ -154,13 +156,35 @@ const ViewSingleOutline = () => {
     console.log("Approval data:", data);
   };
 
+  const contentRef = useRef(null);
+
+  const handleDownload = () => {
+    if (userInput.approved) {
+      const content = contentRef.current;
+      const options = {
+        margin: 0.5,
+        filename: userInput.courseName,
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+      };
+      html2pdf().set(options).from(content).save();
+    }
+  };
+
   return (
     <>
       <div className={styles.header}>
         <AccountButton text={"HomePage"} linkTo={"/HomePage"} />
       </div>
-      <div className={styles.header}>
-        <AccountButton text={"Download"} onClick={handlePrintClick} />
+      <div>
+        <button
+          className={styles.downloadBTN}
+          disabled={!userInput.approved}
+          onClick={handleDownload}
+        >
+          {userInput.approved} Download
+        </button>
       </div>
       <RequestApproval outline={outline} onApprove={handleApproval} />
 
@@ -174,7 +198,7 @@ const ViewSingleOutline = () => {
         name="requestApproval"
         placeholder="Status"
       ></input>
-      <div className={styles.MainDiv}>
+      <div ref={contentRef} className={styles.MainDiv}>
         <p align="center">
           <strong>Western University</strong> <br />
           <strong>Faculty of Engineering</strong> <br />
