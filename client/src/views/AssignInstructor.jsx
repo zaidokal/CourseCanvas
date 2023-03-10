@@ -80,7 +80,7 @@ export const AssignInstructor = (props) => {
       .post(
         `http://localhost:8000/api/secure/assignment/${inst}`,
         {
-          course_title: cou.title,
+          course_title: cou,
         },
         {
           headers: {
