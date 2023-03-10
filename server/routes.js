@@ -24,6 +24,7 @@ router.post("/auth/register", async (req, res) => {
       user_id,
       user_type,
       courses,
+      assignedCourses,
     } = req.body;
 
     const existingAccount = await UserAccount.findOne({ email });
@@ -54,6 +55,7 @@ router.post("/auth/register", async (req, res) => {
         user_id,
         user_type,
         courses,
+        assignedCourses,
       });
 
       await userAccount.save();
