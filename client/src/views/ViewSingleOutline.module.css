@@ -1,3 +1,39 @@
+.downloadBTN {
+  /* formatting */
+  width: 120px;
+  height: 45px;
+
+  /* design */
+  color: #ffffff;
+  position: relative;
+  font-size: 16px;
+  font-family: Asap-Condensed-SemiBold;
+  border-radius: 10px;
+  transition: 0.3s;
+  background-color: rgb(6, 31, 255);
+}
+
+.downloadBTN:hover {
+  /* formatting */
+  cursor: pointer;
+
+  /* design */
+  background-color: #a4161a;
+  outline: #a4161a solid 2px;
+}
+
+.downloadBTN:disabled {
+  /* design */
+  color: #ffffff;
+  position: relative;
+  font-size: 16px;
+  font-family: Asap-Condensed-SemiBold;
+  border-radius: 10px;
+  transition: 0.3s;
+  background-color: rgb(132, 133, 136);
+  outline: rgb(132, 133, 136);
+}
+
 .input {
   border: none;
   border-radius: 4px;
