@@ -153,6 +153,7 @@ router.get("/secure/instructor-names", (req, res) => {
       first_name: 1,
       last_name: 1,
       user_id: 1,
+      courses: 1,
     }
   )
     .then((courses) => res.json(courses))
