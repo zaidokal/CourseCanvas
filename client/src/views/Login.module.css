@@ -7,29 +7,55 @@ body {
   width: 100vw;
   height: 100vh;
 
+  width: 65%;
+  float: left;
+
   position: relative;
   overflow-y: hidden;
 
   /* design */
   background-image: url("../Images/LoginBackground.jpg");
+  background-repeat: no-repeat;
   background-size: cover;
+
+  /* background-size: cover; */
 }
 
-.MainDiv {
-  /* formatting */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding-left: 10%;
-  padding-right: 10%;
-  padding-top: 5%;
-  padding-bottom: 5%;
+.LoginDiv {
+  width: 35%;
+  float: right;
+  height: 100vh;
+  position: relative;
 
-  /* design */
-  background-color: #050f16de;
-  border-color: rgb(255, 0, 0);
-  border-radius: 30px;
+  text-align: center;
+}
+
+.Container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.WesternLogo {
+  margin-top: 12vh;
+  width: 25vw;
+}
+
+.COM {
+  margin-top: 0%;
+  color: #4f2683;
+  font-size: 2.4vw;
+}
+
+form {
+  margin-top: 12vh;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 1%;
+  left: 0;
+  right: 0;
 }
 
 .EmailBox,
@@ -40,6 +66,7 @@ body {
   padding-left: 15px;
   padding-bottom: 20p;
   margin: 10px 0px;
+  margin-bottom: 3vh;
 
   /* design */
   background-color: #ffffff;
@@ -53,7 +80,7 @@ body {
   /* formatting */
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  margin-top: 1vh;
   margin-bottom: 20px;
   width: 50%;
 }
