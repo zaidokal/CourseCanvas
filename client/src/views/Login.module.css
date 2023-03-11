@@ -69,6 +69,7 @@ footer {
   padding-bottom: 20p;
   margin: 10px 0px;
   margin-bottom: 3vh;
+  color: #d3d3d3;
 
   /* design */
   background-color: #ffffff;
@@ -90,8 +91,8 @@ footer {
 .EmailBox:hover,
 .PasswordBox:hover {
   /* design */
-  background-color: rgb(0, 0, 0);
-  color: rgb(255, 255, 255);
+  background-color: #9051e2;
+  color: #d3d3d3;
 }
 
 #loginError {
@@ -101,7 +102,7 @@ footer {
 
 .LoginBtn {
   /* design */
-  background-color: rgba(7, 89, 243, 0.651);
+  background-color: #4f2683;
   color: #d3d3d3;
   position: relative;
   font-size: 16px;
@@ -114,6 +115,6 @@ footer {
 
 .LoginBtn:hover {
   /* design */
-  background-color: #0a37ff;
+  background-color: #9051e2;
   cursor: pointer;
 }
