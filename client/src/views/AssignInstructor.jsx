@@ -46,7 +46,7 @@ export const AssignInstructor = (props) => {
       value={selectedCourse}
       onChange={(e) => setSelectedCourse(e.target.value)}
     >
-      <option>course</option>
+      <option>Select Course</option>
       {courseNames.map((cou) => (
         <option key={cou._id} value={cou.title}>
           {cou.title}
@@ -60,12 +60,14 @@ export const AssignInstructor = (props) => {
       value={selectedInstructor}
       onChange={(e) => setSelectedInstructor(e.target.value)}
     >
-      <option>instructor</option>
-      {instructorNames.map((inst) => (
-        <option key={inst._id} value={inst.user_id}>
-          {inst.first_name + " " + inst.last_name}
-        </option>
-      ))}
+      <option>Select Instructor</option>
+      {instructorNames
+        .filter((inst) => inst.courses.includes(selectedCourse))
+        .map((inst) => (
+          <option key={inst._id} value={inst.user_id}>
+            {inst.first_name + " " + inst.last_name}
+          </option>
+        ))}
     </select>
   );
 
@@ -80,7 +82,7 @@ export const AssignInstructor = (props) => {
       .post(
         `http://localhost:8000/api/secure/assignment/${inst}`,
         {
-          course_title: cou.title,
+          course_title: cou,
         },
         {
           headers: {

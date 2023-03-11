@@ -104,14 +104,21 @@ input::placeholder {
 }
 
 @media print {
-  button {
+  .RemovePrint {
     display: none;
   }
   .header {
     display: none;
   }
+  .Page {
+    page-break-after: always;
+  }
 }
 
 .MainDiv {
   margin: 5%;
+}
+
+.Center {
+  text-align: center;
 }

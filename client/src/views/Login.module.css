@@ -7,29 +7,57 @@ body {
   width: 100vw;
   height: 100vh;
 
+  width: 65%;
+  float: left;
+
   position: relative;
   overflow-y: hidden;
 
   /* design */
   background-image: url("../Images/LoginBackground.jpg");
+  background-repeat: no-repeat;
   background-size: cover;
+
+  /* background-size: cover; */
 }
 
-.MainDiv {
-  /* formatting */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding-left: 10%;
-  padding-right: 10%;
-  padding-top: 5%;
-  padding-bottom: 5%;
+.LoginDiv {
+  width: 35%;
+  float: right;
+  height: 100vh;
+  position: relative;
 
-  /* design */
-  background-color: #050f16de;
-  border-color: rgb(255, 0, 0);
-  border-radius: 30px;
+  text-align: center;
+}
+
+.Container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.WesternLogo {
+  margin-top: 12vh;
+  width: 25vw;
+}
+
+.COM {
+  margin-top: 0%;
+  color: #4f2683;
+  font-size: 2.4vw;
+}
+
+form {
+  margin-top: 12vh;
+}
+
+footer {
+  color: #4f2683;
+
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 1%;
+  left: 0;
+  right: 0;
 }
 
 .EmailBox,
@@ -40,6 +68,8 @@ body {
   padding-left: 15px;
   padding-bottom: 20p;
   margin: 10px 0px;
+  margin-bottom: 3vh;
+  color: #d3d3d3;
 
   /* design */
   background-color: #ffffff;
@@ -53,7 +83,7 @@ body {
   /* formatting */
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  margin-top: 1vh;
   margin-bottom: 20px;
   width: 50%;
 }
@@ -61,8 +91,8 @@ body {
 .EmailBox:hover,
 .PasswordBox:hover {
   /* design */
-  background-color: rgb(0, 0, 0);
-  color: rgb(255, 255, 255);
+  background-color: #9051e2;
+  color: #d3d3d3;
 }
 
 #loginError {
@@ -72,7 +102,7 @@ body {
 
 .LoginBtn {
   /* design */
-  background-color: rgba(7, 89, 243, 0.651);
+  background-color: #4f2683;
   color: #d3d3d3;
   position: relative;
   font-size: 16px;
@@ -85,6 +115,6 @@ body {
 
 .LoginBtn:hover {
   /* design */
-  background-color: #0a37ff;
+  background-color: #9051e2;
   cursor: pointer;
 }

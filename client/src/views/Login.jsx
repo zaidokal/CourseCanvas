@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Login.module.css";
 import axios from "axios";
+import WesternLogo from "../Images/WesternLogo.png";
 
 export const Login = (props) => {
   const [userInput, setUserInput] = useState({
@@ -39,8 +40,17 @@ export const Login = (props) => {
 
   return (
     <>
-      <div className={styles.ContainerDiv}>
-        <div className={styles.MainDiv}>
+      <div className={styles.Container}>
+        <div className={styles.ContainerDiv}></div>
+
+        <div className={styles.LoginDiv}>
+          <img
+            className={styles.WesternLogo}
+            src={WesternLogo}
+            alt="My Image"
+          />
+          <p className={styles.COM}>Course Outline Manager</p>
+
           <form onSubmit={handleSubmit}>
             <input
               className={styles.EmailBox}
@@ -67,7 +77,9 @@ export const Login = (props) => {
                 Login
               </button>
             </div>
+            <p>version 1.0</p>
           </form>
+          <footer>© Built and Designed by SRZ</footer>
         </div>
       </div>
     </>
