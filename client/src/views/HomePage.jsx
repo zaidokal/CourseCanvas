@@ -69,73 +69,76 @@ const HomePage = () => {
 
   return (
     <>
-      <div className={styles.Head}>
-        <img
-          className={styles.WesternLogoMini}
-          src={WesternLogoMini}
-          alt="My Image"
-        />
+      <div className={styles.MainDiv}>
+        <div className={styles.Head}>
+          <img
+            className={styles.WesternLogoMini}
+            src={WesternLogoMini}
+            alt="My Image"
+          />
 
-        <div className={styles.OutlineManager}>Outline Manager</div>
+          <div className={styles.OutlineManager}>Outline Manager</div>
 
-        <Link to="/AssignInstructor">
-          <button className={styles.LinkButtons}>AssignInstructor</button>
-        </Link>
-        <Link to="/AdminApproval">
-          <button className={styles.LinkButtons}>AdminApproval</button>
-        </Link>
+          <Link to="/AssignInstructor">
+            <button className={styles.LinkButtons}>AssignInstructor</button>
+          </Link>
+          <Link to="/AdminApproval">
+            <button className={styles.LinkButtons}>AdminApproval</button>
+          </Link>
 
-        <div className={styles.RightDiv}>
-          <div className={styles.UsernameDiv}>
-            <p>FirstName LastName</p>
+          <div className={styles.RightDiv}>
+            <div className={styles.UsernameDiv}>
+              <p>FirstName LastName</p>
+            </div>
+
+            <div className={styles.logoutDiv}>
+              <Link to="/">
+                <button className={styles.logoutBtn}>Logout</button>
+              </Link>
+            </div>
           </div>
+        </div>
 
-          <div className={styles.logoutDiv}>
-            <Link to="/">
-              <button className={styles.logoutBtn}>Logout</button>
+        <div className={styles.container}>
+          <div className={styles.title}>Previous Outlines</div>
+
+          <div
+            onMouseMove={handleMouseMove}
+            ref={containerRef}
+            // ref={scrollRef}
+            className={styles.YOutline}
+            id="Outlines"
+          >
+            <Link to="/COTemplate">
+              <button className={styles.COTemp}>+</button>
             </Link>
+            {displayList}
           </div>
+          <button className={styles.ScrollBtn} onClick={handleClick}>
+            <img className={styles.Arrow} src={Arrow} alt="My Image" />
+          </button>
         </div>
-      </div>
 
-      <div className={styles.container}>
-        <div className={styles.title}>Previous Outlines</div>
+        <div className={styles.container}>
+          <div className={styles.title}>Previous Outlines</div>
 
-        <div
-          onMouseMove={handleMouseMove}
-          ref={containerRef}
-          // ref={scrollRef}
-          className={styles.YOutline}
-          id="Outlines"
-        >
-          <Link to="/COTemplate">
-            <button className={styles.COTemp}>+</button>
-          </Link>
-          {displayList}
+          <div
+            onMouseMove={handleMouseMove2}
+            ref={containerRef2}
+            // ref={scrollRef}
+            className={styles.YOutline}
+            id="Outlines"
+          >
+            <Link to="/COTemplate">
+              <button className={styles.COTemp}>+</button>
+            </Link>
+            {displayList}
+          </div>
+          <button className={styles.ScrollBtn} onClick={handleClick}>
+            <img className={styles.Arrow} src={Arrow} alt="My Image" />
+          </button>
         </div>
-        <button className={styles.ScrollBtn} onClick={handleClick}>
-          <img className={styles.Arrow} src={Arrow} alt="My Image" />
-        </button>
-      </div>
-
-      <div className={styles.container}>
-        <div className={styles.title}>Previous Outlines</div>
-
-        <div
-          onMouseMove={handleMouseMove2}
-          ref={containerRef2}
-          // ref={scrollRef}
-          className={styles.YOutline}
-          id="Outlines"
-        >
-          <Link to="/COTemplate">
-            <button className={styles.COTemp}>+</button>
-          </Link>
-          {displayList}
-        </div>
-        <button className={styles.ScrollBtn} onClick={handleClick}>
-          <img className={styles.Arrow} src={Arrow} alt="My Image" />
-        </button>
+        <div className={styles.footer}>© Built and Designed by SRZ</div>
       </div>
     </>
   );
