@@ -11,7 +11,8 @@ const OutlineCard = (props) => {
       style={{ color: "inherit", textDecoration: "inherit" }}
     >
       <button className={styles.square} id="createButton">
-        {outline.courseName}
+        <span>{outline.courseName}</span>
+        <span>{outline.year}</span>
       </button>
     </Link>
   );

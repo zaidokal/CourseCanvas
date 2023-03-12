@@ -11,6 +11,23 @@
   font-size: 20px;
   color: rgb(0, 0, 0);
   transition: 0.3s;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  padding: 10px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.square span {
+  display: block;
+  white-space: normal;
+  text-overflow: initial;
 }
 
 .square:hover {
