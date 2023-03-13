@@ -56,7 +56,7 @@ const HomePage = () => {
     } else {
       clearInterval(scrollIntervalRef.current);
     }
-  }, [isHovered]);
+  });
 
   const containerRef2 = useRef(null);
   const scrollIntervalRef2 = useRef(null);
@@ -81,7 +81,7 @@ const HomePage = () => {
     } else {
       clearInterval(scrollIntervalRef2.current);
     }
-  }, [isHovered]);
+  });
 
   return (
     <>
@@ -90,7 +90,7 @@ const HomePage = () => {
           <img
             className={styles.WesternLogoMini}
             src={WesternLogoMini}
-            alt="My Image"
+            alt="Western Mini Logo"
           />
 
           <div className={styles.OutlineManager}>Outline Manager</div>
