@@ -111,8 +111,8 @@
 
 .COTemp {
   /* formatting */
-  width: 150px;
-  height: 200px;
+  width: 11vw;
+  height: 25vh;
   margin: 10px;
 
   /* design */
@@ -181,10 +181,11 @@ div::-webkit-scrollbar-track {
 
 .LeftScroll,
 .RightScroll {
+  margin-top: 1vh;
   justify-content: center;
   background-color: grey;
   width: 3vw;
-  height: 20vh;
+  height: 25vh;
   /* pointer-events: auto; */
 }
 
@@ -202,7 +203,7 @@ div::-webkit-scrollbar-track {
   width: 100%;
   flex-wrap: wrap;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .YOutline {
