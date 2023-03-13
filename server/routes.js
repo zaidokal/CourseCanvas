@@ -24,6 +24,7 @@ router.post("/auth/register", async (req, res) => {
       user_id,
       user_type,
       courses,
+      assignedCourses,
     } = req.body;
 
     const existingAccount = await UserAccount.findOne({ email });
@@ -54,6 +55,7 @@ router.post("/auth/register", async (req, res) => {
         user_id,
         user_type,
         courses,
+        assignedCourses,
       });
 
       await userAccount.save();
@@ -135,6 +137,25 @@ router.get("/secure/all-outlines", (req, res) => {
 
 router.get("/secure/course-names", (req, res) => {
   Course.find({}, "title")
+    .then((courses) => res.json(courses))
+    .catch((err) =>
+      res.status(404).json({
+        error: err,
+        noCourses: "No Course Names Found.",
+      })
+    );
+});
+
+router.get("/secure/instructor-names", (req, res) => {
+  UserAccount.find(
+    {},
+    {
+      first_name: 1,
+      last_name: 1,
+      user_id: 1,
+      courses: 1,
+    }
+  )
     .then((courses) => res.json(courses))
     .catch((err) =>
       res.status(404).json({
@@ -268,6 +289,22 @@ router.get("/secure/instructors/:course", async (req, res) => {
     }
   } catch (err) {
     res.status(500).send(err);
+  }
+});
+
+router.post("/secure/assignment/:instructor", async (req, res) => {
+  const instructorID = req.params.instructor;
+  const courseTitle = req.body.course_title;
+
+  const user = await UserAccount.findOne({ user_id: instructorID });
+
+  if (user.courses.includes(courseTitle)) {
+    user.assignedCourses.push(courseTitle);
+    await user.save(); // save the updated user object to the database
+    res.status(200).send("Course assigned successfully");
+  } else {
+    console.log("Not in courses");
+    res.status(500).send("Can't assign instructor to that course");
   }
 });
 
