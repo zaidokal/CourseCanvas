@@ -116,7 +116,7 @@ const HomePage = () => {
         </div>
 
         <div className={styles.container}>
-          <div className={styles.title}>Previous Outlines</div>
+          <div className={styles.title}>Current Outlines</div>
           <div className={styles.PostTitle}></div>
           <div
             className={styles.LeftScroll}
