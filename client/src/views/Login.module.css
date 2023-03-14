@@ -7,7 +7,7 @@ body {
   width: 100vw;
   height: 100vh;
 
-  width: 65%;
+  width: 70%;
   float: left;
 
   position: relative;
@@ -22,7 +22,7 @@ body {
 }
 
 .LoginDiv {
-  width: 35%;
+  width: 30%;
   float: right;
   height: 100vh;
   position: relative;
@@ -58,22 +58,23 @@ footer {
   margin-bottom: 1%;
   left: 0;
   right: 0;
+
+  font-size: 2vh;
 }
 
 .EmailBox,
 .PasswordBox {
   /* formatting */
-  height: 50px;
-  width: 300px;
-  padding-left: 15px;
-  padding-bottom: 20p;
+  height: 5vh;
+  width: 20vw;
+  padding-left: 1vw;
   margin: 10px 0px;
   margin-bottom: 3vh;
   color: #d3d3d3;
 
   /* design */
   background-color: #ffffff;
-  font-size: 20px;
+  font-size: 1.2vw;
   font-family: Asap-Condensed-Regular;
   transition: 0.3s;
   border-radius: 10px;
@@ -84,7 +85,7 @@ footer {
   margin-left: auto;
   margin-right: auto;
   margin-top: 1vh;
-  margin-bottom: 20px;
+  margin-bottom: 2vh;
   width: 50%;
 }
 
@@ -105,11 +106,11 @@ footer {
   background-color: #4f2683;
   color: #d3d3d3;
   position: relative;
-  font-size: 16px;
+  font-size: 1vw;
   font-family: Asap-Condensed-SemiBold;
   border-radius: 10px;
-  width: 120px;
-  height: 45px;
+  width: 7vw;
+  height: 5vh;
   transition: 0.3s;
 }
 
@@ -117,4 +118,9 @@ footer {
   /* design */
   background-color: #9051e2;
   cursor: pointer;
+}
+
+.version {
+  font-size: 2vh;
+  color: #4f2683;
 }

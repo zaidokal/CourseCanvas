@@ -105,11 +105,14 @@
   color: #4f2683;
   border-bottom: 2px solid #4f2683;
 }
+.PostTitle {
+  width: 28vw;
+}
 
 .COTemp {
   /* formatting */
-  width: 150px;
-  height: 200px;
+  width: 11vw;
+  height: 25vh;
   margin: 10px;
 
   /* design */
@@ -130,23 +133,7 @@
   outline: #a4161a solid 2px;
   color: white;
 }
-.container {
-  /* formatting */
-  margin: 2%;
-  width: 100%;
-  flex-wrap: wrap;
-  display: flex;
-  align-items: center;
-}
-.YOutline {
-  width: 90%;
-  overflow-x: scroll;
-  height: min-content;
-  /* formatting */
-  display: flex;
-  /* flex-wrap: wrap; */
-  /* design */
-}
+
 .Arrow {
   width: 100%;
   color: #4f2683;
@@ -190,4 +177,41 @@ div::-webkit-scrollbar-track {
   width: 300px;
   margin: 0 auto;
   margin-bottom: 1%;
+}
+
+.LeftScroll,
+.RightScroll {
+  margin-top: 1vh;
+  justify-content: center;
+  background-color: grey;
+  width: 3vw;
+  height: 25vh;
+  /* pointer-events: auto; */
+}
+
+.LeftScroll {
+  margin-right: 10px;
+}
+
+.RightScroll {
+  margin-left: 10px;
+}
+
+.container {
+  /* formatting */
+  margin: 2%;
+  width: 100%;
+  flex-wrap: wrap;
+  display: flex;
+  /* align-items: center; */
+}
+
+.YOutline {
+  width: 85%;
+  overflow-x: scroll;
+  height: min-content;
+  /* formatting */
+  display: flex;
+  /* flex-wrap: wrap; */
+  /* design */
 }

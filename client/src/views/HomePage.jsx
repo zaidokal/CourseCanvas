@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import OutlineCard from "../components/OutlineCard";
 import axios from "axios";
 import WesternLogoMini from "../Images/WesternLogoMini.png";
-import Arrow from "../Images/Arrow.png";
 
 const HomePage = () => {
   const [outlineList, setOutlineList] = useState({
@@ -32,40 +31,57 @@ const HomePage = () => {
   const displayList = outlineList.outlines.map((out) => (
     <OutlineCard outline={out} key={out._id} />
   ));
-  const scrollRef = useRef(null); // define the ref
 
-  function handleClick() {
-    const scrollableNode = scrollRef.current;
-    scrollableNode.scrollLeft += 20;
-  }
+  const [isHovered, setIsHovered] = useState(false);
 
   const containerRef = useRef(null);
-  const handleMouseMove = (event) => {
+  const scrollIntervalRef = useRef(null);
+  const right = useRef(null);
+  const left = useRef(null);
+
+  const handleScolling = () => {
     const container = containerRef.current;
 
-    const containerWidth = container.clientWidth;
-    const mousePositionX = event.clientX;
-
-    if (mousePositionX >= containerWidth - container.scrollLeft) {
-      container.scrollLeft += 20;
-    } else if (mousePositionX <= container.scrollLeft) {
-      container.scrollLeft -= 20;
+    if (isHovered === "right") {
+      container.scrollLeft += 70;
+    } else if (isHovered === "left") {
+      container.scrollLeft -= 70;
+    } else {
+      clearInterval(scrollIntervalRef.current);
     }
   };
+  useEffect(() => {
+    if (isHovered) {
+      scrollIntervalRef.current = setInterval(handleScolling, 100);
+    } else {
+      clearInterval(scrollIntervalRef.current);
+    }
+  });
 
   const containerRef2 = useRef(null);
-  const handleMouseMove2 = (event) => {
+  const scrollIntervalRef2 = useRef(null);
+  const right2 = useRef(null);
+  const left2 = useRef(null);
+
+  const handleScolling2 = () => {
     const container2 = containerRef2.current;
 
-    const containerWidth = container2.clientWidth;
-    const mousePositionX = event.clientX;
-
-    if (mousePositionX >= containerWidth - container2.scrollLeft) {
-      container2.scrollLeft += 20;
-    } else if (mousePositionX <= container2.scrollLeft) {
-      container2.scrollLeft -= 20;
+    if (isHovered === "right2") {
+      container2.scrollLeft += 70;
+    } else if (isHovered === "left2") {
+      container2.scrollLeft -= 70;
+    } else {
+      clearInterval(scrollIntervalRef2.current);
     }
   };
+
+  useEffect(() => {
+    if (isHovered) {
+      scrollIntervalRef2.current = setInterval(handleScolling2, 100);
+    } else {
+      clearInterval(scrollIntervalRef2.current);
+    }
+  });
 
   return (
     <>
@@ -74,7 +90,7 @@ const HomePage = () => {
           <img
             className={styles.WesternLogoMini}
             src={WesternLogoMini}
-            alt="My Image"
+            alt="Western Mini Logo"
           />
 
           <div className={styles.OutlineManager}>Outline Manager</div>
@@ -100,44 +116,51 @@ const HomePage = () => {
         </div>
 
         <div className={styles.container}>
-          <div className={styles.title}>Previous Outlines</div>
-
+          <div className={styles.title}>Current Outlines</div>
+          <div className={styles.PostTitle}></div>
           <div
-            onMouseMove={handleMouseMove}
-            ref={containerRef}
-            // ref={scrollRef}
-            className={styles.YOutline}
-            id="Outlines"
-          >
+            className={styles.LeftScroll}
+            onMouseEnter={() => setIsHovered("left")}
+            onMouseLeave={() => setIsHovered(false)}
+            ref={left}
+          ></div>
+          <div ref={containerRef} className={styles.YOutline} id="Outlines">
             <Link to="/COTemplate">
               <button className={styles.COTemp}>+</button>
             </Link>
             {displayList}
           </div>
-          <button className={styles.ScrollBtn} onClick={handleClick}>
-            <img className={styles.Arrow} src={Arrow} alt="My Image" />
-          </button>
+          <div
+            className={styles.RightScroll}
+            onMouseEnter={() => setIsHovered("right")}
+            onMouseLeave={() => setIsHovered(false)}
+            ref={right}
+          ></div>
         </div>
 
         <div className={styles.container}>
           <div className={styles.title}>Previous Outlines</div>
-
+          <div className={styles.PostTitle}></div>
           <div
-            onMouseMove={handleMouseMove2}
-            ref={containerRef2}
-            // ref={scrollRef}
-            className={styles.YOutline}
-            id="Outlines"
-          >
+            className={styles.LeftScroll}
+            onMouseEnter={() => setIsHovered("left2")}
+            onMouseLeave={() => setIsHovered(false)}
+            ref={left2}
+          ></div>
+          <div ref={containerRef2} className={styles.YOutline} id="Outlines">
             <Link to="/COTemplate">
               <button className={styles.COTemp}>+</button>
             </Link>
             {displayList}
           </div>
-          <button className={styles.ScrollBtn} onClick={handleClick}>
-            <img className={styles.Arrow} src={Arrow} alt="My Image" />
-          </button>
+          <div
+            className={styles.RightScroll}
+            onMouseEnter={() => setIsHovered("right2")}
+            onMouseLeave={() => setIsHovered(false)}
+            ref={right2}
+          ></div>
         </div>
+
         <div className={styles.footer}>© Built and Designed by SRZ</div>
       </div>
     </>

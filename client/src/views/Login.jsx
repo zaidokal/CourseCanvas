@@ -47,7 +47,7 @@ export const Login = (props) => {
           <img
             className={styles.WesternLogo}
             src={WesternLogo}
-            alt="My Image"
+            alt="Western Logo"
           />
           <p className={styles.COM}>Course Outline Manager</p>
 
@@ -77,7 +77,7 @@ export const Login = (props) => {
                 Login
               </button>
             </div>
-            <p>version 1.0</p>
+            <p className={styles.version}>version 1.0</p>
           </form>
           <footer>© Built and Designed by SRZ</footer>
         </div>
