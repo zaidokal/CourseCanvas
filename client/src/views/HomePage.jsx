@@ -39,7 +39,7 @@ const HomePage = () => {
   const right = useRef(null);
   const left = useRef(null);
 
-  const handleScolling = () => {
+  const handleScrolling = () => {
     const container = containerRef.current;
 
     if (isHovered === "right") {
@@ -52,7 +52,7 @@ const HomePage = () => {
   };
   useEffect(() => {
     if (isHovered) {
-      scrollIntervalRef.current = setInterval(handleScolling, 100);
+      scrollIntervalRef.current = setInterval(handleScrolling, 100);
     } else {
       clearInterval(scrollIntervalRef.current);
     }
@@ -63,7 +63,7 @@ const HomePage = () => {
   const right2 = useRef(null);
   const left2 = useRef(null);
 
-  const handleScolling2 = () => {
+  const handleScrolling2 = () => {
     const container2 = containerRef2.current;
 
     if (isHovered === "right2") {
@@ -77,7 +77,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (isHovered) {
-      scrollIntervalRef2.current = setInterval(handleScolling2, 100);
+      scrollIntervalRef2.current = setInterval(handleScrolling2, 100);
     } else {
       clearInterval(scrollIntervalRef2.current);
     }
