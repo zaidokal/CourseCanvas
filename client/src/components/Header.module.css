@@ -17,15 +17,25 @@
   margin-bottom: 0.3%;
 }
 
-.OutlineManager {
-  top: 0;
-  bottom: 0;
-  margin: auto;
+.OutlineManagerDiv {
   text-align: center;
-  justify-content: center;
+
+  margin-top: auto;
+  margin-bottom: auto;
   margin-left: 2vw;
+
+  justify-content: center;
+  width: 20vw;
+  cursor: pointer;
+}
+
+.OutlineManager {
   font-size: 2vw;
   width: 20vw;
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
 }
 
 .LinkButtons {
