@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./AssignInstructor.module.css";
 import AccountButton from "../components/AccountButton";
 import axios from "axios";
+import Header from "../components/Header";
 
 export const AssignInstructor = (props) => {
   const [courseNames, setCourseNames] = useState([]);
@@ -43,6 +44,7 @@ export const AssignInstructor = (props) => {
 
   const displayList = (
     <select
+      className={styles.Display}
       value={selectedCourse}
       onChange={(e) => setSelectedCourse(e.target.value)}
     >
@@ -57,6 +59,7 @@ export const AssignInstructor = (props) => {
 
   const displayInstructorList = (
     <select
+      className={styles.Display}
       value={selectedInstructor}
       onChange={(e) => setSelectedInstructor(e.target.value)}
     >
@@ -103,30 +106,23 @@ export const AssignInstructor = (props) => {
 
   return (
     <>
-      <div className={styles.container}>
-        <form>
-          <div className={styles.Courses}>
-            <div className={styles.InsideCourses}>
-              <h1 className={styles.courseNames}>Courses</h1>
-              {displayList}
-            </div>
-          </div>
-          <div className={styles.Description}>
-            <div className={styles.InsideDescription}>
-              <h1>Description</h1>
-              <div>
-                <label htmlFor="dropdown">Select an instructor:</label>
-                {displayInstructorList}
-                <button className={styles.Assign} onClick={handleAssign}>
-                  Assign Instructor
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className={styles.header}>
-            <AccountButton text={"HomePage"} linkTo={"/HomePage"} />
-          </div>
-        </form>
+      <Header></Header>
+      <div className={styles.Container}>
+        <div className={styles.PictureDiv}></div>
+
+        <div className={styles.LoginDiv}>
+          <p className={styles.COM}>Instructor Assignment</p>
+          <form>
+            <h1 className={styles.ListTitle}>Course</h1>
+            {displayList}
+            <h1 className={styles.ListTitle}>Instructor</h1>
+            {displayInstructorList}
+            <button className={styles.AssignBtn} onClick={handleAssign}>
+              Assign Instructor
+            </button>
+          </form>
+          <footer>© Built and Designed by SRZ</footer>
+        </div>
       </div>
     </>
   );

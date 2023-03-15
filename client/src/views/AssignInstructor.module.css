@@ -1,68 +1,97 @@
+body {
+  /* formatting */
+  margin: 0%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  /* design */
+  color: #4f2683;
+}
+
 .container {
   /* formatting */
   width: 100%;
+  overflow: hidden;
   height: 100%;
 
   /* design */
 }
 
-.Courses {
+.PictureDiv {
+  /* formatting */
+  height: 90vh;
+  width: 70%;
+  float: left;
+  position: relative;
+  overflow-y: hidden;
+
+  /* design */
+  background-image: url("../Images/AssignInstructorBackground.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.LoginDiv {
   /* formatting */
   width: 30%;
-  float: left;
-  height: 60vh;
-  margin: 5%;
-
-  /* design */
-  background-color: rgb(149, 168, 168);
-}
-
-.InsideCourses {
-  /* formatting */
-  margin: 5%;
+  height: 90vh;
+  float: right;
+  position: relative;
+  text-align: center;
 
   /* design */
 }
 
-.courseNames {
+.COM {
   /* formatting */
-  font-size: 24px;
-  font-weight: bold;
+  margin-top: 6%;
+  margin-left: 3vw;
+  text-align: left;
+  width: 80%;
+
+  /* design */
+  color: #4f2683;
+  border-bottom: 2px solid #4f2683;
+  font-size: 2.4vw;
+}
+
+.ListTitle {
+  /* formatting */
+  width: 100%;
+  text-align: left;
+  margin-left: 3vw;
   margin-bottom: 10px;
 
   /* design */
+  font-size: 24px;
+  font-weight: bold;
 }
 
-.Description {
-  /* formatting */
-  width: 55%;
-  float: right;
-  height: 60vh;
-  margin-right: 5%;
-  margin-top: 5%;
-
-  /* design */
-  background-color: rgb(149, 168, 168);
-}
-
-.InsideDescription {
-  /* formatting */
-  margin: 5%;
-
-  /* design */
-}
-
-button {
+.Display {
   /* formatting */
   width: 80%;
-  margin: 1%;
+  height: 4vh;
+  margin-bottom: 5vh;
 
   /* design */
 }
 
-.Assign {
+.AssignBtn {
   /* formatting */
   width: 10vw;
 
   /* design */
+}
+
+footer {
+  /* formatting */
+  position: absolute;
+  margin-bottom: 1%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  /* design */
+  color: #4f2683;
+  font-size: 2vh;
 }
