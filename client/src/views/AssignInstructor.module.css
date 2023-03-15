@@ -1,20 +1,11 @@
-body {
-  /* formatting */
-  margin: 0%;
-  overflow-x: hidden;
-  overflow-y: hidden;
-
-  /* design */
-  color: #4f2683;
-}
-
-.container {
+.Container {
   /* formatting */
   width: 100%;
   overflow: hidden;
   height: 100%;
 
   /* design */
+  color: #4f2683;
 }
 
 .PictureDiv {
