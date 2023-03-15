@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styles from "./AssignInstructor.module.css";
-import AccountButton from "../components/AccountButton";
 import axios from "axios";
 import Header from "../components/Header";
 
