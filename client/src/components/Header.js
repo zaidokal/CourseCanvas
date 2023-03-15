@@ -12,7 +12,11 @@ const Header = () => {
         alt="Western Mini Logo"
       />
 
-      <div className={styles.OutlineManager}>Outline Manager</div>
+      <div className={styles.OutlineManagerDiv}>
+        <Link to="/HomePage">
+          <button className={styles.OutlineManager}>Outline Manager</button>
+        </Link>
+      </div>
 
       <Link to="/AssignInstructor">
         <button className={styles.LinkButtons}>AssignInstructor</button>
@@ -20,7 +24,6 @@ const Header = () => {
       <Link to="/AdminApproval">
         <button className={styles.LinkButtons}>AdminApproval</button>
       </Link>
-
       <div className={styles.RightDiv}>
         <div className={styles.UsernameDiv}>
           <p>FirstName LastName</p>
