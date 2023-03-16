@@ -209,17 +209,18 @@ const ViewSingleOutline = (props) => {
         </div>
         <RequestApproval outline={outline} onApprove={handleApproval} />
 
-        <div className={styles.header}>
-          <p>Approval Status:</p>
-        </div>
+        <div>
+          <div className={styles.header}>
+            <p>Approval Status:</p>
+          </div>
 
-        <div
-          contentEditable={true}
-          className={styles.input2}
-          name="requestApproval"
-          placeholder="Status"
-        >
-          {userInput.decision}
+          <div
+            className={styles.input2}
+            name="requestApproval"
+            placeholder="Status"
+          >
+            {userInput.decision}
+          </div>
         </div>
       </div>
 
@@ -683,7 +684,7 @@ const ViewSingleOutline = (props) => {
                     <strong>
                       <div
                         contentEditable={true}
-                        className={styles.description}
+                        className={styles.input}
                         name="topic1a"
                         placeholder="x"
                       >
@@ -701,7 +702,7 @@ const ViewSingleOutline = (props) => {
                       b.
                       <div
                         contentEditable={true}
-                        className={styles.description}
+                        className={styles.input}
                         name="topic1b"
                         placeholder="x"
                       >
