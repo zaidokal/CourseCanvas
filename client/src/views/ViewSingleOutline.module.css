@@ -101,6 +101,8 @@ input::placeholder {
   width: 100%;
   min-width: 0;
   border: none;
+
+  max-width: 100%;
 }
 
 @media print {
@@ -113,12 +115,31 @@ input::placeholder {
   .Page {
     page-break-after: always;
   }
+  .Header {
+    display: none;
+  }
+  * {
+    border: none !important;
+  }
+  .MainDiv {
+    width: 90% !important;
+  }
 }
 
 .MainDiv {
-  margin: 5%;
+  border: 2px solid;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 2%;
+  /* margin: 5%; */
+  width: 80%;
 }
 
 .Center {
   text-align: center;
+}
+
+.Header {
+  margin-bottom: 5vh;
 }
