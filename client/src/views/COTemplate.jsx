@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AccountButton from "../components/AccountButton";
 import styles from "./COTemplate.module.css";
 import axios from "axios";
+import Header from "../components/Header";
 
 const COTemplate = () => {
   const [userInput, setUserInput] = useState({
@@ -144,6 +145,7 @@ const COTemplate = () => {
       .then((res) => {
         console.log(res);
         alert("Save successful.");
+        window.location.href = "/homepage";
       })
       .catch((err) => {
         alert("Bad Request, please fill out ALL required fields.");
@@ -153,22 +155,8 @@ const COTemplate = () => {
 
   return (
     <>
-      <div className={styles.header}>
-        {" "}
-        <AccountButton
-          text={"Save"}
-          onClick={onSubmit}
-          disabled={isButtonDisabled}
-        >
-          Submit
-        </AccountButton>
-      </div>
-
-      <div className={styles.header}>
-        {" "}
-        <AccountButton linkTo={"/HomePage"} text={"HomePage"}>
-          Submit
-        </AccountButton>
+      <div className={styles.Header}>
+        <Header />
       </div>
 
       <div className={styles.MainDiv}>
@@ -1209,6 +1197,14 @@ const COTemplate = () => {
           , for a complete list of options about how to obtain help.
         </p>
         <br />
+        <div className={styles.header}>
+          {" "}
+          <AccountButton
+            text={"Save"}
+            onClick={onSubmit}
+            disabled={isButtonDisabled}
+          ></AccountButton>
+        </div>
       </div>
     </>
   );

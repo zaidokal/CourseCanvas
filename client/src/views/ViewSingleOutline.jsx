@@ -4,10 +4,11 @@ import axios from "axios";
 import styles from "./ViewSingleOutline.module.css";
 import AccountButton from "../components/AccountButton";
 import RequestApproval from "../components/RequestApproval";
+import Header from "../components/Header";
 
 import html2pdf from "html2pdf.js";
 
-const ViewSingleOutline = () => {
+const ViewSingleOutline = (props) => {
   const { id } = useParams();
 
   const [userInput, setUserInput] = useState({
@@ -172,8 +173,27 @@ const ViewSingleOutline = () => {
     }
   };
 
+  const [width, setWidth] = useState("100px");
+  const [text, setText] = useState(props.text);
+
+  useEffect(() => {
+    const input = document.getElementById("input-box");
+    const inputWidth = input.scrollWidth + 10; // add 10px buffer
+    if (inputWidth > parseInt(width)) {
+      setWidth(`${inputWidth}px`);
+    }
+  }, [text, width]);
+
+  const handleChange = (event) => {
+    setText(event.target.value);
+  };
+
   return (
     <>
+      <div className={styles.Header}>
+        <Header />
+      </div>
+
       <div className={styles.RemovePrint}>
         <div className={styles.header}>
           <AccountButton text={"HomePage"} linkTo={"/HomePage"} />
@@ -189,16 +209,19 @@ const ViewSingleOutline = () => {
         </div>
         <RequestApproval outline={outline} onApprove={handleApproval} />
 
-        <div className={styles.header}>
-          <p>Approval Status:</p>
-        </div>
+        <div>
+          <div className={styles.header}>
+            <p>Approval Status:</p>
+          </div>
 
-        <input
-          className={styles.input2}
-          value={userInput.decision}
-          name="requestApproval"
-          placeholder="Status"
-        ></input>
+          <div
+            className={styles.input2}
+            name="requestApproval"
+            placeholder="Status"
+          >
+            {userInput.decision}
+          </div>
+        </div>
       </div>
 
       <div ref={contentRef} className={styles.MainDiv}>
@@ -210,103 +233,130 @@ const ViewSingleOutline = () => {
           </p>
           <p className={styles.Center}>
             <strong>
-              <input
+              <div
+                contentEditable={true}
                 className={styles.Center}
-                value={userInput.courseName}
                 name="courseName"
                 placeholder="ECE XXXXA/B: Course Title"
-              ></input>
+              >
+                {userInput.courseName}
+              </div>
             </strong>
             <br />
             <strong>
               Course Outline 20
-              <input
+              <div
+                contentEditable={true}
                 className={styles.input}
-                value={userInput.year}
                 name="year"
                 placeholder="YY-YY"
-              ></input>
+              >
+                {userInput.year}
+              </div>
             </strong>
           </p>
           <p>
             <strong>Description: </strong>
           </p>
-          <input
+          <div
+            contentEditable={true}
             className={styles.Description}
-            value={userInput.description}
             name="description"
             placeholder="Description..."
-          ></input>
+            id="input-box"
+            type="text"
+            style={{ width: width }}
+            onChange={handleChange}
+          >
+            {userInput.description}
+          </div>
+
           <p>
             <strong>Instructor:</strong>
-            <input
+            <div
+              contentEditable={true}
               className={styles.input2}
-              value={userInput.instructor}
               name="instructor"
               placeholder="Dr. Name, P.Eng."
-            ></input>
+            >
+              {userInput.instructor}
+            </div>
           </p>
-          <input
+          <div
+            contentEditable={true}
             className={styles.input2}
-            value={userInput.instructorDetails}
             name="instructorDetails"
             placeholder="TEB XXX, 519-661-2111 ext. XXXXX, XXXX@uwo.ca"
-          ></input>
+          >
+            {userInput.instructorDetails}
+          </div>
           <br />
           <strong>Consultation hours:</strong>
 
-          <input
+          <div
+            contentEditable={true}
             className={styles.input2}
-            value={userInput.consultationHours}
             name="consultationHours"
             placeholder="Consultation hours:"
-          ></input>
+          >
+            {userInput.consultationHours}
+          </div>
           <br />
 
           <p>
             <strong>Academic Calendar Copy:</strong>
-            <input
+            <div
+              contentEditable={true}
               className={styles.input2}
-              value={userInput.academicCalendar}
               name="academicCalendar"
               placeholder="Add link"
-            ></input>
+            >
+              {userInput.academicCalendar}
+            </div>
           </p>
           <p>
             <strong>Contact Hours:</strong>
-            <input
+            <div
+              contentEditable={true}
               className={styles.input2}
-              value={userInput.contactHours}
               name="contactHours"
               placeholder="X lecture hours, Y laboratory hours, Z tutorial hours, 0.5 course."
-            ></input>
+            >
+              {userInput.contactHours}
+            </div>
           </p>
           <p>
             <strong>Antirequisite:</strong>
-            <input
+            <div
+              contentEditable={true}
               className={styles.input2}
-              value={userInput.antirequisite}
               name="antirequisite"
               placeholder="Add"
-            ></input>
+            >
+              {userInput.antirequisite}
+            </div>
           </p>
           <p>
             <strong>Prerequisites:</strong>
-            <input
+            <div
+              contentEditable={true}
               className={styles.input2}
-              value={userInput.prerequisites}
               name="prerequisites"
               placeholder="Add"
-            ></input>
+            >
+              {userInput.prerequisites}
+            </div>
           </p>
           <p>
             <strong>Co-requisite:</strong>
-            <input
+            <div
+              contentEditable={true}
               className={styles.input2}
-              value={userInput.corequisite}
               name="corequisite"
               placeholder="Add"
-            ></input>
+            >
+              {userInput.corequisite}
+            </div>
           </p>
           <p>
             Unless you have either the requisites for this course or written
@@ -318,39 +368,47 @@ const ViewSingleOutline = () => {
           </p>
           <p>
             <strong>CEAB Academic Units:</strong>
-            <input
+            <div
+              contentEditable={true}
               className={styles.input2}
-              value={userInput.ceab}
               name="ceab"
               placeholder="Engineering Science X%, Engineering Design Y%."
-            ></input>
+            >
+              {userInput.ceab}
+            </div>
           </p>
           <p>
             <strong>Required Textbook:</strong>
-            <input
+            <div
+              contentEditable={true}
               className={styles.input2}
-              value={userInput.textbook}
               name="textbook"
               placeholder="Add"
-            ></input>
+            >
+              {userInput.textbook}
+            </div>
           </p>
           <p>
             <strong>Other Required References:</strong>
-            <input
+            <div
+              contentEditable={true}
               className={styles.input2}
-              value={userInput.requiredReferences}
               name="requiredReferences"
               placeholder="Add"
-            ></input>
+            >
+              {userInput.requiredReferences}
+            </div>
           </p>
           <p>
             <strong>Recommended References:</strong>
-            <input
+            <div
+              contentEditable={true}
               className={styles.input2}
-              value={userInput.recommendedReferences}
               name="recommendedReferences"
               placeholder="Add"
-            ></input>
+            >
+              {userInput.recommendedReferences}
+            </div>
           </p>
           <strong>
             <br clear="all" />
@@ -372,12 +430,14 @@ const ViewSingleOutline = () => {
                   </td>
                   <td width="32">
                     <p align="center">
-                      <input
+                      <div
+                        contentEditable={true}
                         className={styles.input3}
-                        value={userInput.knowledgeBase}
                         name="knowledgeBase"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.knowledgeBase}
+                      </div>
                     </p>
                   </td>
                   <td width="176">
@@ -385,13 +445,14 @@ const ViewSingleOutline = () => {
                   </td>
                   <td width="32">
                     <p align="center">
-                      {" "}
-                      <input
+                      <div
+                        contentEditable={true}
                         className={styles.input3}
-                        value={userInput.engineeringTools}
                         name="engineeringTools"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.engineeringTools}
+                      </div>
                     </p>
                   </td>
                   <td width="176">
@@ -399,13 +460,14 @@ const ViewSingleOutline = () => {
                   </td>
                   <td width="32">
                     <p align="center">
-                      {" "}
-                      <input
+                      <div
+                        contentEditable={true}
                         className={styles.input3}
-                        value={userInput.impact}
                         name="impact"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.impact}
+                      </div>
                     </p>
                   </td>
                 </tr>
@@ -415,13 +477,14 @@ const ViewSingleOutline = () => {
                   </td>
                   <td width="32">
                     <p align="center">
-                      {" "}
-                      <input
+                      <div
+                        contentEditable={true}
                         className={styles.input3}
-                        value={userInput.problemAnalysis}
                         name="problemAnalysis"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.problemAnalysis}
+                      </div>
                     </p>
                   </td>
                   <td width="176">
@@ -429,13 +492,14 @@ const ViewSingleOutline = () => {
                   </td>
                   <td width="32">
                     <p align="center">
-                      {" "}
-                      <input
+                      <div
+                        contentEditable={true}
                         className={styles.input3}
-                        value={userInput.individualAndTeamWork}
                         name="individualAndTeamWork"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.individualAndTeamWork}
+                      </div>
                     </p>
                   </td>
                   <td width="176">
@@ -443,13 +507,14 @@ const ViewSingleOutline = () => {
                   </td>
                   <td width="32">
                     <p align="center">
-                      {" "}
-                      <input
+                      <div
+                        contentEditable={true}
                         className={styles.input3}
-                        value={userInput.ethicsEquity}
                         name="ethicsEquity"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.ethicsEquity}
+                      </div>
                     </p>
                   </td>
                 </tr>
@@ -459,13 +524,14 @@ const ViewSingleOutline = () => {
                   </td>
                   <td width="32">
                     <p align="center">
-                      {" "}
-                      <input
+                      <div
+                        contentEditable={true}
                         className={styles.input3}
-                        value={userInput.investigation}
                         name="investigation"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.investigation}
+                      </div>
                     </p>
                   </td>
                   <td width="176">
@@ -473,13 +539,14 @@ const ViewSingleOutline = () => {
                   </td>
                   <td width="32">
                     <p align="center">
-                      {" "}
-                      <input
+                      <div
+                        contentEditable={true}
                         className={styles.input3}
-                        value={userInput.communicationSkills}
                         name="communicationSkills"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.communicationSkills}
+                      </div>
                     </p>
                   </td>
                   <td width="176">
@@ -487,13 +554,14 @@ const ViewSingleOutline = () => {
                   </td>
                   <td width="32">
                     <p align="center">
-                      {" "}
-                      <input
+                      <div
+                        contentEditable={true}
                         className={styles.input3}
-                        value={userInput.economicsProject}
                         name="economicsProject"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.economicsProject}
+                      </div>
                     </p>
                   </td>
                 </tr>
@@ -503,13 +571,14 @@ const ViewSingleOutline = () => {
                   </td>
                   <td width="32">
                     <p align="center">
-                      {" "}
-                      <input
+                      <div
+                        contentEditable={true}
                         className={styles.input3}
-                        value={userInput.design}
                         name="design"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.design}
+                      </div>
                     </p>
                   </td>
                   <td width="176">
@@ -517,13 +586,14 @@ const ViewSingleOutline = () => {
                   </td>
                   <td width="32">
                     <p align="center">
-                      {" "}
-                      <input
+                      <div
+                        contentEditable={true}
                         className={styles.input3}
-                        value={userInput.professionalism}
                         name="professionalism"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.professionalism}
+                      </div>
                     </p>
                   </td>
                   <td width="176">
@@ -531,13 +601,14 @@ const ViewSingleOutline = () => {
                   </td>
                   <td width="32">
                     <p align="center">
-                      {" "}
-                      <input
+                      <div
+                        contentEditable={true}
                         className={styles.input3}
-                        value={userInput.lifeLongLearning}
                         name="lifeLongLearning"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.lifeLongLearning}
+                      </div>
                     </p>
                   </td>
                 </tr>
@@ -578,12 +649,14 @@ const ViewSingleOutline = () => {
                   <p>
                     <strong>1. </strong>
                     <strong>
-                      <input
+                      <div
+                        contentEditable={true}
                         className={styles.input}
-                        value={userInput.topic1}
                         name="topic1"
                         placeholder="Topic X"
-                      ></input>
+                      >
+                        {userInput.topic1}
+                      </div>
                     </strong>
                     <strong></strong>
                   </p>
@@ -609,12 +682,14 @@ const ViewSingleOutline = () => {
                   <p>
                     <strong>a. </strong>
                     <strong>
-                      <input
-                        className={styles.description}
-                        value={userInput.topic1a}
+                      <div
+                        contentEditable={true}
+                        className={styles.input}
                         name="topic1a"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.topic1a}
+                      </div>
                     </strong>
                   </p>
                 </td>
@@ -624,13 +699,15 @@ const ViewSingleOutline = () => {
                 <td width="491" valign="top">
                   <p>
                     <strong>
-                      b.{" "}
-                      <input
-                        className={styles.description}
-                        value={userInput.topic1b}
+                      b.
+                      <div
+                        contentEditable={true}
+                        className={styles.input}
                         name="topic1b"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.topic1b}
+                      </div>
                     </strong>
                   </p>
                 </td>
@@ -645,12 +722,14 @@ const ViewSingleOutline = () => {
                   <p>
                     <strong>2. </strong>
                     <strong>
-                      <input
+                      <div
+                        contentEditable={true}
                         className={styles.input}
-                        value={userInput.topic2}
                         name="topic2"
                         placeholder="Topic X"
-                      ></input>
+                      >
+                        {userInput.topic2}
+                      </div>
                     </strong>
                     <strong></strong>
                   </p>
@@ -674,14 +753,16 @@ const ViewSingleOutline = () => {
               <tr>
                 <td width="491" valign="top">
                   <p>
+                    <strong>a.</strong>
                     <strong>
-                      a.{" "}
-                      <input
-                        className={styles.description}
-                        value={userInput.topic2a}
+                      <div
+                        contentEditable={true}
+                        className={styles.input}
                         name="topic2a"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.topic2a}
+                      </div>
                     </strong>
                   </p>
                 </td>
@@ -695,13 +776,15 @@ const ViewSingleOutline = () => {
                 <td width="491" valign="top">
                   <p>
                     <strong>
-                      b.{" "}
-                      <input
-                        className={styles.description}
-                        value={userInput.topic2b}
+                      b.
+                      <div
+                        contentEditable={true}
+                        className={styles.input}
                         name="topic2b"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.topic2b}
+                      </div>
                     </strong>
                   </p>
                 </td>
@@ -716,12 +799,14 @@ const ViewSingleOutline = () => {
                   <p>
                     <strong>3. </strong>
                     <strong>
-                      <input
+                      <div
+                        contentEditable={true}
                         className={styles.input}
-                        value={userInput.topic3}
                         name="topic3"
                         placeholder="Topic X"
-                      ></input>
+                      >
+                        {userInput.topic3}
+                      </div>
                     </strong>
                     <strong></strong>
                   </p>
@@ -746,13 +831,15 @@ const ViewSingleOutline = () => {
                 <td width="491" valign="top">
                   <p>
                     <strong>
-                      a.{" "}
-                      <input
-                        className={styles.description}
-                        value={userInput.topic3a}
+                      a.
+                      <div
+                        contentEditable={true}
+                        className={styles.input}
                         name="topic3a"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.topic3a}
+                      </div>
                     </strong>
                   </p>
                 </td>
@@ -766,13 +853,15 @@ const ViewSingleOutline = () => {
                 <td width="491" valign="top">
                   <p>
                     <strong>
-                      b.{" "}
-                      <input
-                        className={styles.description}
-                        value={userInput.topic3b}
+                      b.
+                      <div
+                        contentEditable={true}
+                        className={styles.input}
                         name="topic3b"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.topic3b}
+                      </div>
                     </strong>
                   </p>
                 </td>
@@ -787,12 +876,14 @@ const ViewSingleOutline = () => {
                   <p>
                     <strong>4. </strong>
                     <strong>
-                      <input
+                      <div
+                        contentEditable={true}
                         className={styles.input}
-                        value={userInput.topic4}
                         name="topic4"
                         placeholder="Topic X"
-                      ></input>
+                      >
+                        {userInput.topic4}
+                      </div>
                     </strong>
                     <strong></strong>
                   </p>
@@ -817,13 +908,15 @@ const ViewSingleOutline = () => {
                 <td width="491" valign="top">
                   <p>
                     <strong>
-                      a.{" "}
-                      <input
-                        className={styles.description}
-                        value={userInput.topic4a}
+                      a.
+                      <div
+                        contentEditable={true}
+                        className={styles.input}
                         name="topic4a"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.topic4a}
+                      </div>
                     </strong>
                   </p>
                 </td>
@@ -837,13 +930,15 @@ const ViewSingleOutline = () => {
                 <td width="491" valign="top">
                   <p>
                     <strong>
-                      b.{" "}
-                      <input
-                        className={styles.description}
-                        value={userInput.topic4b}
+                      b.
+                      <div
+                        contentEditable={true}
+                        className={styles.input}
                         name="topic4b"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.topic4b}
+                      </div>
                     </strong>
                   </p>
                 </td>
@@ -879,13 +974,14 @@ const ViewSingleOutline = () => {
                   </td>
                   <td width="120">
                     <p align="center">
-                      {" "}
-                      <input
+                      <div
+                        contentEditable={true}
                         className={styles.input4}
-                        value={userInput.homeworkAssignments}
                         name="homeworkAssignments"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.homeworkAssignments}
+                      </div>
                       %
                     </p>
                   </td>
@@ -896,12 +992,14 @@ const ViewSingleOutline = () => {
                   </td>
                   <td width="120">
                     <p align="center">
-                      <input
+                      <div
+                        contentEditable={true}
                         className={styles.input4}
-                        value={userInput.quizzes}
                         name="quizzes"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.quizzes}
+                      </div>
                       %
                     </p>
                   </td>
@@ -912,12 +1010,14 @@ const ViewSingleOutline = () => {
                   </td>
                   <td width="120">
                     <p align="center">
-                      <input
+                      <div
+                        contentEditable={true}
                         className={styles.input4}
-                        value={userInput.laboratory}
                         name="laboratory"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.laboratory}
+                      </div>
                       %
                     </p>
                   </td>
@@ -928,12 +1028,14 @@ const ViewSingleOutline = () => {
                   </td>
                   <td width="120">
                     <p align="center">
-                      <input
+                      <div
+                        contentEditable={true}
                         className={styles.input4}
-                        value={userInput.midterm}
                         name="midterm"
                         placeholder="x"
-                      ></input>
+                      >
+                        {userInput.midterm}
+                      </div>
                       %
                     </p>
                   </td>
@@ -960,39 +1062,47 @@ const ViewSingleOutline = () => {
           </p>
           <p>
             <strong>Homework Assignments:</strong>
-            <input
+            <div
+              contentEditable={true}
               className={styles.description}
-              value={userInput.homeworkAssignmentsDesc}
               name="homeworkAssignmentsDesc"
               placeholder="Description"
-            ></input>
+            >
+              {userInput.homeworkAssignmentsDesc}
+            </div>
           </p>
           <p>
             <strong>Quizzes:</strong>
-            <input
+            <div
+              contentEditable={true}
               className={styles.description}
-              value={userInput.quizzesDesc}
               name="quizzesDesc"
               placeholder="Description"
-            ></input>
+            >
+              {userInput.quizzesDesc}
+            </div>
           </p>
           <p>
             <strong>Laboratory:</strong>
-            <input
+            <div
+              contentEditable={true}
               className={styles.description}
-              value={userInput.laboratoryDesc}
               name="laboratoryDesc"
               placeholder="Description"
-            ></input>
+            >
+              {userInput.laboratoryDesc}
+            </div>
           </p>
           <p>
             <strong>Midterm Test:</strong>
-            <input
+            <div
+              contentEditable={true}
               className={styles.description}
-              value={userInput.midtermDesc}
               name="midtermDesc"
               placeholder="Description"
-            ></input>
+            >
+              {userInput.midtermDesc}
+            </div>
           </p>
           <p>
             <strong>Final Examination:</strong>
@@ -1001,22 +1111,26 @@ const ViewSingleOutline = () => {
           </p>
           <p>
             <strong>Late Submission Policy: </strong>
-            <input
+            <div
+              contentEditable={true}
               className={styles.description}
-              value={userInput.lateSubmission}
               name="lateSubmission"
               placeholder="Description"
-            ></input>
+            >
+              {userInput.lateSubmission}
+            </div>
           </p>
           <p>
             <strong>Assignment Submission Locker: </strong>
-            Locker{" "}
-            <input
+            Locker
+            <div
+              contentEditable={true}
               className={styles.input}
-              value={userInput.lockerNum}
               name="lockerNum"
               placeholder="XXX"
-            ></input>{" "}
+            >
+              {userInput.lockerNum}
+            </div>
             located on the second floor of TEB.
           </p>
           <p>
@@ -1112,7 +1226,7 @@ const ViewSingleOutline = () => {
             reference database for the purpose of detecting plagiarism of papers
             subsequently submitted to the system. Use of the service is subject
             to the licensing agreement, currently between the University of
-            Western Ontario and Turnitin.com ({" "}
+            Western Ontario and Turnitin.com (
             <a href="http://www.turnitin.com/">http://www.turnitin.com</a>).
           </p>
           <p>
@@ -1128,21 +1242,25 @@ const ViewSingleOutline = () => {
           </p>
           <p>
             <strong>Use of Electronic Devices: </strong>
-            <input
+            <div
+              contentEditable={true}
               className={styles.description}
-              value={userInput.electronicDevices}
               name="electronicDevices"
               placeholder="Description"
-            ></input>
+            >
+              {userInput.electronicDevices}
+            </div>
           </p>
           <p>
             <strong>Use of Personal Response Devices (“Clickers”): </strong>
-            <input
+            <div
+              contentEditable={true}
               className={styles.description}
-              value={userInput.clickers}
               name="clickers"
               placeholder="Description"
-            ></input>
+            >
+              {userInput.clickers}
+            </div>
           </p>
           <p>
             <strong>Policy on Repeating All Components of a Course: </strong>
@@ -1156,7 +1274,7 @@ const ViewSingleOutline = () => {
           <p>
             <strong>Internet and Electronic Mail:</strong>
             Students are responsible for regularly checking their Western e‑mail
-            and the course web site ({" "}
+            and the course web site (
             <a href="https://owl.uwo.ca/portal/">https://owl.uwo.ca/portal/</a>)
             and making themselves aware of any information that is posted about
             the course.
@@ -1174,13 +1292,13 @@ const ViewSingleOutline = () => {
           </p>
           <p>
             <strong>Support Services: </strong>
-            Office of the Registrar,{" "}
+            Office of the Registrar,
             <a href="http://www.registrar.uwo.ca/">
               http://www.registrar.uwo.ca/
             </a>
           </p>
           <p>
-            Student Development Centre,{" "}
+            Student Development Centre,
             <a href="http://www.sdc.uwo.ca/">http://www.sdc.uwo.ca/</a>
           </p>
           <p>
@@ -1190,7 +1308,7 @@ const ViewSingleOutline = () => {
             </a>
           </p>
           <p>
-            USC Student Support Services,{" "}
+            USC Student Support Services,
             <a href="http://westernusc.ca/services/">
               http://westernusc.ca/services/
             </a>
