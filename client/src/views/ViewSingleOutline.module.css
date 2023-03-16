@@ -107,22 +107,17 @@ input::placeholder {
 
 @media print {
   .RemovePrint {
-    display: none;
+    display: none !important;
   }
   .header {
-    display: none;
-  }
-  .Page {
-    page-break-after: always;
+    display: none !important;
   }
   .Header {
     display: none;
   }
-  * {
-    border: none !important;
-  }
   .MainDiv {
     width: 90% !important;
+    border: none !important;
   }
 }
 
@@ -142,4 +137,14 @@ input::placeholder {
 
 .Header {
   margin-bottom: 5vh;
+}
+
+.RemovePrint {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5vh;
+}
+
+td {
+  border: 1px solid;
 }
