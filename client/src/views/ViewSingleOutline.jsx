@@ -208,6 +208,56 @@ const ViewSingleOutline = (props) => {
     setFormattedDateTime(formattedDateTime);
   }, []);
 
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/secure/user-info", {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      })
+      .then((response) => {
+        setUser(response.data[0].user_id);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const [comment, setComment] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post(
+        `http://localhost:8000/api/secure/${id}/comments`,
+        {
+          comment,
+          user_id: user,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        alert("Comment saved successfully.");
+        setComment("");
+      })
+      .catch((err) => {
+        console.log(err.response);
+        alert("Failed to save comment.");
+      });
+  };
+
+  const handleComment = (e) => {
+    setComment(e.target.value);
+  };
+
   return (
     <>
       <div className={styles.Header}>
@@ -253,11 +303,11 @@ const ViewSingleOutline = (props) => {
       </div>
 
       <div class={styles.RightDiv}>
-        Comments
+        <h2>Comments</h2>
         <div className={styles.CommentContainer}></div>
         <div className={styles.NewComment}>
-          <form>
-            <textarea />
+          <form onSubmit={handleSubmit}>
+            <textarea value={comment} onChange={handleComment} />
             <button type="submit">Save</button>
           </form>
         </div>
