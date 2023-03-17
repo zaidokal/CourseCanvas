@@ -254,6 +254,8 @@ const ViewSingleOutline = (props) => {
         </div>
       </div>
 
+      <div class={styles.RightDiv}>Comments</div>
+
       <div ref={contentRef} className={styles.MainDiv}>
         <div className={styles.Page}>
           <p className={styles.Center}>
