@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
-import styles from "./HomePage.module.css";
+import styles from "./HomePageDirector.module.css";
 import { Link } from "react-router-dom";
 import OutlineCard from "../components/OutlineCard";
 import axios from "axios";
 import Header from "../components/Header";
 
-const HomePage = () => {
+const HomePageDirector = () => {
   const [outlineList, setOutlineList] = useState({
     outlines: [],
   });
@@ -139,4 +139,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default HomePageDirector;

@@ -50,7 +50,7 @@ const RequestApproval = (props) => {
         console.log(err);
       });
 
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (

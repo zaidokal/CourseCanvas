@@ -6,12 +6,7 @@ const Validator = require("validatorjs");
 const CourseOutline = require("./models/CourseOutline");
 const { ObjectId } = require("mongodb");
 const Courses = require("./models/Courses");
-
-// Route to test session management.
-router.get("/test", (req, res) => {
-  res.send("User logged in.");
-  console.log(req.session.email);
-});
+const Comments = require("./models/Comments");
 
 // Route to allow for account creation.
 router.post("/auth/register", async (req, res) => {
@@ -90,14 +85,16 @@ router.post("/auth/login", async (req, res) => {
     }
 
     if (req.session.email) {
-      // res.send("Authentication Successful.");
-      res.redirect("/api/test");
+      console.log(req.session.email);
+
+      const type = userAccount.user_type;
+
+      res.send(type);
+      console.log("done");
     } else {
       res.redirect("/api/auth/login");
       res.send("Login failed.");
     }
-
-    // res.redirect("/api/test"); // Redirect to test page is login is successful.
   } catch (err) {
     console.error(err);
     res.status(500).send({ message: "Server error" });
@@ -111,7 +108,16 @@ router.get("/auth/logout", (req, res) => {
   });
 });
 
-// Route to allow for user creation, tracked based on the current logged in user.
+// Route to send info of user logged in.
+router.get("/secure/user-info", (req, res) => {
+  const userEmail = req.session.email;
+
+  UserAccount.find({ email: userEmail })
+    .then((info) => res.json(info))
+    .catch(() => res.status(500).send("Unable to retrieve user info."));
+});
+
+// Route to allow for outline creation, tracked based on the current logged in user.
 router.post("/secure/create-outline", (req, res) => {
   console.log(req.session);
 
@@ -126,6 +132,18 @@ router.post("/secure/create-outline", (req, res) => {
 // Route to get all course outlines based on who is logged in.
 router.get("/secure/all-outlines", (req, res) => {
   CourseOutline.find({ userId: req.session.email })
+    .then((outlines) => res.json(outlines))
+    .catch((err) =>
+      res.status(404).json({
+        error: err,
+        noMemories: "No Outlines Found.",
+      })
+    );
+});
+
+// Route to get all course outlines based on who is logged in.
+router.get("/secure/all-outlines-approval", (req, res) => {
+  CourseOutline.find()
     .then((outlines) => res.json(outlines))
     .catch((err) =>
       res.status(404).json({
@@ -220,17 +238,13 @@ router.post("/secure/request/:outlineID", async (req, res) => {
   const userType = findUserType[0].user_type;
 
   try {
-    if (userType == "admin") {
-      const courseOutline = await CourseOutline.findByIdAndUpdate(
-        { _id: outlineID },
-        { requestApproval: requestApprove },
-        { new: true }
-      );
+    const courseOutline = await CourseOutline.findByIdAndUpdate(
+      { _id: outlineID },
+      { requestApproval: requestApprove },
+      { new: true }
+    );
 
-      res.send(courseOutline);
-    } else {
-      res.send("Administrator privileges required.");
-    }
+    res.send(courseOutline);
   } catch (err) {
     res.status(500).send(err);
   }
@@ -249,16 +263,12 @@ router.post("/secure/reply/:outlineID", async (req, res) => {
   const userType = findUserType[0].user_type;
 
   try {
-    if (userType == "admin") {
-      const courseOutline = await CourseOutline.findByIdAndUpdate(
-        { _id: outlineID },
-        { decision: decider },
-        { new: true }
-      );
-      res.send(courseOutline);
-    } else {
-      res.send("Administrator privileges required.");
-    }
+    const courseOutline = await CourseOutline.findByIdAndUpdate(
+      { _id: outlineID },
+      { decision: decider },
+      { new: true }
+    );
+    res.send(courseOutline);
   } catch (err) {
     console.error(err);
     res.status(500).send(err);
@@ -292,6 +302,7 @@ router.get("/secure/instructors/:course", async (req, res) => {
   }
 });
 
+// Route to assign instructor a course.
 router.post("/secure/assignment/:instructor", async (req, res) => {
   const instructorID = req.params.instructor;
   const courseTitle = req.body.course_title;
@@ -305,6 +316,35 @@ router.post("/secure/assignment/:instructor", async (req, res) => {
   } else {
     console.log("Not in courses");
     res.status(500).send("Can't assign instructor to that course");
+  }
+});
+
+router.post("/secure/:outlineID/comments", async (req, res) => {
+  // First get session email to check if logged in user is an admin.
+  const userEmail = req.session.email;
+  const findUserType = await UserAccount.find({ email: userEmail }).select(
+    "user_type"
+  );
+  const userType = findUserType[0].user_type;
+
+  const { comment, user_id } = req.body;
+  const outline_id = req.params.outlineID;
+
+  if (userType == "admin" || userType == "prodir") {
+    const newComment = new Comment({
+      comment,
+      user_id,
+      outline_id,
+      timestamp: Date.now(),
+    });
+
+    try {
+      await newComment.save();
+    } catch (err) {
+      res.send(500).send(err);
+    }
+  } else {
+    res.status(200).send("Administrator privileges required.");
   }
 });
 

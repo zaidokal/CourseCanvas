@@ -101,24 +101,66 @@ input::placeholder {
   width: 100%;
   min-width: 0;
   border: none;
+
+  max-width: 100%;
 }
 
 @media print {
   .RemovePrint {
-    display: none;
+    display: none !important;
   }
   .header {
+    display: none !important;
+  }
+  .Header {
     display: none;
   }
-  .Page {
-    page-break-after: always;
+  .MainDiv {
+    width: 90% !important;
+    border: none !important;
+  }
+  .RightDiv {
+    display: none;
   }
 }
 
 .MainDiv {
-  margin: 5%;
+  border: 2px solid;
+  margin-left: 5%;
+  /* right: 0; */
+  /* margin: auto; */
+  padding: 2%;
+  /* margin: 5%; */
+  width: 70%;
 }
 
 .Center {
   text-align: center;
+}
+
+.Header {
+  margin-bottom: 5vh;
+}
+
+.RemovePrint {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5vh;
+}
+
+td {
+  border: 1px solid;
+}
+
+.RightDiv {
+  border: 2px solid;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 17vw; /* or any other width you prefer */
+  height: 100%; /* or any other height you prefer */
+  background-color: #fff; /* or any other color you prefer */
+
+  overflow-y: scroll;
+  padding: 1%;
 }

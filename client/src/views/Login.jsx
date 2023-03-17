@@ -29,7 +29,13 @@ export const Login = (props) => {
         withCredentials: true,
       })
       .then((res) => {
-        window.location.href = "/HomePage";
+        if (res.data === "admin") {
+          window.location.href = "/HomePageAdmin";
+        } else if (res.data === "ProgramDirector") {
+          window.location.href = "/HomePageDirector";
+        } else {
+          window.location.href = "/HomePage";
+        }
       })
       .catch((err) => {
         const errorElement = document.getElementById(styles.loginError);

@@ -7,6 +7,8 @@ import COTemplate from "./views/COTemplate";
 import ViewSingleOutline from "./views/ViewSingleOutline";
 import { AssignInstructor } from "./views/AssignInstructor";
 import AdminApproval from "./views/AdminApproval";
+import HomePageAdmin from "./views/HomePageAdmin";
+import HomePageDirector from "./views/HomePageDirector";
 
 const App = () => {
   return (
@@ -18,6 +20,8 @@ const App = () => {
       <Route path="/COTemplate" element={<COTemplate />} />
       <Route path="/AssignInstructor" element={<AssignInstructor />} />
       <Route path="/AdminApproval" element={<AdminApproval />} />
+      <Route path="/HomePageAdmin" element={<HomePageAdmin />} />
+      <Route path="/HomePageDirector" element={<HomePageDirector />} />
     </Routes>
   );
 };

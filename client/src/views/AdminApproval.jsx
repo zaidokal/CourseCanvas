@@ -13,7 +13,7 @@ const AdminApproval = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/secure/all-outlines", {
+      .get("http://localhost:8000/api/secure/all-outlines-approval", {
         headers: {
           "Content-Type": "application/json",
         },
