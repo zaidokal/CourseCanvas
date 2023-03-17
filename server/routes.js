@@ -131,6 +131,18 @@ router.get("/secure/all-outlines", (req, res) => {
     );
 });
 
+// Route to get all course outlines based on who is logged in.
+router.get("/secure/all-outlines-approval", (req, res) => {
+  CourseOutline.find()
+    .then((outlines) => res.json(outlines))
+    .catch((err) =>
+      res.status(404).json({
+        error: err,
+        noMemories: "No Outlines Found.",
+      })
+    );
+});
+
 router.get("/secure/course-names", (req, res) => {
   Course.find({}, "title")
     .then((courses) => res.json(courses))
