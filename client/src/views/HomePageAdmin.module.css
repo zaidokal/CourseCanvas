@@ -1,0 +1,163 @@
+.MainDiv {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  height: 100%;
+}
+
+.LinkButtons:hover {
+  /* formatting */
+  cursor: pointer;
+
+  /* design */
+  background-color: #a4161a;
+  outline: #a4161a solid 2px;
+}
+
+.title {
+  /* formatting */
+  margin-top: 1%;
+  margin-bottom: 1%;
+  width: 70vw;
+
+  /* design */
+  font: bold;
+  font-size: 40px;
+  color: #4f2683;
+  border-bottom: 2px solid #4f2683;
+}
+.PostTitle {
+  width: 28vw;
+}
+
+.COTemp {
+  /* formatting */
+  width: 11vw;
+  height: 25vh;
+  margin: 10px;
+
+  /* design */
+  border-radius: 10px;
+  border-style: solid;
+  background-color: rgb(201, 200, 200);
+  font-size: 80px;
+  color: rgb(0, 0, 0);
+  transition: 0.3s;
+}
+
+.COTemp:hover {
+  /* formatting */
+  cursor: pointer;
+
+  /* design */
+  background-color: #a4161a;
+  outline: #a4161a solid 2px;
+  color: white;
+}
+
+.Arrow {
+  width: 100%;
+  color: #4f2683;
+  filter: invert(12%) sepia(36%) saturate(5819%) hue-rotate(259deg)
+    brightness(80%) contrast(90%);
+}
+.ScrollBtn {
+  background-color: transparent;
+  border: none;
+  width: 5vw;
+}
+
+div::-webkit-scrollbar {
+  width: 1px;
+}
+
+div:hover::-webkit-scrollbar-thumb {
+  transition: background-color 1s ease-in-out; /* add a delay of 0.3 seconds to the transition */
+
+  background-color: #4f2683;
+}
+
+div::-webkit-scrollbar-thumb {
+  transition: background-color 1s ease-in-out; /* add a delay of 0.3 seconds to the transition */
+
+  background-color: transparent;
+}
+
+div::-webkit-scrollbar-track {
+  transition: background-color 1s ease-in-out; /* add a delay of 0.3 seconds to the transition */
+  background-color: transparent;
+}
+
+.footer {
+  color: #4f2683;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 300px;
+  margin: 0 auto;
+  margin-bottom: 1%;
+}
+
+.LeftScroll,
+.RightScroll {
+  margin-top: 1vh;
+  justify-content: center;
+  background-color: grey;
+  width: 3vw;
+  height: 53vh;
+  /* pointer-events: auto; */
+}
+
+.LeftScroll {
+  margin-right: 10px;
+}
+
+.RightScroll {
+  margin-left: 10px;
+}
+
+.container {
+  /* formatting */
+  margin: 2%;
+  width: 100%;
+  flex-wrap: wrap;
+  display: flex;
+  /* align-items: center; */
+}
+
+.YOutline {
+  width: 85%;
+  overflow-x: scroll;
+  height: min-content;
+  /* formatting */
+  display: flex;
+  display: grid;
+  grid-template-rows: auto auto; /* creates 2 rows with auto height */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(200px, 1fr)
+  ); /* creates infinite columns with a minimum width of 200px */
+  grid-gap: 10px; /* adds a 10px gap between grid items */
+  grid-auto-flow: column dense;
+}
+
+.LinkButtons {
+  /* formatting */
+  width: 120px;
+  height: 45px;
+
+  /* design */
+  color: #ffffff;
+  position: relative;
+  font-size: 16px;
+  font-family: Asap-Condensed-SemiBold;
+  border-radius: 10px;
+  transition: 0.3s;
+  background-color: rgb(6, 31, 255);
+}
+
+.ButtonDiv {
+  text-align: center;
+}

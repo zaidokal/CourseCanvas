@@ -119,16 +119,19 @@ input::placeholder {
     width: 90% !important;
     border: none !important;
   }
+  .RightDiv {
+    display: none;
+  }
 }
 
 .MainDiv {
   border: 2px solid;
-  left: 0;
-  right: 0;
-  margin: auto;
+  margin-left: 5%;
+  /* right: 0; */
+  /* margin: auto; */
   padding: 2%;
   /* margin: 5%; */
-  width: 80%;
+  width: 70%;
 }
 
 .Center {
@@ -147,4 +150,17 @@ input::placeholder {
 
 td {
   border: 1px solid;
+}
+
+.RightDiv {
+  border: 2px solid;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 17vw; /* or any other width you prefer */
+  height: 100%; /* or any other height you prefer */
+  background-color: #fff; /* or any other color you prefer */
+
+  overflow-y: scroll;
+  padding: 1%;
 }

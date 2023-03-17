@@ -57,6 +57,7 @@ const COTemplate = () => {
     lockerNum: "",
     electronicDevices: "",
     clickers: "",
+    recency: "",
   });
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);

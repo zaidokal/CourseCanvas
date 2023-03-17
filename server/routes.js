@@ -7,12 +7,6 @@ const CourseOutline = require("./models/CourseOutline");
 const { ObjectId } = require("mongodb");
 const Courses = require("./models/Courses");
 
-// Route to test session management.
-router.get("/test", (req, res) => {
-  res.send("User logged in.");
-  console.log(req.session.email);
-});
-
 // Route to allow for account creation.
 router.post("/auth/register", async (req, res) => {
   try {
@@ -90,14 +84,16 @@ router.post("/auth/login", async (req, res) => {
     }
 
     if (req.session.email) {
-      // res.send("Authentication Successful.");
-      res.redirect("/api/test");
+      console.log(req.session.email);
+
+      const type = userAccount.user_type;
+
+      res.send(type);
+      console.log("done");
     } else {
       res.redirect("/api/auth/login");
       res.send("Login failed.");
     }
-
-    // res.redirect("/api/test"); // Redirect to test page is login is successful.
   } catch (err) {
     console.error(err);
     res.status(500).send({ message: "Server error" });
@@ -126,6 +122,18 @@ router.post("/secure/create-outline", (req, res) => {
 // Route to get all course outlines based on who is logged in.
 router.get("/secure/all-outlines", (req, res) => {
   CourseOutline.find({ userId: req.session.email })
+    .then((outlines) => res.json(outlines))
+    .catch((err) =>
+      res.status(404).json({
+        error: err,
+        noMemories: "No Outlines Found.",
+      })
+    );
+});
+
+// Route to get all course outlines based on who is logged in.
+router.get("/secure/all-outlines-approval", (req, res) => {
+  CourseOutline.find()
     .then((outlines) => res.json(outlines))
     .catch((err) =>
       res.status(404).json({
@@ -220,17 +228,13 @@ router.post("/secure/request/:outlineID", async (req, res) => {
   const userType = findUserType[0].user_type;
 
   try {
-    if (userType == "admin") {
-      const courseOutline = await CourseOutline.findByIdAndUpdate(
-        { _id: outlineID },
-        { requestApproval: requestApprove },
-        { new: true }
-      );
+    const courseOutline = await CourseOutline.findByIdAndUpdate(
+      { _id: outlineID },
+      { requestApproval: requestApprove },
+      { new: true }
+    );
 
-      res.send(courseOutline);
-    } else {
-      res.send("Administrator privileges required.");
-    }
+    res.send(courseOutline);
   } catch (err) {
     res.status(500).send(err);
   }
@@ -249,16 +253,12 @@ router.post("/secure/reply/:outlineID", async (req, res) => {
   const userType = findUserType[0].user_type;
 
   try {
-    if (userType == "admin") {
-      const courseOutline = await CourseOutline.findByIdAndUpdate(
-        { _id: outlineID },
-        { decision: decider },
-        { new: true }
-      );
-      res.send(courseOutline);
-    } else {
-      res.send("Administrator privileges required.");
-    }
+    const courseOutline = await CourseOutline.findByIdAndUpdate(
+      { _id: outlineID },
+      { decision: decider },
+      { new: true }
+    );
+    res.send(courseOutline);
   } catch (err) {
     console.error(err);
     res.status(500).send(err);

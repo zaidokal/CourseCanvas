@@ -153,6 +153,10 @@ const CourseOutlineSchema = new mongoose.Schema({
     type: String,
     default: "Not Requested",
   },
+  recency: {
+    type: String,
+    default: "New",
+  },
 });
 
 module.exports = Memory = mongoose.model("courseOutline", CourseOutlineSchema);
