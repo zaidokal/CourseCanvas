@@ -164,6 +164,37 @@ router.get("/secure/course-names", (req, res) => {
     );
 });
 
+// Route to get list of outlines based on course name
+router.get("/secure/:courseName/all-outlines", (req, res) => {
+  const course = req.params.courseName;
+
+  CourseOutline.find({ courseName: course })
+    .then((outlines) => res.json(outlines))
+    .catch((err) =>
+      res.status(404).json({
+        error: err,
+        noMemories: "No Outlines Found.",
+      })
+    );
+});
+
+// Route to get assigned courses of an instructor
+router.get("/secure/instructor/assigned-courses", (req, res) => {
+  UserAccount.find(
+    { email: req.session.email },
+    {
+      assignedCourses: 1,
+    }
+  )
+    .then((courses) => res.json(courses))
+    .catch((err) =>
+      res.status(404).json({
+        error: err,
+        noCourses: "No Course Names Found.",
+      })
+    );
+});
+
 router.get("/secure/instructor-names", (req, res) => {
   UserAccount.find(
     {},
