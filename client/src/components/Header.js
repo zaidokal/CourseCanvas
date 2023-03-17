@@ -32,12 +32,6 @@ const Header = () => {
         </Link>
       </div>
 
-      <Link to="/AssignInstructor">
-        <button className={styles.LinkButtons}>AssignInstructor</button>
-      </Link>
-      <Link to="/AdminApproval">
-        <button className={styles.LinkButtons}>AdminApproval</button>
-      </Link>
       <div className={styles.RightDiv}>
         <div className={styles.UsernameDiv}>
           <p>FirstName LastName</p>
