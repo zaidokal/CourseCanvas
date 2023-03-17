@@ -3,7 +3,21 @@ import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import WesternLogoMini from "../Images/WesternLogoMini.png";
 
+import axios from "axios";
+
 const Header = () => {
+  const handleLogout = () => {
+    axios
+      .get("http://localhost:8000/api/auth/logout", { withCredentials: true })
+      .then((response) => {
+        console.log(response.data);
+        window.location.href = "/";
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <div className={styles.Head}>
       <img
@@ -30,9 +44,9 @@ const Header = () => {
         </div>
 
         <div className={styles.logoutDiv}>
-          <Link to="/">
-            <button className={styles.logoutBtn}>Logout</button>
-          </Link>
+          <button className={styles.logoutBtn} onClick={handleLogout}>
+            Logout
+          </button>
         </div>
       </div>
     </div>
