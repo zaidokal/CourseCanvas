@@ -6,6 +6,7 @@ const Validator = require("validatorjs");
 const CourseOutline = require("./models/CourseOutline");
 const { ObjectId } = require("mongodb");
 const Courses = require("./models/Courses");
+const Comments = require("./models/Comments");
 
 // Route to test session management.
 router.get("/test", (req, res) => {
@@ -111,7 +112,16 @@ router.get("/auth/logout", (req, res) => {
   });
 });
 
-// Route to allow for user creation, tracked based on the current logged in user.
+// Route to send info of user logged in.
+router.get("/secure/user-info", (req, res) => {
+  const userEmail = req.session.email;
+
+  UserAccount.find({ email: userEmail })
+    .then((info) => res.json(info))
+    .catch(() => res.status(500).send("Unable to retrieve user info."));
+});
+
+// Route to allow for outline creation, tracked based on the current logged in user.
 router.post("/secure/create-outline", (req, res) => {
   console.log(req.session);
 
@@ -292,6 +302,7 @@ router.get("/secure/instructors/:course", async (req, res) => {
   }
 });
 
+// Route to assign instructor a course.
 router.post("/secure/assignment/:instructor", async (req, res) => {
   const instructorID = req.params.instructor;
   const courseTitle = req.body.course_title;
@@ -305,6 +316,35 @@ router.post("/secure/assignment/:instructor", async (req, res) => {
   } else {
     console.log("Not in courses");
     res.status(500).send("Can't assign instructor to that course");
+  }
+});
+
+router.post("/secure/:outlineID/comments", async (req, res) => {
+  // First get session email to check if logged in user is an admin.
+  const userEmail = req.session.email;
+  const findUserType = await UserAccount.find({ email: userEmail }).select(
+    "user_type"
+  );
+  const userType = findUserType[0].user_type;
+
+  const { comment, user_id } = req.body;
+  const outline_id = req.params.outlineID;
+
+  if (userType == "admin" || userType == "prodir") {
+    const newComment = new Comment({
+      comment,
+      user_id,
+      outline_id,
+      timestamp: Date.now(),
+    });
+
+    try {
+      await newComment.save();
+    } catch (err) {
+      res.send(500).send(err);
+    }
+  } else {
+    res.status(200).send("Administrator privileges required.");
   }
 });
 
