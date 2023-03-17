@@ -66,6 +66,7 @@ const ViewSingleOutline = (props) => {
     approved: "",
     requestApproval: "",
     decision: "",
+    createdDate: "",
   });
 
   useEffect(() => {
@@ -140,6 +141,8 @@ const ViewSingleOutline = (props) => {
           approved: res.data.approved,
           requestApproval: res.data.requestApproval,
           decision: res.data.decision,
+
+          createdDate: res.data.createdDate,
         });
       })
       .catch((err) => {
@@ -188,6 +191,25 @@ const ViewSingleOutline = (props) => {
     setText(event.target.value);
   };
 
+  const [formattedDateTime, setFormattedDateTime] = useState("");
+
+  useEffect(() => {
+    const createdDate = new Date();
+    const formattedDate = createdDate.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+    const formattedTime = createdDate.toLocaleTimeString("en-GB", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+    });
+    const formattedDateTime = `${formattedDate} ${formattedTime}`;
+    setFormattedDateTime(formattedDateTime);
+  }, []);
+
   return (
     <>
       <div className={styles.Header}>
@@ -221,6 +243,14 @@ const ViewSingleOutline = (props) => {
           >
             {userInput.decision}
           </div>
+        </div>
+
+        <div
+          className={styles.input2}
+          name="requestApproval"
+          placeholder="Status"
+        >
+          {formattedDateTime}{" "}
         </div>
       </div>
 
