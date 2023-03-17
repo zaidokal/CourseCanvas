@@ -234,7 +234,7 @@ const ViewSingleOutline = (props) => {
           <p className={styles.Center}>
             <strong>
               <div
-                contentEditable={true}
+                // contentEditable={true}
                 className={styles.Center}
                 name="courseName"
                 placeholder="ECE XXXXA/B: Course Title"
@@ -246,7 +246,7 @@ const ViewSingleOutline = (props) => {
             <strong>
               Course Outline 20
               <div
-                contentEditable={true}
+                // contentEditable={true}
                 className={styles.input}
                 name="year"
                 placeholder="YY-YY"
@@ -259,7 +259,7 @@ const ViewSingleOutline = (props) => {
             <strong>Description: </strong>
           </p>
           <div
-            contentEditable={true}
+            // // contentEditable={true}
             className={styles.Description}
             name="description"
             placeholder="Description..."
@@ -274,7 +274,7 @@ const ViewSingleOutline = (props) => {
           <p>
             <strong>Instructor:</strong>
             <div
-              contentEditable={true}
+              // contentEditable={true}
               className={styles.input2}
               name="instructor"
               placeholder="Dr. Name, P.Eng."
@@ -283,7 +283,7 @@ const ViewSingleOutline = (props) => {
             </div>
           </p>
           <div
-            contentEditable={true}
+            // contentEditable={true}
             className={styles.input2}
             name="instructorDetails"
             placeholder="TEB XXX, 519-661-2111 ext. XXXXX, XXXX@uwo.ca"
@@ -294,7 +294,7 @@ const ViewSingleOutline = (props) => {
           <strong>Consultation hours:</strong>
 
           <div
-            contentEditable={true}
+            // contentEditable={true}
             className={styles.input2}
             name="consultationHours"
             placeholder="Consultation hours:"
@@ -306,7 +306,7 @@ const ViewSingleOutline = (props) => {
           <p>
             <strong>Academic Calendar Copy:</strong>
             <div
-              contentEditable={true}
+              // contentEditable={true}
               className={styles.input2}
               name="academicCalendar"
               placeholder="Add link"
@@ -317,7 +317,7 @@ const ViewSingleOutline = (props) => {
           <p>
             <strong>Contact Hours:</strong>
             <div
-              contentEditable={true}
+              // contentEditable={true}
               className={styles.input2}
               name="contactHours"
               placeholder="X lecture hours, Y laboratory hours, Z tutorial hours, 0.5 course."
@@ -328,7 +328,7 @@ const ViewSingleOutline = (props) => {
           <p>
             <strong>Antirequisite:</strong>
             <div
-              contentEditable={true}
+              // contentEditable={true}
               className={styles.input2}
               name="antirequisite"
               placeholder="Add"
@@ -339,7 +339,7 @@ const ViewSingleOutline = (props) => {
           <p>
             <strong>Prerequisites:</strong>
             <div
-              contentEditable={true}
+              // contentEditable={true}
               className={styles.input2}
               name="prerequisites"
               placeholder="Add"
@@ -350,7 +350,7 @@ const ViewSingleOutline = (props) => {
           <p>
             <strong>Co-requisite:</strong>
             <div
-              contentEditable={true}
+              // contentEditable={true}
               className={styles.input2}
               name="corequisite"
               placeholder="Add"
@@ -369,7 +369,7 @@ const ViewSingleOutline = (props) => {
           <p>
             <strong>CEAB Academic Units:</strong>
             <div
-              contentEditable={true}
+              // contentEditable={true}
               className={styles.input2}
               name="ceab"
               placeholder="Engineering Science X%, Engineering Design Y%."
@@ -380,7 +380,7 @@ const ViewSingleOutline = (props) => {
           <p>
             <strong>Required Textbook:</strong>
             <div
-              contentEditable={true}
+              // contentEditable={true}
               className={styles.input2}
               name="textbook"
               placeholder="Add"
@@ -391,7 +391,7 @@ const ViewSingleOutline = (props) => {
           <p>
             <strong>Other Required References:</strong>
             <div
-              contentEditable={true}
+              // contentEditable={true}
               className={styles.input2}
               name="requiredReferences"
               placeholder="Add"
@@ -402,7 +402,7 @@ const ViewSingleOutline = (props) => {
           <p>
             <strong>Recommended References:</strong>
             <div
-              contentEditable={true}
+              // contentEditable={true}
               className={styles.input2}
               name="recommendedReferences"
               placeholder="Add"
@@ -431,7 +431,7 @@ const ViewSingleOutline = (props) => {
                   <td width="32">
                     <p align="center">
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input3}
                         name="knowledgeBase"
                         placeholder="x"
@@ -446,7 +446,7 @@ const ViewSingleOutline = (props) => {
                   <td width="32">
                     <p align="center">
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input3}
                         name="engineeringTools"
                         placeholder="x"
@@ -461,7 +461,7 @@ const ViewSingleOutline = (props) => {
                   <td width="32">
                     <p align="center">
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input3}
                         name="impact"
                         placeholder="x"
@@ -478,7 +478,7 @@ const ViewSingleOutline = (props) => {
                   <td width="32">
                     <p align="center">
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input3}
                         name="problemAnalysis"
                         placeholder="x"
@@ -493,7 +493,7 @@ const ViewSingleOutline = (props) => {
                   <td width="32">
                     <p align="center">
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input3}
                         name="individualAndTeamWork"
                         placeholder="x"
@@ -508,7 +508,7 @@ const ViewSingleOutline = (props) => {
                   <td width="32">
                     <p align="center">
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input3}
                         name="ethicsEquity"
                         placeholder="x"
@@ -525,7 +525,7 @@ const ViewSingleOutline = (props) => {
                   <td width="32">
                     <p align="center">
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input3}
                         name="investigation"
                         placeholder="x"
@@ -540,7 +540,7 @@ const ViewSingleOutline = (props) => {
                   <td width="32">
                     <p align="center">
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input3}
                         name="communicationSkills"
                         placeholder="x"
@@ -555,7 +555,7 @@ const ViewSingleOutline = (props) => {
                   <td width="32">
                     <p align="center">
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input3}
                         name="economicsProject"
                         placeholder="x"
@@ -572,7 +572,7 @@ const ViewSingleOutline = (props) => {
                   <td width="32">
                     <p align="center">
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input3}
                         name="design"
                         placeholder="x"
@@ -587,7 +587,7 @@ const ViewSingleOutline = (props) => {
                   <td width="32">
                     <p align="center">
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input3}
                         name="professionalism"
                         placeholder="x"
@@ -602,7 +602,7 @@ const ViewSingleOutline = (props) => {
                   <td width="32">
                     <p align="center">
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input3}
                         name="lifeLongLearning"
                         placeholder="x"
@@ -650,7 +650,7 @@ const ViewSingleOutline = (props) => {
                     <strong>1. </strong>
                     <strong>
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input}
                         name="topic1"
                         placeholder="Topic X"
@@ -683,7 +683,7 @@ const ViewSingleOutline = (props) => {
                     <strong>a. </strong>
                     <strong>
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input}
                         name="topic1a"
                         placeholder="x"
@@ -701,7 +701,7 @@ const ViewSingleOutline = (props) => {
                     <strong>
                       b.
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input}
                         name="topic1b"
                         placeholder="x"
@@ -723,7 +723,7 @@ const ViewSingleOutline = (props) => {
                     <strong>2. </strong>
                     <strong>
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input}
                         name="topic2"
                         placeholder="Topic X"
@@ -756,7 +756,7 @@ const ViewSingleOutline = (props) => {
                     <strong>a.</strong>
                     <strong>
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input}
                         name="topic2a"
                         placeholder="x"
@@ -778,7 +778,7 @@ const ViewSingleOutline = (props) => {
                     <strong>
                       b.
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input}
                         name="topic2b"
                         placeholder="x"
@@ -800,7 +800,7 @@ const ViewSingleOutline = (props) => {
                     <strong>3. </strong>
                     <strong>
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input}
                         name="topic3"
                         placeholder="Topic X"
@@ -833,7 +833,7 @@ const ViewSingleOutline = (props) => {
                     <strong>
                       a.
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input}
                         name="topic3a"
                         placeholder="x"
@@ -855,7 +855,7 @@ const ViewSingleOutline = (props) => {
                     <strong>
                       b.
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input}
                         name="topic3b"
                         placeholder="x"
@@ -877,7 +877,7 @@ const ViewSingleOutline = (props) => {
                     <strong>4. </strong>
                     <strong>
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input}
                         name="topic4"
                         placeholder="Topic X"
@@ -910,7 +910,7 @@ const ViewSingleOutline = (props) => {
                     <strong>
                       a.
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input}
                         name="topic4a"
                         placeholder="x"
@@ -932,7 +932,7 @@ const ViewSingleOutline = (props) => {
                     <strong>
                       b.
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input}
                         name="topic4b"
                         placeholder="x"
@@ -975,7 +975,7 @@ const ViewSingleOutline = (props) => {
                   <td width="120">
                     <p align="center">
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input4}
                         name="homeworkAssignments"
                         placeholder="x"
@@ -993,7 +993,7 @@ const ViewSingleOutline = (props) => {
                   <td width="120">
                     <p align="center">
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input4}
                         name="quizzes"
                         placeholder="x"
@@ -1011,7 +1011,7 @@ const ViewSingleOutline = (props) => {
                   <td width="120">
                     <p align="center">
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input4}
                         name="laboratory"
                         placeholder="x"
@@ -1029,7 +1029,7 @@ const ViewSingleOutline = (props) => {
                   <td width="120">
                     <p align="center">
                       <div
-                        contentEditable={true}
+                        // contentEditable={true}
                         className={styles.input4}
                         name="midterm"
                         placeholder="x"
@@ -1063,7 +1063,7 @@ const ViewSingleOutline = (props) => {
           <p>
             <strong>Homework Assignments:</strong>
             <div
-              contentEditable={true}
+              // contentEditable={true}
               className={styles.description}
               name="homeworkAssignmentsDesc"
               placeholder="Description"
@@ -1074,7 +1074,7 @@ const ViewSingleOutline = (props) => {
           <p>
             <strong>Quizzes:</strong>
             <div
-              contentEditable={true}
+              // contentEditable={true}
               className={styles.description}
               name="quizzesDesc"
               placeholder="Description"
@@ -1085,7 +1085,7 @@ const ViewSingleOutline = (props) => {
           <p>
             <strong>Laboratory:</strong>
             <div
-              contentEditable={true}
+              // contentEditable={true}
               className={styles.description}
               name="laboratoryDesc"
               placeholder="Description"
@@ -1096,7 +1096,7 @@ const ViewSingleOutline = (props) => {
           <p>
             <strong>Midterm Test:</strong>
             <div
-              contentEditable={true}
+              // contentEditable={true}
               className={styles.description}
               name="midtermDesc"
               placeholder="Description"
@@ -1112,7 +1112,7 @@ const ViewSingleOutline = (props) => {
           <p>
             <strong>Late Submission Policy: </strong>
             <div
-              contentEditable={true}
+              // contentEditable={true}
               className={styles.description}
               name="lateSubmission"
               placeholder="Description"
@@ -1124,7 +1124,7 @@ const ViewSingleOutline = (props) => {
             <strong>Assignment Submission Locker: </strong>
             Locker
             <div
-              contentEditable={true}
+              // contentEditable={true}
               className={styles.input}
               name="lockerNum"
               placeholder="XXX"
@@ -1243,7 +1243,7 @@ const ViewSingleOutline = (props) => {
           <p>
             <strong>Use of Electronic Devices: </strong>
             <div
-              contentEditable={true}
+              // contentEditable={true}
               className={styles.description}
               name="electronicDevices"
               placeholder="Description"
@@ -1254,7 +1254,7 @@ const ViewSingleOutline = (props) => {
           <p>
             <strong>Use of Personal Response Devices (“Clickers”): </strong>
             <div
-              contentEditable={true}
+              // contentEditable={true}
               className={styles.description}
               name="clickers"
               placeholder="Description"
