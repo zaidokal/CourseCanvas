@@ -252,7 +252,16 @@ const ViewSingleOutline = (props) => {
         </div>
       </div>
 
-      <div class={styles.RightDiv}>Comments</div>
+      <div class={styles.RightDiv}>
+        Comments
+        <div className={styles.CommentContainer}></div>
+        <div className={styles.NewComment}>
+          <form>
+            <textarea />
+            <button type="submit">Save</button>
+          </form>
+        </div>
+      </div>
 
       <div ref={contentRef} className={styles.MainDiv}>
         <div className={styles.Page}>
