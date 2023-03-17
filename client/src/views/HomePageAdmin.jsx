@@ -12,7 +12,7 @@ const HomePageAdmin = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/secure/all-outlines", {
+      .get("http://localhost:8000/api/secure/all-outlines-approval", {
         headers: {
           "Content-Type": "application/json",
         },
@@ -58,37 +58,13 @@ const HomePageAdmin = () => {
     }
   });
 
-  const containerRef2 = useRef(null);
-  const scrollIntervalRef2 = useRef(null);
-  const right2 = useRef(null);
-  const left2 = useRef(null);
-
-  const handleScrolling2 = () => {
-    const container2 = containerRef2.current;
-
-    if (isHovered === "right2") {
-      container2.scrollLeft += 70;
-    } else if (isHovered === "left2") {
-      container2.scrollLeft -= 70;
-    } else {
-      clearInterval(scrollIntervalRef2.current);
-    }
-  };
-
-  useEffect(() => {
-    if (isHovered) {
-      scrollIntervalRef2.current = setInterval(handleScrolling2, 100);
-    } else {
-      clearInterval(scrollIntervalRef2.current);
-    }
-  });
-
   return (
     <>
       <Header></Header>
+
       <div className={styles.MainDiv}>
         <div className={styles.container}>
-          <div className={styles.title}>Current Outlines</div>
+          <div className={styles.title}>All Outlines</div>
           <div className={styles.PostTitle}></div>
           <div
             className={styles.LeftScroll}
@@ -97,9 +73,6 @@ const HomePageAdmin = () => {
             ref={left}
           ></div>
           <div ref={containerRef} className={styles.YOutline} id="Outlines">
-            <Link to="/COTemplate">
-              <button className={styles.COTemp}>+</button>
-            </Link>
             {displayList}
           </div>
           <div
@@ -110,27 +83,13 @@ const HomePageAdmin = () => {
           ></div>
         </div>
 
-        <div className={styles.container}>
-          <div className={styles.title}>Previous Outlines</div>
-          <div className={styles.PostTitle}></div>
-          <div
-            className={styles.LeftScroll}
-            onMouseEnter={() => setIsHovered("left2")}
-            onMouseLeave={() => setIsHovered(false)}
-            ref={left2}
-          ></div>
-          <div ref={containerRef2} className={styles.YOutline} id="Outlines">
-            <Link to="/COTemplate">
-              <button className={styles.COTemp}>+</button>
-            </Link>
-            {displayList}
-          </div>
-          <div
-            className={styles.RightScroll}
-            onMouseEnter={() => setIsHovered("right2")}
-            onMouseLeave={() => setIsHovered(false)}
-            ref={right2}
-          ></div>
+        <div className={styles.ButtonDiv}>
+          <Link to="/AssignInstructor">
+            <button className={styles.LinkButtons}>Assign Instructor</button>
+          </Link>
+          <Link to="/AdminApproval">
+            <button className={styles.LinkButtons}>Admin Approval</button>
+          </Link>
         </div>
 
         <div className={styles.footer}>© Built and Designed by SRZ</div>
