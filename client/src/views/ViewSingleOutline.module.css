@@ -101,24 +101,50 @@ input::placeholder {
   width: 100%;
   min-width: 0;
   border: none;
+
+  max-width: 100%;
 }
 
 @media print {
   .RemovePrint {
-    display: none;
+    display: none !important;
   }
   .header {
+    display: none !important;
+  }
+  .Header {
     display: none;
   }
-  .Page {
-    page-break-after: always;
+  .MainDiv {
+    width: 90% !important;
+    border: none !important;
   }
 }
 
 .MainDiv {
-  margin: 5%;
+  border: 2px solid;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 2%;
+  /* margin: 5%; */
+  width: 80%;
 }
 
 .Center {
   text-align: center;
+}
+
+.Header {
+  margin-bottom: 5vh;
+}
+
+.RemovePrint {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5vh;
+}
+
+td {
+  border: 1px solid;
 }

@@ -1,0 +1,88 @@
+.Head {
+  width: 100%;
+  height: 10vh;
+  background-color: #4f2683;
+
+  display: flex;
+  flex-wrap: nowrap;
+  position: relative;
+
+  color: white;
+}
+
+.WesternLogoMini {
+  height: 90%;
+  margin-left: 1%;
+  margin-top: 0.3%;
+  margin-bottom: 0.3%;
+}
+
+.OutlineManagerDiv {
+  text-align: center;
+
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 0vw;
+
+  justify-content: center;
+  width: 20vw;
+  cursor: pointer;
+}
+
+.OutlineManager {
+  font-size: 2vw;
+  width: 20vw;
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.LinkButtons {
+  /* formatting */
+  width: 120px;
+  height: 45px;
+
+  /* design */
+  color: #ffffff;
+  position: relative;
+  font-size: 16px;
+  font-family: Asap-Condensed-SemiBold;
+  border-radius: 10px;
+  transition: 0.3s;
+  background-color: rgb(6, 31, 255);
+}
+
+.RightDiv {
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  text-align: right;
+  justify-content: center;
+  right: 0;
+  width: 30vw;
+  margin-right: 1%;
+  position: relative;
+}
+
+.UsernameDiv {
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+
+  margin-bottom: 0%;
+}
+
+.logoutDiv {
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  z-index: 2;
+  margin-top: 0%;
+}
+
+.logoutBtn {
+  width: 5vw;
+}

@@ -3,7 +3,7 @@ import styles from "./HomePage.module.css";
 import { Link } from "react-router-dom";
 import OutlineCard from "../components/OutlineCard";
 import axios from "axios";
-import WesternLogoMini from "../Images/WesternLogoMini.png";
+import Header from "../components/Header";
 
 const HomePage = () => {
   const [outlineList, setOutlineList] = useState({
@@ -39,7 +39,7 @@ const HomePage = () => {
   const right = useRef(null);
   const left = useRef(null);
 
-  const handleScolling = () => {
+  const handleScrolling = () => {
     const container = containerRef.current;
 
     if (isHovered === "right") {
@@ -52,7 +52,7 @@ const HomePage = () => {
   };
   useEffect(() => {
     if (isHovered) {
-      scrollIntervalRef.current = setInterval(handleScolling, 100);
+      scrollIntervalRef.current = setInterval(handleScrolling, 100);
     } else {
       clearInterval(scrollIntervalRef.current);
     }
@@ -63,7 +63,7 @@ const HomePage = () => {
   const right2 = useRef(null);
   const left2 = useRef(null);
 
-  const handleScolling2 = () => {
+  const handleScrolling2 = () => {
     const container2 = containerRef2.current;
 
     if (isHovered === "right2") {
@@ -77,7 +77,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (isHovered) {
-      scrollIntervalRef2.current = setInterval(handleScolling2, 100);
+      scrollIntervalRef2.current = setInterval(handleScrolling2, 100);
     } else {
       clearInterval(scrollIntervalRef2.current);
     }
@@ -85,36 +85,8 @@ const HomePage = () => {
 
   return (
     <>
+      <Header></Header>
       <div className={styles.MainDiv}>
-        <div className={styles.Head}>
-          <img
-            className={styles.WesternLogoMini}
-            src={WesternLogoMini}
-            alt="Western Mini Logo"
-          />
-
-          <div className={styles.OutlineManager}>Outline Manager</div>
-
-          <Link to="/AssignInstructor">
-            <button className={styles.LinkButtons}>AssignInstructor</button>
-          </Link>
-          <Link to="/AdminApproval">
-            <button className={styles.LinkButtons}>AdminApproval</button>
-          </Link>
-
-          <div className={styles.RightDiv}>
-            <div className={styles.UsernameDiv}>
-              <p>FirstName LastName</p>
-            </div>
-
-            <div className={styles.logoutDiv}>
-              <Link to="/">
-                <button className={styles.logoutBtn}>Logout</button>
-              </Link>
-            </div>
-          </div>
-        </div>
-
         <div className={styles.container}>
           <div className={styles.title}>Current Outlines</div>
           <div className={styles.PostTitle}></div>
