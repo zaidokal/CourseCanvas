@@ -67,6 +67,7 @@ const ViewSingleOutline = (props) => {
     requestApproval: "",
     decision: "",
     createdDate: "",
+    recency: "",
   });
 
   useEffect(() => {
@@ -143,6 +144,7 @@ const ViewSingleOutline = (props) => {
           decision: res.data.decision,
 
           createdDate: res.data.createdDate,
+          recency: res.data.recency,
         });
       })
       .catch((err) => {
