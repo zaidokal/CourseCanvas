@@ -6,7 +6,7 @@ const Validator = require("validatorjs");
 const CourseOutline = require("./models/CourseOutline");
 const { ObjectId } = require("mongodb");
 const Courses = require("./models/Courses");
-const Comments = require("./models/Comments");
+const Comment = require("./models/Comments");
 
 // Route to test session management.
 router.get("/test", (req, res) => {
@@ -319,6 +319,7 @@ router.post("/secure/assignment/:instructor", async (req, res) => {
   }
 });
 
+// Route to create a comment on the outline selected.
 router.post("/secure/:outlineID/comments", async (req, res) => {
   // First get session email to check if logged in user is an admin.
   const userEmail = req.session.email;
@@ -340,12 +341,27 @@ router.post("/secure/:outlineID/comments", async (req, res) => {
 
     try {
       await newComment.save();
+      res.send("Comment made successfully.");
     } catch (err) {
       res.send(500).send(err);
     }
   } else {
     res.status(200).send("Administrator privileges required.");
   }
+});
+
+// Route to fetch all the comments based on the outline.
+router.get("/secure/comments/:outlineID", (req, res) => {
+  const outline_id = req.params.outlineID;
+
+  Comment.find({ outline_id: outline_id })
+    .then((comments) => res.json(comments))
+    .catch((err) =>
+      res.status(404).json({
+        error: err,
+        noMemories: "Unable to retrieve comments.",
+      })
+    );
 });
 
 module.exports = router;
