@@ -361,7 +361,7 @@ router.post("/secure/:outlineID/comments", async (req, res) => {
   const { comment, user_id } = req.body;
   const outline_id = req.params.outlineID;
 
-  if (userType == "admin" || userType == "prodir") {
+  if (userType == "admin" || userType == "programDirector") {
     const newComment = new Comment({
       comment,
       user_id,
