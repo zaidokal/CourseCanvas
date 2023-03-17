@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import WesternLogoMini from "../Images/WesternLogoMini.png";
@@ -18,6 +18,26 @@ const Header = () => {
       });
   };
 
+  const [user, setUser] = useState(null);
+  const [firstName, setFirstName] = useState(null);
+  const [lastName, setLastName] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/secure/user-info", {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      })
+      .then((response) => {
+        setUser(response.data);
+        setFirstName(response.data[0].first_name);
+        setLastName(response.data[0].last_name);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   return (
     <div className={styles.Head}>
       <img
@@ -34,7 +54,9 @@ const Header = () => {
 
       <div className={styles.RightDiv}>
         <div className={styles.UsernameDiv}>
-          <p>FirstName LastName</p>
+          <p>
+            {firstName} {lastName}
+          </p>
         </div>
 
         <div className={styles.logoutDiv}>
