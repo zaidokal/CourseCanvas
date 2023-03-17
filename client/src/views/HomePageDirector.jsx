@@ -6,33 +6,9 @@ import axios from "axios";
 import Header from "../components/Header";
 
 const HomePageDirector = () => {
-  const [outlineList, setOutlineList] = useState({
-    outlines: [],
-  });
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/secure/all-outlines-approval", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      })
-      .then((res) => {
-        setOutlineList({
-          outlines: res.data,
-        });
-      })
-      .catch((err) => {
-        console.log("Error in OutlineList");
-      });
-  }, []);
-
-  const displayList = outlineList.outlines.map((out) => (
-    <OutlineCard outline={out} key={out._id} />
-  ));
-
   const [courseNames, setCourseNames] = useState([]);
+  const [selectedCourse, setSelectedCourse] = useState("");
+  const [outlineList, setOutlineList] = useState({ outlines: [] });
 
   useEffect(() => {
     axios
@@ -49,7 +25,29 @@ const HomePageDirector = () => {
       });
   }, []);
 
-  const [selectedCourse, setSelectedCourse] = useState("");
+  useEffect(() => {
+    if (selectedCourse) {
+      axios
+        .get(
+          `http://localhost:8000/api/secure/${selectedCourse}/all-outlines`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        )
+        .then((res) => {
+          setOutlineList({
+            outlines: res.data,
+          });
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log("Error in OutlineList");
+        });
+    }
+  }, [selectedCourse]);
 
   const displayCourses = (
     <select
@@ -65,6 +63,10 @@ const HomePageDirector = () => {
       ))}
     </select>
   );
+
+  const displayList = outlineList.outlines.map((out) => (
+    <OutlineCard outline={out} key={out._id} />
+  ));
 
   const [isHovered, setIsHovered] = useState(false);
 
