@@ -228,17 +228,13 @@ router.post("/secure/request/:outlineID", async (req, res) => {
   const userType = findUserType[0].user_type;
 
   try {
-    if (userType == "admin") {
-      const courseOutline = await CourseOutline.findByIdAndUpdate(
-        { _id: outlineID },
-        { requestApproval: requestApprove },
-        { new: true }
-      );
+    const courseOutline = await CourseOutline.findByIdAndUpdate(
+      { _id: outlineID },
+      { requestApproval: requestApprove },
+      { new: true }
+    );
 
-      res.send(courseOutline);
-    } else {
-      res.send("Administrator privileges required.");
-    }
+    res.send(courseOutline);
   } catch (err) {
     res.status(500).send(err);
   }
@@ -257,16 +253,12 @@ router.post("/secure/reply/:outlineID", async (req, res) => {
   const userType = findUserType[0].user_type;
 
   try {
-    if (userType == "admin") {
-      const courseOutline = await CourseOutline.findByIdAndUpdate(
-        { _id: outlineID },
-        { decision: decider },
-        { new: true }
-      );
-      res.send(courseOutline);
-    } else {
-      res.send("Administrator privileges required.");
-    }
+    const courseOutline = await CourseOutline.findByIdAndUpdate(
+      { _id: outlineID },
+      { decision: decider },
+      { new: true }
+    );
+    res.send(courseOutline);
   } catch (err) {
     console.error(err);
     res.status(500).send(err);
