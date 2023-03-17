@@ -152,10 +152,6 @@ const ViewSingleOutline = (props) => {
       });
   });
 
-  const handlePrintClick = () => {
-    window.print();
-  };
-
   const outline = { _id: id };
 
   const handleApproval = (data) => {
