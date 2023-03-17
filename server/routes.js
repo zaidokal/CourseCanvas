@@ -7,12 +7,6 @@ const CourseOutline = require("./models/CourseOutline");
 const { ObjectId } = require("mongodb");
 const Courses = require("./models/Courses");
 
-// Route to test session management.
-router.get("/test", (req, res) => {
-  res.send("User logged in.");
-  console.log(req.session.email);
-});
-
 // Route to allow for account creation.
 router.post("/auth/register", async (req, res) => {
   try {
@@ -90,14 +84,16 @@ router.post("/auth/login", async (req, res) => {
     }
 
     if (req.session.email) {
-      // res.send("Authentication Successful.");
-      res.redirect("/api/test");
+      console.log(req.session.email);
+
+      const type = userAccount.user_type;
+
+      res.send(type);
+      console.log("done");
     } else {
       res.redirect("/api/auth/login");
       res.send("Login failed.");
     }
-
-    // res.redirect("/api/test"); // Redirect to test page is login is successful.
   } catch (err) {
     console.error(err);
     res.status(500).send({ message: "Server error" });
