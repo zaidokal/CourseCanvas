@@ -316,23 +316,25 @@ const ViewSingleOutline = (props) => {
       </div>
 
       <div className={styles.RightDiv}>
-        <h2>Comments</h2>
-        <div className={styles.CommentContainer}>
-          {comments.map((comment) => (
-            <div key={comment._id} className={styles.Comment}>
-              <p className={styles.CommentText}>{comment.comment}</p>
-              <p className={styles.CommentDetails}>
-                Posted by: {comment.user_id} at{" "}
-                {new Date(comment.timestamp).toLocaleString()}
-              </p>
-            </div>
-          ))}
-        </div>
-        <div className={styles.NewComment}>
-          <form onSubmit={handleSubmit}>
-            <textarea value={comment} onChange={handleComment} />
-            <button type="submit">Save</button>
-          </form>
+        <div className={styles.insideDiv}>
+          <h2>Comments</h2>
+          <div className={styles.CommentContainer}>
+            {comments.map((comment) => (
+              <div key={comment._id} className={styles.Comment}>
+                <p className={styles.CommentText}>{comment.comment}</p>
+                <p className={styles.CommentDetails}>
+                  Posted by: {comment.user_id} at{" "}
+                  {new Date(comment.timestamp).toLocaleString()}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className={styles.NewComment}>
+            <form onSubmit={handleSubmit}>
+              <textarea value={comment} onChange={handleComment} />
+              <button type="submit">Save</button>
+            </form>
+          </div>
         </div>
       </div>
 
