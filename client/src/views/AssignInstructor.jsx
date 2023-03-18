@@ -13,7 +13,6 @@ export const AssignInstructor = (props) => {
         withCredentials: true,
       })
       .then((response) => {
-        console.log(response.data); // log the data returned by the server
         setCourseNames(response.data);
       })
       .catch((error) => {
@@ -30,7 +29,6 @@ export const AssignInstructor = (props) => {
         withCredentials: true,
       })
       .then((response) => {
-        console.log(response.data); // log the data returned by the server
         setInstructorNames(response.data);
       })
       .catch((error) => {

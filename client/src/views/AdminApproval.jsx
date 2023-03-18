@@ -2,9 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import styles from "./AdminApproval.module.css";
 import OutlineCardAdmin from "../components/OutlineCardAdmin";
 import OutlineCardAdminApproved from "../components/OutlineCardAdminApproved";
-import AccountButton from "../components/AccountButton";
 import Header from "../components/Header";
-import { Link } from "react-router-dom";
 
 import axios from "axios";
 
@@ -32,13 +30,12 @@ const AdminApproval = () => {
   }, []);
 
   const displayList = outlineList.outlines
-    .filter((out) => out.approved === false)
-    .filter((out) => out.requestApproval === true)
+    .filter((out) => out.decision === "Requested")
 
     .map((out) => <OutlineCardAdmin outline={out} key={out._id} />);
 
   const displayApprovedList = outlineList.outlines
-    .filter((out) => out.approved === true)
+    .filter((out) => out.decision === "Approved")
     .map((out) => <OutlineCardAdminApproved outline={out} key={out._id} />);
 
   const [isHovered, setIsHovered] = useState(false);

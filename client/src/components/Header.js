@@ -1,8 +1,6 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Header.module.css";
-import { Link } from "react-router-dom";
 import WesternLogoMini from "../Images/WesternLogoMini.png";
-
 import axios from "axios";
 
 const Header = () => {
@@ -18,7 +16,6 @@ const Header = () => {
       });
   };
 
-  const [user, setUser] = useState(null);
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [user_type, setUser_type] = useState(null);
@@ -30,7 +27,6 @@ const Header = () => {
         withCredentials: true,
       })
       .then((response) => {
-        setUser(response.data);
         setFirstName(response.data[0].first_name);
         setLastName(response.data[0].last_name);
         setUser_type(response.data[0].user_type);

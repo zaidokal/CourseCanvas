@@ -2,8 +2,6 @@ import React, { useRef, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import styles from "./ViewSingleOutline.module.css";
-import AccountButton from "../components/AccountButton";
-import RequestApproval from "../components/RequestApproval";
 import Header from "../components/Header";
 import DownloadIcon from "../Images/DownloadIcon.png";
 import RequestIcon from "../Images/RequestIcon.png";
@@ -65,8 +63,6 @@ const ViewSingleOutline = (props) => {
     lockerNum: "",
     electronicDevices: "",
     clickers: "",
-    approved: "",
-    requestApproval: "",
     decision: "",
     createdDate: "",
     recency: "",
@@ -141,8 +137,6 @@ const ViewSingleOutline = (props) => {
           electronicDevices: res.data.electronicDevices,
           clickers: res.data.clickers,
 
-          approved: res.data.approved,
-          requestApproval: res.data.requestApproval,
           decision: res.data.decision,
 
           createdDate: res.data.createdDate,
@@ -157,7 +151,7 @@ const ViewSingleOutline = (props) => {
   const contentRef = useRef(null);
 
   const handleDownload = () => {
-    if (userInput.approved) {
+    if (userInput.decision === "Approved") {
       const content = contentRef.current;
       const options = {
         margin: 0.5,
@@ -227,10 +221,6 @@ const ViewSingleOutline = (props) => {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
 
-  useEffect(() => {
-    fetchComments();
-  }, []);
-
   const fetchComments = () => {
     axios
       .get(`http://localhost:8000/api/secure/comments/${id}`)
@@ -275,11 +265,8 @@ const ViewSingleOutline = (props) => {
 
   const isAdminOrProgramDirector =
     user_type === "admin" || user_type === "programDirector";
-  const isDisabled = !isAdminOrProgramDirector;
 
   const requestCOApproval = () => {
-    let outline = props.outline;
-
     axios
       .post(
         `http://localhost:8000/api/secure/request/${id}`,
@@ -342,20 +329,20 @@ const ViewSingleOutline = (props) => {
               onClick={requestCOApproval}
               className={styles.icon}
               src={RequestIcon}
-              alt="Save"
+              alt="Request"
             />
           </div>
 
           <div
             className={styles.outericon}
-            disabled={!userInput.approved}
+            disabled={userInput.decision !== "Approved"}
             onClick={handleDownload}
           >
             <img
               className={styles.icon}
               src={DownloadIcon}
-              disabled={!userInput.approved}
-              alt="Save"
+              disabled={userInput.decision !== "Approved"}
+              alt="Download"
             />
           </div>
         </div>

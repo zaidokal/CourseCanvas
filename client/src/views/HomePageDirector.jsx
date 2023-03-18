@@ -17,7 +17,7 @@ const HomePageDirector = () => {
         withCredentials: true,
       })
       .then((response) => {
-        console.log(response.data[0].assignedCourses); // log the data returned by the server
+        console.log(response.data[0].assignedCourses);
         setCourseNames(response.data[0].assignedCourses);
       })
       .catch((error) => {
