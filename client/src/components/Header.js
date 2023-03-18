@@ -21,6 +21,7 @@ const Header = () => {
   const [user, setUser] = useState(null);
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
+  const [user_type, setUser_type] = useState(null);
 
   useEffect(() => {
     axios
@@ -32,11 +33,22 @@ const Header = () => {
         setUser(response.data);
         setFirstName(response.data[0].first_name);
         setLastName(response.data[0].last_name);
+        setUser_type(response.data[0].user_type);
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
+
+  const handleRedirect = () => {
+    if (user_type === "admin") {
+      window.location.href = "/HomePageAdmin";
+    } else if (user_type === "programDirector") {
+      window.location.href = "/HomePageDirector";
+    } else {
+      window.location.href = "/HomePage";
+    }
+  };
 
   return (
     <div className={styles.Head}>
@@ -47,9 +59,9 @@ const Header = () => {
       />
 
       <div className={styles.OutlineManagerDiv}>
-        <Link to="/HomePage">
-          <button className={styles.OutlineManager}>Outline Manager</button>
-        </Link>
+        <button onClick={handleRedirect} className={styles.OutlineManager}>
+          Outline Manager
+        </button>
       </div>
 
       <div className={styles.RightDiv}>
