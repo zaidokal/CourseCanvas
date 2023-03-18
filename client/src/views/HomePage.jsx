@@ -28,9 +28,10 @@ const HomePage = () => {
       });
   }, []);
 
-  const displayList = outlineList.outlines.map((out) => (
-    <OutlineCard outline={out} key={out._id} />
-  ));
+  const displayList = outlineList.outlines
+    .filter((out) => out.recency === "New")
+
+    .map((out) => <OutlineCard outline={out} key={out._id} />);
 
   const [isHovered, setIsHovered] = useState(false);
 

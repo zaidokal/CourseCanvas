@@ -5,6 +5,7 @@ import styles from "./ViewSingleOutline.module.css";
 import Header from "../components/Header";
 import DownloadIcon from "../Images/DownloadIcon.png";
 import RequestIcon from "../Images/RequestIcon.png";
+import { Link } from "react-router-dom";
 
 import html2pdf from "html2pdf.js";
 
@@ -319,6 +320,13 @@ const ViewSingleOutline = (props) => {
       <div className={styles.Header}>
         <Header />
       </div>
+
+      <Link
+        to={`/EditOutline/${id}`}
+        style={{ color: "inherit", textDecoration: "inherit" }}
+      >
+        <button> Edit </button>
+      </Link>
 
       <div className={styles.Title}>
         Outline Editor - {userInput.decision}

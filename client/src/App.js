@@ -9,6 +9,7 @@ import { AssignInstructor } from "./views/AssignInstructor";
 import AdminApproval from "./views/AdminApproval";
 import HomePageAdmin from "./views/HomePageAdmin";
 import HomePageDirector from "./views/HomePageDirector";
+import EditOutline from "./views/EditOutline";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
       <Route path="/AdminApproval" element={<AdminApproval />} />
       <Route path="/HomePageAdmin" element={<HomePageAdmin />} />
       <Route path="/HomePageDirector" element={<HomePageDirector />} />
+      <Route path="/EditOutline/:id" element={<EditOutline />} />
     </Routes>
   );
 };
