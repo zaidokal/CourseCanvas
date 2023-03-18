@@ -127,11 +127,8 @@ input::placeholder {
 .MainDiv {
   border: 2px solid;
   margin-left: 5%;
-  /* right: 0; */
-  /* margin: auto; */
   padding: 2%;
-  /* margin: 5%; */
-  width: 70%;
+  width: 60%;
 }
 
 .Center {
@@ -152,15 +149,151 @@ td {
   border: 1px solid;
 }
 
+.Title {
+  font-size: 4vh;
+  position: relative;
+  margin-bottom: 4%;
+  margin-left: 3%;
+  border-bottom: 1px solid;
+  width: 65vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon {
+  width: 1vw;
+  object-fit: contain;
+}
+
+.icon:hover {
+  cursor: pointer;
+}
+
+.outericon {
+  width: 2vw;
+  height: 2vw;
+  border-radius: 50%;
+  background-color: rgb(236, 232, 232);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.outericon + .outericon {
+  margin-left: 0.1vw;
+}
+
+.icons {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  gap: 10px;
+  height: fit-content;
+}
+
+.downloadBTN:disabled {
+  display: none;
+}
+
+.outericon:disabled,
+.outericon[disabled] {
+  display: none;
+}
+
+.Date {
+  font-size: 2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .RightDiv {
-  border: 2px solid;
+  border-left: 2px solid;
   position: fixed;
   top: 0;
   right: 0;
-  width: 17vw; /* or any other width you prefer */
-  height: 100%; /* or any other height you prefer */
-  background-color: #fff; /* or any other color you prefer */
+  width: 25vw;
+  height: 100%;
+  background-color: #fff;
+}
 
+.CommentContainer {
+  height: 89vh;
+  width: 99%;
   overflow-y: scroll;
-  padding: 1%;
+}
+
+.Comment {
+  margin: 10px;
+  padding: 10px;
+  border-bottom: 1px solid black;
+  padding: 10px;
+}
+
+.CommentDetails {
+  font-size: 0.8em;
+  color: gray;
+}
+
+.NewComment {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.NewCommentBox {
+  padding: 4%;
+  width: 92%;
+  height: 6vh;
+  border-top: 1px solid;
+  border-right: none;
+  border-left: none;
+  border-bottom: none;
+  resize: none;
+  overflow-y: auto;
+  outline: none;
+}
+
+.NewCommentBox::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.NewCommentBox::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.NewCommentBox::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 2px;
+}
+
+.NewCommentBox::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+form {
+  margin-top: 10%;
+}
+
+.CommentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.CommentUser {
+  font-weight: bold;
+  margin: 0;
+}
+
+.CommentDate {
+  font-size: 0.8em;
+  margin: 0;
+}
+
+.CommentText {
+  margin: 0;
+  word-wrap: break-word;
 }

@@ -1,8 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Header.module.css";
-import { Link } from "react-router-dom";
 import WesternLogoMini from "../Images/WesternLogoMini.png";
-
 import axios from "axios";
 
 const Header = () => {
@@ -18,6 +16,36 @@ const Header = () => {
       });
   };
 
+  const [firstName, setFirstName] = useState(null);
+  const [lastName, setLastName] = useState(null);
+  const [user_type, setUser_type] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/secure/user-info", {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      })
+      .then((response) => {
+        setFirstName(response.data[0].first_name);
+        setLastName(response.data[0].last_name);
+        setUser_type(response.data[0].user_type);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const handleRedirect = () => {
+    if (user_type === "admin") {
+      window.location.href = "/HomePageAdmin";
+    } else if (user_type === "programDirector") {
+      window.location.href = "/HomePageDirector";
+    } else {
+      window.location.href = "/HomePage";
+    }
+  };
+
   return (
     <div className={styles.Head}>
       <img
@@ -27,15 +55,19 @@ const Header = () => {
       />
 
       <div className={styles.OutlineManagerDiv}>
-        <Link to="/HomePage">
-          <button className={styles.OutlineManager}>Outline Manager</button>
-        </Link>
+        <button onClick={handleRedirect} className={styles.OutlineManager}>
+          Outline Manager
+        </button>
       </div>
 
       <div className={styles.RightDiv}>
         <div className={styles.UsernameDiv}>
-          <p>FirstName LastName</p>
+          <p>
+            {firstName} {lastName}
+          </p>
         </div>
+
+        {user_type}
 
         <div className={styles.logoutDiv}>
           <button className={styles.logoutBtn} onClick={handleLogout}>

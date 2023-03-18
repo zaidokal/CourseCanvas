@@ -106,7 +106,7 @@ div::-webkit-scrollbar-track {
   justify-content: center;
   background-color: grey;
   width: 3vw;
-  height: 25vh;
+  height: 53vh;
   /* pointer-events: auto; */
 }
 
@@ -133,6 +133,31 @@ div::-webkit-scrollbar-track {
   height: min-content;
   /* formatting */
   display: flex;
-  /* flex-wrap: wrap; */
+  display: grid;
+  grid-template-rows: auto auto; /* creates 2 rows with auto height */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(200px, 1fr)
+  ); /* creates infinite columns with a minimum width of 200px */
+  grid-gap: 10px; /* adds a 10px gap between grid items */
+  grid-auto-flow: column dense;
+}
+
+.LinkButtons {
+  /* formatting */
+  width: 120px;
+  height: 45px;
+
   /* design */
+  color: #ffffff;
+  position: relative;
+  font-size: 16px;
+  font-family: Asap-Condensed-SemiBold;
+  border-radius: 10px;
+  transition: 0.3s;
+  background-color: rgb(6, 31, 255);
+}
+
+.ButtonDiv {
+  text-align: center;
 }

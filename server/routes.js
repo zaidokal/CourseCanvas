@@ -6,7 +6,7 @@ const Validator = require("validatorjs");
 const CourseOutline = require("./models/CourseOutline");
 const { ObjectId } = require("mongodb");
 const Courses = require("./models/Courses");
-const Comments = require("./models/Comments");
+const Comment = require("./models/Comments");
 
 // Route to allow for account creation.
 router.post("/auth/register", async (req, res) => {
@@ -228,60 +228,6 @@ router.get("/secure/:outlineID", (req, res) => {
 });
 
 // Route for decision on course outline approval.
-router.post("/secure/decision/:outlineID", async (req, res) => {
-  const outlineID = req.params.outlineID;
-  const approval = req.body.approval;
-
-  // First get session email to check if logged in user is an admin.
-  const userEmail = req.session.email;
-  const findUserType = await UserAccount.find({ email: userEmail }).select(
-    "user_type"
-  );
-  const userType = findUserType[0].user_type;
-
-  try {
-    if (userType == "admin") {
-      const courseOutline = await CourseOutline.findByIdAndUpdate(
-        { _id: outlineID },
-        { approved: approval },
-        { new: true }
-      );
-
-      res.send(courseOutline);
-    } else {
-      res.send("Administrator privileges required.");
-    }
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
-
-// Route for decision on course outline approval.
-router.post("/secure/request/:outlineID", async (req, res) => {
-  const outlineID = req.params.outlineID;
-  const requestApprove = req.body.requestApprove;
-
-  // First get session email to check if logged in user is an admin.
-  const userEmail = req.session.email;
-  const findUserType = await UserAccount.find({ email: userEmail }).select(
-    "user_type"
-  );
-  const userType = findUserType[0].user_type;
-
-  try {
-    const courseOutline = await CourseOutline.findByIdAndUpdate(
-      { _id: outlineID },
-      { requestApproval: requestApprove },
-      { new: true }
-    );
-
-    res.send(courseOutline);
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
-
-// Route for decision on course outline approval.
 router.post("/secure/reply/:outlineID", async (req, res) => {
   const outlineID = req.params.outlineID;
   const decider = req.body.decider;
@@ -353,6 +299,11 @@ router.post("/secure/assignment/:instructor", async (req, res) => {
 router.post("/secure/:outlineID/comments", async (req, res) => {
   // First get session email to check if logged in user is an admin.
   const userEmail = req.session.email;
+
+  const outlineID = req.params.outlineID;
+  const decider = req.body.decider;
+  // const approval = req.body.approval;
+
   const findUserType = await UserAccount.find({ email: userEmail }).select(
     "user_type"
   );
@@ -361,7 +312,7 @@ router.post("/secure/:outlineID/comments", async (req, res) => {
   const { comment, user_id } = req.body;
   const outline_id = req.params.outlineID;
 
-  if (userType == "admin" || userType == "prodir") {
+  if (userType == "admin" || userType == "programDirector") {
     const newComment = new Comment({
       comment,
       user_id,
@@ -371,12 +322,35 @@ router.post("/secure/:outlineID/comments", async (req, res) => {
 
     try {
       await newComment.save();
+
+      const courseOutline = await CourseOutline.findByIdAndUpdate(
+        { _id: outlineID },
+        { decision: decider },
+        // { approved: approval },
+        { new: true }
+      );
+
+      res.send(courseOutline);
     } catch (err) {
-      res.send(500).send(err);
+      res.status(500).send(err);
     }
   } else {
     res.status(200).send("Administrator privileges required.");
   }
+});
+
+// Route to fetch all the comments based on the outline.
+router.get("/secure/comments/:outlineID", (req, res) => {
+  const outline_id = req.params.outlineID;
+
+  Comment.find({ outline_id: outline_id })
+    .then((comments) => res.json(comments))
+    .catch((err) =>
+      res.status(404).json({
+        error: err,
+        noMemories: "Unable to retrieve comments.",
+      })
+    );
 });
 
 module.exports = router;

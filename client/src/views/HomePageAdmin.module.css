@@ -124,7 +124,6 @@ div::-webkit-scrollbar-track {
   width: 100%;
   flex-wrap: wrap;
   display: flex;
-  /* align-items: center; */
 }
 
 .YOutline {
@@ -134,12 +133,9 @@ div::-webkit-scrollbar-track {
   /* formatting */
   display: flex;
   display: grid;
-  grid-template-rows: auto auto; /* creates 2 rows with auto height */
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(200px, 1fr)
-  ); /* creates infinite columns with a minimum width of 200px */
-  grid-gap: 10px; /* adds a 10px gap between grid items */
+  grid-template-rows: auto auto;
+  grid-template-columns: repeat;
+  grid-column-gap: 1vw;
   grid-auto-flow: column dense;
 }
 

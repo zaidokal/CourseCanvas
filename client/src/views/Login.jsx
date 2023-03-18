@@ -31,7 +31,7 @@ export const Login = (props) => {
       .then((res) => {
         if (res.data === "admin") {
           window.location.href = "/HomePageAdmin";
-        } else if (res.data === "ProgramDirector") {
+        } else if (res.data === "programDirector") {
           window.location.href = "/HomePageDirector";
         } else {
           window.location.href = "/HomePage";

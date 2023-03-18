@@ -2,9 +2,9 @@ import React, { useRef, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import styles from "./ViewSingleOutline.module.css";
-import AccountButton from "../components/AccountButton";
-import RequestApproval from "../components/RequestApproval";
 import Header from "../components/Header";
+import DownloadIcon from "../Images/DownloadIcon.png";
+import RequestIcon from "../Images/RequestIcon.png";
 
 import html2pdf from "html2pdf.js";
 
@@ -63,8 +63,6 @@ const ViewSingleOutline = (props) => {
     lockerNum: "",
     electronicDevices: "",
     clickers: "",
-    approved: "",
-    requestApproval: "",
     decision: "",
     createdDate: "",
     recency: "",
@@ -139,8 +137,6 @@ const ViewSingleOutline = (props) => {
           electronicDevices: res.data.electronicDevices,
           clickers: res.data.clickers,
 
-          approved: res.data.approved,
-          requestApproval: res.data.requestApproval,
           decision: res.data.decision,
 
           createdDate: res.data.createdDate,
@@ -152,16 +148,10 @@ const ViewSingleOutline = (props) => {
       });
   });
 
-  const outline = { _id: id };
-
-  const handleApproval = (data) => {
-    console.log("Approval data:", data);
-  };
-
   const contentRef = useRef(null);
 
   const handleDownload = () => {
-    if (userInput.approved) {
+    if (userInput.decision === "Approved") {
       const content = contentRef.current;
       const options = {
         margin: 0.5,
@@ -192,21 +182,137 @@ const ViewSingleOutline = (props) => {
   const [formattedDateTime, setFormattedDateTime] = useState("");
 
   useEffect(() => {
-    const createdDate = new Date();
-    const formattedDate = createdDate.toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
-    const formattedTime = createdDate.toLocaleTimeString("en-GB", {
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: false,
-    });
-    const formattedDateTime = `${formattedDate} ${formattedTime}`;
-    setFormattedDateTime(formattedDateTime);
+    if (userInput.createdDate) {
+      const createdDate = new Date(userInput.createdDate);
+      const formattedDate = createdDate.toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      });
+      const formattedTime = createdDate.toLocaleTimeString("en-GB", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+      });
+      const formattedDateTime = `${formattedDate} ${formattedTime}`;
+      setFormattedDateTime(formattedDateTime);
+    }
+  }, [userInput.createdDate]);
+
+  const [user, setUser] = useState(null);
+  const [user_type, setUser_Type] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/secure/user-info", {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      })
+      .then((response) => {
+        setUser(response.data[0].user_id);
+        setUser_Type(response.data[0].user_type);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, []);
+
+  const [comment, setComment] = useState("");
+  const [comments, setComments] = useState([]);
+
+  const fetchComments = () => {
+    axios
+      .get(`http://localhost:8000/api/secure/comments/${id}`)
+      .then((res) => setComments(res.data))
+      .catch((err) => console.log(err));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post(
+        `http://localhost:8000/api/secure/${id}/comments`,
+        {
+          comment,
+          user_id: user,
+          // approval: false,
+          decider: "Comments Available",
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        // alert("Comment saved successfully.");
+        setComment("");
+        fetchComments();
+      })
+      .catch((err) => {
+        console.log(err.response);
+        alert("Failed to save comment.");
+      });
+  };
+
+  const handleComment = (e) => {
+    setComment(e.target.value);
+  };
+
+  const isAdminOrProgramDirector =
+    user_type === "admin" || user_type === "programDirector";
+
+  const requestCOApproval = () => {
+    axios
+      .post(
+        `http://localhost:8000/api/secure/request/${id}`,
+        {
+          requestApprove: true,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        // Call the onApprove prop function passed from the parent component
+        props.onApprove(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    axios
+      .post(
+        `http://localhost:8000/api/secure/reply/${id}`,
+        {
+          decider: "Requested",
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        // Call the onApprove prop function passed from the parent component
+        props.onApprove(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    window.location.reload();
+  };
 
   return (
     <>
@@ -214,45 +320,77 @@ const ViewSingleOutline = (props) => {
         <Header />
       </div>
 
-      <div className={styles.RemovePrint}>
-        <div className={styles.header}>
-          <AccountButton text={"HomePage"} linkTo={"/HomePage"} />
-        </div>
-        <div>
-          <button
-            className={styles.downloadBTN}
-            disabled={!userInput.approved}
-            onClick={handleDownload}
-          >
-            {userInput.approved} Download
-          </button>
-        </div>
-        <RequestApproval outline={outline} onApprove={handleApproval} />
-
-        <div>
-          <div className={styles.header}>
-            <p>Approval Status:</p>
+      <div className={styles.Title}>
+        Outline Editor - {userInput.decision}
+        <div className={styles.icons}>
+          <div className={styles.Date}> {formattedDateTime} </div>
+          <div className={styles.outericon}>
+            <img
+              onClick={requestCOApproval}
+              className={styles.icon}
+              src={RequestIcon}
+              alt="Request"
+            />
           </div>
 
           <div
-            className={styles.input2}
-            name="requestApproval"
-            placeholder="Status"
+            className={styles.outericon}
+            disabled={userInput.decision !== "Approved"}
+            onClick={handleDownload}
           >
-            {userInput.decision}
+            <img
+              className={styles.icon}
+              src={DownloadIcon}
+              disabled={userInput.decision !== "Approved"}
+              alt="Download"
+            />
           </div>
         </div>
+      </div>
 
+      <div className={styles.RemovePrint}>
         <div
           className={styles.input2}
           name="requestApproval"
           placeholder="Status"
         >
-          {formattedDateTime}{" "}
+          {" "}
         </div>
       </div>
 
-      <div class={styles.RightDiv}>Comments</div>
+      <div className={styles.RightDiv}>
+        <div className={styles.CommentContainer}>
+          {comments.map((comment) => (
+            <div key={comment._id} className={styles.Comment}>
+              <div className={styles.CommentHeader}>
+                <p className={styles.CommentUser}>{comment.user_id}</p>
+                <p className={styles.CommentDate}>
+                  {new Date(comment.timestamp).toLocaleString()}
+                </p>
+              </div>
+              <p className={styles.CommentText}>{comment.comment}</p>
+            </div>
+          ))}
+        </div>
+        <div className={styles.NewComment}>
+          <form onSubmit={handleSubmit}>
+            {isAdminOrProgramDirector && (
+              <textarea
+                className={styles.NewCommentBox}
+                value={comment}
+                onChange={handleComment}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSubmit(e);
+                  }
+                }}
+                placeholder="Add a comment..."
+              />
+            )}
+          </form>
+        </div>
+      </div>
 
       <div ref={contentRef} className={styles.MainDiv}>
         <div className={styles.Page}>

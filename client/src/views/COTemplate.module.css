@@ -74,9 +74,39 @@ input::placeholder {
   margin: auto;
   padding: 2%;
   /* margin: 5%; */
-  width: 80%;
+  width: 60%;
 }
 
 .Header {
   margin-bottom: 5vh;
+}
+
+.Title {
+  font-size: 4vh;
+  margin-bottom: 4%;
+  margin-left: 3%;
+  border-bottom: 1px solid;
+  width: 78vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon {
+  width: 1vw;
+  object-fit: contain;
+}
+
+.icon:hover {
+  cursor: pointer;
+}
+
+.outericon {
+  right: 0;
+  width: 2vw;
+  height: 2vw;
+  border-radius: 50%;
+  background-color: rgb(236, 232, 232); /* optional */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

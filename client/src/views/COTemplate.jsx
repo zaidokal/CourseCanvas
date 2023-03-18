@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AccountButton from "../components/AccountButton";
 import styles from "./COTemplate.module.css";
 import axios from "axios";
 import Header from "../components/Header";
+import FloppyDisk from "../Images/FloppyDisk.png";
 
 const COTemplate = () => {
   const [userInput, setUserInput] = useState({
@@ -80,7 +81,7 @@ const COTemplate = () => {
       .post(
         `http://localhost:8000/api/secure/create-outline`,
         {
-          courseName: userInput.courseName,
+          courseName: selectedCourse,
           year: userInput.year,
           description: userInput.description,
           instructor: userInput.instructor,
@@ -154,10 +155,55 @@ const COTemplate = () => {
       });
   };
 
+  const [courseNames, setCourseNames] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/secure/instructor/assigned-courses", {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log(response.data[0].assignedCourses); // log the data returned by the server
+        setCourseNames(response.data[0].assignedCourses);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const [selectedCourse, setSelectedCourse] = useState("");
+
+  const displayCourses = (
+    <select
+      className={styles.Display}
+      value={selectedCourse}
+      onChange={(e) => setSelectedCourse(e.target.value)}
+    >
+      <option>ECE XXXXA/B: Course Title</option>
+      {courseNames.map((cou) => (
+        <option key={cou} value={cou}>
+          {cou}
+        </option>
+      ))}
+    </select>
+  );
   return (
     <>
       <div className={styles.Header}>
         <Header />
+      </div>
+
+      <div className={styles.Title}>
+        Outline Editor
+        <div className={styles.outericon}>
+          <img
+            onClick={onSubmit}
+            className={styles.icon}
+            src={FloppyDisk}
+            alt="Save"
+          />
+        </div>
       </div>
 
       <div className={styles.MainDiv}>
@@ -167,15 +213,7 @@ const COTemplate = () => {
           <strong>Department of Electrical and Computer Engineering</strong>
         </p>
         <p align="center">
-          <strong>
-            <input
-              className={styles.input}
-              value={userInput.courseName}
-              name="courseName"
-              onChange={handleChange}
-              placeholder="ECE XXXXA/B: Course Title"
-            ></input>
-          </strong>
+          <strong>{displayCourses}</strong>
           <br />
           <strong>
             Course Outline 20
@@ -1198,14 +1236,6 @@ const COTemplate = () => {
           , for a complete list of options about how to obtain help.
         </p>
         <br />
-        <div className={styles.header}>
-          {" "}
-          <AccountButton
-            text={"Save"}
-            onClick={onSubmit}
-            disabled={isButtonDisabled}
-          ></AccountButton>
-        </div>
       </div>
     </>
   );

@@ -6,27 +6,90 @@ import axios from "axios";
 import Header from "../components/Header";
 
 const HomePageDirector = () => {
-  const [outlineList, setOutlineList] = useState({
-    outlines: [],
-  });
+  const [user_type, setUser_type] = useState(null);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/secure/all-outlines", {
-        headers: {
-          "Content-Type": "application/json",
-        },
+      .get("http://localhost:8000/api/secure/user-info", {
+        headers: { "Content-Type": "application/json" },
         withCredentials: true,
       })
-      .then((res) => {
-        setOutlineList({
-          outlines: res.data,
-        });
+      .then((response) => {
+        setUser_type(response.data[0].user_type);
       })
-      .catch((err) => {
-        console.log("Error in OutlineList");
+      .catch((error) => {
+        console.error(error);
       });
   }, []);
+
+  useEffect(() => {
+    if (user_type !== null) {
+      if (user_type === "programDirector") {
+      } else if (user_type === "admin") {
+        window.location.href = "/HomePageAdmin";
+      } else {
+        window.location.href = "/HomePage";
+      }
+    }
+  }, [user_type]);
+
+  const [courseNames, setCourseNames] = useState([]);
+  const [selectedCourse, setSelectedCourse] = useState("");
+  const [outlineList, setOutlineList] = useState({ outlines: [] });
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/secure/instructor/assigned-courses", {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log(response.data[0].assignedCourses);
+        setCourseNames(response.data[0].assignedCourses);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (selectedCourse) {
+      axios
+        .get(
+          `http://localhost:8000/api/secure/${selectedCourse}/all-outlines`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        )
+        .then((res) => {
+          setOutlineList({
+            outlines: res.data,
+          });
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log("Error in OutlineList");
+        });
+    }
+  }, [selectedCourse]);
+
+  const displayCourses = (
+    <select
+      className={styles.Display}
+      value={selectedCourse}
+      onChange={(e) => setSelectedCourse(e.target.value)}
+    >
+      <option>Select Course</option>
+      {courseNames.map((cou) => (
+        <option key={cou} value={cou}>
+          {cou}
+        </option>
+      ))}
+    </select>
+  );
 
   const displayList = outlineList.outlines.map((out) => (
     <OutlineCard outline={out} key={out._id} />
@@ -58,37 +121,15 @@ const HomePageDirector = () => {
     }
   });
 
-  const containerRef2 = useRef(null);
-  const scrollIntervalRef2 = useRef(null);
-  const right2 = useRef(null);
-  const left2 = useRef(null);
-
-  const handleScrolling2 = () => {
-    const container2 = containerRef2.current;
-
-    if (isHovered === "right2") {
-      container2.scrollLeft += 70;
-    } else if (isHovered === "left2") {
-      container2.scrollLeft -= 70;
-    } else {
-      clearInterval(scrollIntervalRef2.current);
-    }
-  };
-
-  useEffect(() => {
-    if (isHovered) {
-      scrollIntervalRef2.current = setInterval(handleScrolling2, 100);
-    } else {
-      clearInterval(scrollIntervalRef2.current);
-    }
-  });
-
   return (
     <>
       <Header></Header>
+
       <div className={styles.MainDiv}>
+        {displayCourses}
+
         <div className={styles.container}>
-          <div className={styles.title}>Current Outlines</div>
+          <div className={styles.title}>All Outlines</div>
           <div className={styles.PostTitle}></div>
           <div
             className={styles.LeftScroll}
@@ -97,9 +138,6 @@ const HomePageDirector = () => {
             ref={left}
           ></div>
           <div ref={containerRef} className={styles.YOutline} id="Outlines">
-            <Link to="/COTemplate">
-              <button className={styles.COTemp}>+</button>
-            </Link>
             {displayList}
           </div>
           <div
@@ -110,27 +148,10 @@ const HomePageDirector = () => {
           ></div>
         </div>
 
-        <div className={styles.container}>
-          <div className={styles.title}>Previous Outlines</div>
-          <div className={styles.PostTitle}></div>
-          <div
-            className={styles.LeftScroll}
-            onMouseEnter={() => setIsHovered("left2")}
-            onMouseLeave={() => setIsHovered(false)}
-            ref={left2}
-          ></div>
-          <div ref={containerRef2} className={styles.YOutline} id="Outlines">
-            <Link to="/COTemplate">
-              <button className={styles.COTemp}>+</button>
-            </Link>
-            {displayList}
-          </div>
-          <div
-            className={styles.RightScroll}
-            onMouseEnter={() => setIsHovered("right2")}
-            onMouseLeave={() => setIsHovered(false)}
-            ref={right2}
-          ></div>
+        <div className={styles.ButtonDiv}>
+          <Link to="/AdminApproval">
+            <button className={styles.LinkButtons}>Admin Approval</button>
+          </Link>
         </div>
 
         <div className={styles.footer}>© Built and Designed by SRZ</div>
