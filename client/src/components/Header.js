@@ -67,6 +67,8 @@ const Header = () => {
           </p>
         </div>
 
+        {user_type}
+
         <div className={styles.logoutDiv}>
           <button className={styles.logoutBtn} onClick={handleLogout}>
             Logout
