@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styles from "./OutlineCardAdmin.module.css";
 import axios from "axios";
 
@@ -7,28 +6,6 @@ const OutlineCardAdmin = (props) => {
   let outline = props.outline;
 
   const approveCO = () => {
-    axios
-      .post(
-        `http://localhost:8000/api/secure/decision/${outline._id}`,
-        {
-          approval: true,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-        // Call the onApprove prop function passed from the parent component
-        props.onApprove(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
     axios
       .post(
         `http://localhost:8000/api/secure/reply/${outline._id}`,
@@ -55,28 +32,6 @@ const OutlineCardAdmin = (props) => {
   };
 
   const rejectCO = () => {
-    axios
-      .post(
-        `http://localhost:8000/api/secure/request/${outline._id}`,
-        {
-          requestApprove: false,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-        // Call the onApprove prop function passed from the parent component
-        props.onApprove(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
     axios
       .post(
         `http://localhost:8000/api/secure/reply/${outline._id}`,

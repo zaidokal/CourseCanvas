@@ -2,13 +2,36 @@ import React, { useRef, useEffect, useState } from "react";
 import styles from "./AdminApproval.module.css";
 import OutlineCardAdmin from "../components/OutlineCardAdmin";
 import OutlineCardAdminApproved from "../components/OutlineCardAdminApproved";
-import AccountButton from "../components/AccountButton";
 import Header from "../components/Header";
-import { Link } from "react-router-dom";
 
 import axios from "axios";
 
 const AdminApproval = () => {
+  const [user_type, setUser_type] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/secure/user-info", {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      })
+      .then((response) => {
+        setUser_type(response.data[0].user_type);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (user_type !== null) {
+      if (user_type === "admin" || user_type === "programDirector") {
+      } else {
+        window.location.href = "/HomePage";
+      }
+    }
+  }, [user_type]);
+
   const [outlineList, setOutlineList] = useState({
     outlines: [],
   });
@@ -32,13 +55,12 @@ const AdminApproval = () => {
   }, []);
 
   const displayList = outlineList.outlines
-    .filter((out) => out.approved === false)
-    .filter((out) => out.requestApproval === true)
+    .filter((out) => out.decision === "Requested")
 
     .map((out) => <OutlineCardAdmin outline={out} key={out._id} />);
 
   const displayApprovedList = outlineList.outlines
-    .filter((out) => out.approved === true)
+    .filter((out) => out.decision === "Approved")
     .map((out) => <OutlineCardAdminApproved outline={out} key={out._id} />);
 
   const [isHovered, setIsHovered] = useState(false);

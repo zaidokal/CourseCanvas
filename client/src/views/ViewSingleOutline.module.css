@@ -193,15 +193,7 @@ td {
 }
 
 .downloadBTN:disabled {
-  /* design */
-  color: #ffffff;
-  position: relative;
-  font-size: 16px;
-  font-family: Asap-Condensed-SemiBold;
-  border-radius: 10px;
-  transition: 0.3s;
-  background-color: rgb(132, 133, 136);
-  outline: rgb(132, 133, 136);
+  display: none;
 }
 
 .outericon:disabled,
