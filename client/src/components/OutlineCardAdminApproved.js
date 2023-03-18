@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./OutlineCardAdmin.module.css";
+import styles from "./OutlineCardAdminApproved.module.css";
 import axios from "axios";
 
 const OutlineCardAdminApproved = (props) => {
@@ -54,21 +54,27 @@ const OutlineCardAdminApproved = (props) => {
     window.location.reload();
   };
 
+  const handleOutlineRedirect = () => {
+    window.location.href = `/${outline._id}`;
+  };
+
   return (
     <>
       <div className={styles.container}>
-        <Link
-          to={`/${outline._id}`}
-          style={{ color: "inherit", textDecoration: "inherit" }}
+        <button
+          onClick={handleOutlineRedirect}
+          className={styles.square}
+          id="createButton"
         >
-          <button className={styles.square} id="createButton">
-            <span>{outline.courseName}</span>
-            <span>{outline.year}</span>
-          </button>
-        </Link>
-        <button className={styles.ApproveBtn} onClick={unapproveCO}>
-          Unapprove
+          <span>{outline.courseName}</span>
+          <span>{outline.year}</span>
         </button>
+
+        <div className={styles.Decision}>
+          <p className={styles.ApproveBtn} onClick={unapproveCO}>
+            Unapprove
+          </p>
+        </div>
       </div>
     </>
   );

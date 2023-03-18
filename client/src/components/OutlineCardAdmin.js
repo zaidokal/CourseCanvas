@@ -100,27 +100,32 @@ const OutlineCardAdmin = (props) => {
       });
 
     window.location.reload();
-    window.location.reload();
+  };
+
+  const handleOutlineRedirect = () => {
+    window.location.href = `/${outline._id}`;
   };
 
   return (
     <>
       <div className={styles.container}>
-        <Link
-          to={`/${outline._id}`}
-          style={{ color: "inherit", textDecoration: "inherit" }}
+        <button
+          onClick={handleOutlineRedirect}
+          className={styles.square}
+          id="createButton"
         >
-          <button className={styles.square} id="createButton">
-            <span>{outline.courseName}</span>
-            <span>{outline.year}</span>
-          </button>
-        </Link>
-        <button className={styles.ApproveBtn} onClick={approveCO}>
-          Approve
+          <span>{outline.courseName}</span>
+          <span>{outline.year}</span>
         </button>
-        <button className={styles.ApproveBtn} onClick={rejectCO}>
-          Reject
-        </button>
+        <div className={styles.Decision}>
+          <p className={styles.ApproveBtn} onClick={approveCO}>
+            Approve
+          </p>
+          <p className={styles.ApproveBtn2}>|</p>
+          <p className={styles.ApproveBtn} onClick={rejectCO}>
+            Reject
+          </p>
+        </div>
       </div>
     </>
   );

@@ -3,6 +3,7 @@ import AccountButton from "../components/AccountButton";
 import styles from "./COTemplate.module.css";
 import axios from "axios";
 import Header from "../components/Header";
+import FloppyDisk from "../Images/FloppyDisk.png";
 
 const COTemplate = () => {
   const [userInput, setUserInput] = useState({
@@ -191,6 +192,18 @@ const COTemplate = () => {
     <>
       <div className={styles.Header}>
         <Header />
+      </div>
+
+      <div className={styles.Title}>
+        Outline Editor
+        <div className={styles.outericon}>
+          <img
+            onClick={onSubmit}
+            className={styles.icon}
+            src={FloppyDisk}
+            alt="Save"
+          />
+        </div>
       </div>
 
       <div className={styles.MainDiv}>
@@ -1223,14 +1236,6 @@ const COTemplate = () => {
           , for a complete list of options about how to obtain help.
         </p>
         <br />
-        <div className={styles.header}>
-          {" "}
-          <AccountButton
-            text={"Save"}
-            onClick={onSubmit}
-            disabled={isButtonDisabled}
-          ></AccountButton>
-        </div>
       </div>
     </>
   );
