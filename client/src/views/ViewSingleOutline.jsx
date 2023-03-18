@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import DownloadIcon from "../Images/DownloadIcon.png";
 import RequestIcon from "../Images/RequestIcon.png";
 import { Link } from "react-router-dom";
+import EditIcon from "../Images/EditIcon.png";
 
 import html2pdf from "html2pdf.js";
 
@@ -315,23 +316,21 @@ const ViewSingleOutline = (props) => {
     window.location.reload();
   };
 
+  const Edit = () => {
+    window.location.href = `/EditOutline/${id}`;
+  };
+
   return (
     <>
       <div className={styles.Header}>
         <Header />
       </div>
 
-      <Link
-        to={`/EditOutline/${id}`}
-        style={{ color: "inherit", textDecoration: "inherit" }}
-      >
-        <button> Edit </button>
-      </Link>
-
       <div className={styles.Title}>
         Outline Editor - {userInput.decision}
         <div className={styles.icons}>
           <div className={styles.Date}> {formattedDateTime} </div>
+
           <div className={styles.outericon}>
             <img
               onClick={requestCOApproval}
@@ -340,7 +339,6 @@ const ViewSingleOutline = (props) => {
               alt="Request"
             />
           </div>
-
           <div
             className={styles.outericon}
             disabled={userInput.decision !== "Approved"}
@@ -351,6 +349,14 @@ const ViewSingleOutline = (props) => {
               src={DownloadIcon}
               disabled={userInput.decision !== "Approved"}
               alt="Download"
+            />
+          </div>
+          <div className={styles.outericon}>
+            <img
+              onClick={Edit}
+              className={styles.icon}
+              src={EditIcon}
+              alt="Request"
             />
           </div>
         </div>
