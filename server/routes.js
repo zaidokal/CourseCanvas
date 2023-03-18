@@ -129,6 +129,20 @@ router.post("/secure/create-outline", (req, res) => {
     .catch((err) => res.status(400).json({ err }));
 });
 
+// Backend route to edit an outline
+router.post("/secure/edit-outline/:outlineID", (req, res) => {
+  const oldID = req.params.outlineID;
+
+  CourseOutline.updateOne({ _id: oldID }, { $set: { recency: "Old" } });
+
+  CourseOutline.create({
+    userId: req.session.email,
+    ...req.body,
+  })
+    .then((outline) => res.json({ msg: "Outline added successfully!" }))
+    .catch((err) => res.status(400).json({ err }));
+});
+
 // Route to get all course outlines based on who is logged in.
 router.get("/secure/all-outlines", (req, res) => {
   CourseOutline.find({ userId: req.session.email })
