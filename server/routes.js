@@ -228,60 +228,6 @@ router.get("/secure/:outlineID", (req, res) => {
 });
 
 // Route for decision on course outline approval.
-router.post("/secure/decision/:outlineID", async (req, res) => {
-  const outlineID = req.params.outlineID;
-  const approval = req.body.approval;
-
-  // First get session email to check if logged in user is an admin.
-  const userEmail = req.session.email;
-  const findUserType = await UserAccount.find({ email: userEmail }).select(
-    "user_type"
-  );
-  const userType = findUserType[0].user_type;
-
-  try {
-    if (userType == "admin") {
-      const courseOutline = await CourseOutline.findByIdAndUpdate(
-        { _id: outlineID },
-        { approved: approval },
-        { new: true }
-      );
-
-      res.send(courseOutline);
-    } else {
-      res.send("Administrator privileges required.");
-    }
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
-
-// Route for decision on course outline approval.
-router.post("/secure/request/:outlineID", async (req, res) => {
-  const outlineID = req.params.outlineID;
-  const requestApprove = req.body.requestApprove;
-
-  // First get session email to check if logged in user is an admin.
-  const userEmail = req.session.email;
-  const findUserType = await UserAccount.find({ email: userEmail }).select(
-    "user_type"
-  );
-  const userType = findUserType[0].user_type;
-
-  try {
-    const courseOutline = await CourseOutline.findByIdAndUpdate(
-      { _id: outlineID },
-      { requestApproval: requestApprove },
-      { new: true }
-    );
-
-    res.send(courseOutline);
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
-
-// Route for decision on course outline approval.
 router.post("/secure/reply/:outlineID", async (req, res) => {
   const outlineID = req.params.outlineID;
   const decider = req.body.decider;
