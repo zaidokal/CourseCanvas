@@ -278,6 +278,7 @@ const ViewSingleOutline = (props) => {
   const isAdminOrProgramDirector =
     user_type === "admin" || user_type === "programDirector";
   const isDisabled = !isAdminOrProgramDirector;
+
   return (
     <>
       <div className={styles.Header}>
@@ -335,7 +336,9 @@ const ViewSingleOutline = (props) => {
           </div>
           <div className={styles.NewComment}>
             <form onSubmit={handleSubmit}>
-              <textarea value={comment} onChange={handleComment} />
+              {isAdminOrProgramDirector && (
+                <textarea value={comment} onChange={handleComment} />
+              )}
               {isAdminOrProgramDirector && <button type="submit">Save</button>}
             </form>
           </div>
