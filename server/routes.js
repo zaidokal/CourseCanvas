@@ -350,10 +350,14 @@ router.post("/secure/assignment/:instructor", async (req, res) => {
   }
 });
 
-// Route to create a comment on the outline selected.
 router.post("/secure/:outlineID/comments", async (req, res) => {
   // First get session email to check if logged in user is an admin.
   const userEmail = req.session.email;
+
+  const outlineID = req.params.outlineID;
+  const decider = req.body.decider;
+  // const approval = req.body.approval;
+
   const findUserType = await UserAccount.find({ email: userEmail }).select(
     "user_type"
   );
@@ -372,9 +376,17 @@ router.post("/secure/:outlineID/comments", async (req, res) => {
 
     try {
       await newComment.save();
-      res.send("Comment made successfully.");
+
+      const courseOutline = await CourseOutline.findByIdAndUpdate(
+        { _id: outlineID },
+        { decision: decider },
+        // { approved: approval },
+        { new: true }
+      );
+
+      res.send(courseOutline);
     } catch (err) {
-      res.send(500).send(err);
+      res.status(500).send(err);
     }
   } else {
     res.status(200).send("Administrator privileges required.");
