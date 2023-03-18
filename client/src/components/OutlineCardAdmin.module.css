@@ -1,8 +1,7 @@
 .square {
   /* formatting */
-  width: 150px;
-  height: 200px;
-  margin: 10px;
+  width: 100%;
+  height: 100%;
 
   /* design */
   border-radius: 10px;
@@ -18,7 +17,6 @@
   align-items: center;
 
   text-align: center;
-  padding: 10px;
 
   overflow: hidden;
   text-overflow: ellipsis;
@@ -40,24 +38,68 @@
   color: white;
 }
 
-.ApproveBtn {
-  width: 10vw;
-  height: 3vh;
+.container {
+  /* formatting */
+  width: 150px;
+  height: 200px;
+  margin: 1vw;
+  padding: 10px;
+
+  /* design */
+  border-radius: 10px;
+  border-style: solid;
+  background-color: rgb(201, 200, 200);
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+  transition: 0.3s;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Decision {
+  bottom: 0;
 }
 
 .ApproveBtn {
   /* formatting */
-  width: 120px;
-  height: 45px;
+  /* width: 1vh; */
+  /* height: 45px; */
+  display: inline-block;
+  margin: 0.4vh;
 
   /* design */
-  color: #ffffff;
+  color: #6200ff;
   position: relative;
   font-size: 16px;
   font-family: Asap-Condensed-SemiBold;
   border-radius: 10px;
   transition: 0.3s;
-  background-color: rgb(6, 31, 255);
+  /* background-color: rgb(6, 31, 255); */
+}
+
+.ApproveBtn2 {
+  /* formatting */
+  /* width: 1vh; */
+  /* height: 45px; */
+  display: inline-block;
+  margin: 0.4vh;
+
+  /* design */
+  color: #6200ff;
+  position: relative;
+  font-size: 16px;
+  font-family: Asap-Condensed-SemiBold;
+  border-radius: 10px;
+  transition: 0.3s;
+  /* background-color: rgb(6, 31, 255); */
 }
 
 .ApproveBtn:hover {
@@ -65,6 +107,7 @@
   cursor: pointer;
 
   /* design */
-  background-color: #a4161a;
-  outline: #a4161a solid 2px;
+  color: #a4161a;
+  /* background-color: #a4161a;
+  outline: #a4161a solid 2px; */
 }
