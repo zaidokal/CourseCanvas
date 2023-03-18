@@ -1,0 +1,112 @@
+.input {
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: Times;
+  display: inline;
+
+  padding: 6px;
+  width: auto;
+  min-width: 0;
+  border: none;
+}
+
+.input2 {
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: Times;
+  display: inline;
+
+  padding: 6px;
+  min-width: 400px;
+  min-width: 0;
+  border: none;
+}
+
+.input3 {
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: Times;
+  display: inline;
+
+  padding: 6px;
+  width: 10px;
+  min-width: 0;
+  border: none;
+}
+
+.input4 {
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: Times;
+  display: inline;
+
+  /* padding: 6px; */
+  width: 20px;
+  min-width: 0;
+  border: none;
+}
+
+input::placeholder {
+  color: red;
+}
+
+.Description {
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: Times;
+  display: inline;
+
+  padding: 6px;
+  width: 100%;
+  min-width: 0;
+  border: none;
+}
+
+.MainDiv {
+  border: 2px solid;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 2%;
+  /* margin: 5%; */
+  width: 60%;
+}
+
+.Header {
+  margin-bottom: 5vh;
+}
+
+.Title {
+  font-size: 4vh;
+  margin-bottom: 4%;
+  margin-left: 3%;
+  border-bottom: 1px solid;
+  width: 78vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon {
+  width: 1vw;
+  object-fit: contain;
+}
+
+.icon:hover {
+  cursor: pointer;
+}
+
+.outericon {
+  right: 0;
+  width: 2vw;
+  height: 2vw;
+  border-radius: 50%;
+  background-color: rgb(236, 232, 232); /* optional */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
