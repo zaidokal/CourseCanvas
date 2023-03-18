@@ -6,6 +6,33 @@ import axios from "axios";
 import Header from "../components/Header";
 
 const HomePageDirector = () => {
+  const [user_type, setUser_type] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/secure/user-info", {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      })
+      .then((response) => {
+        setUser_type(response.data[0].user_type);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (user_type !== null) {
+      if (user_type === "programDirector") {
+      } else if (user_type === "admin") {
+        window.location.href = "/HomePageAdmin";
+      } else {
+        window.location.href = "/HomePage";
+      }
+    }
+  }, [user_type]);
+
   const [courseNames, setCourseNames] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState("");
   const [outlineList, setOutlineList] = useState({ outlines: [] });

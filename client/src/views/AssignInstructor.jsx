@@ -4,6 +4,33 @@ import axios from "axios";
 import Header from "../components/Header";
 
 export const AssignInstructor = (props) => {
+  const [user_type, setUser_type] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/secure/user-info", {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      })
+      .then((response) => {
+        setUser_type(response.data[0].user_type);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (user_type !== null) {
+      if (user_type === "admin") {
+      } else if (user_type === "programDirector") {
+        window.location.href = "/HomePageDirector";
+      } else {
+        window.location.href = "/HomePage";
+      }
+    }
+  }, [user_type]);
+
   const [courseNames, setCourseNames] = useState([]);
 
   useEffect(() => {
@@ -13,6 +40,7 @@ export const AssignInstructor = (props) => {
         withCredentials: true,
       })
       .then((response) => {
+        console.log(response.data); // log the data returned by the server
         setCourseNames(response.data);
       })
       .catch((error) => {
@@ -29,6 +57,7 @@ export const AssignInstructor = (props) => {
         withCredentials: true,
       })
       .then((response) => {
+        console.log(response.data); // log the data returned by the server
         setInstructorNames(response.data);
       })
       .catch((error) => {
