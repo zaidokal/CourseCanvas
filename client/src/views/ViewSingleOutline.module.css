@@ -171,9 +171,25 @@ td {
   margin-top: 5%;
   margin-bottom: 5%;
 
-  background-color: #d8b3b4;
+  background-color: #c4e7ff;
 }
 
 .NewComment {
   font-size: 2vh;
+}
+
+.Comment {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.CommentText {
+  margin-bottom: 5px;
+}
+
+.CommentDetails {
+  font-size: 0.8em;
+  color: gray;
 }
