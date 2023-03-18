@@ -247,6 +247,7 @@ const ViewSingleOutline = (props) => {
         {
           comment,
           user_id: user,
+          decider: "Comments Available",
         },
         {
           headers: {
