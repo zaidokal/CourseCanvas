@@ -285,9 +285,6 @@ const ViewSingleOutline = (props) => {
       </div>
 
       <div className={styles.RemovePrint}>
-        <div className={styles.header}>
-          <AccountButton text={"HomePage"} linkTo={"/HomePage"} />
-        </div>
         <div>
           <button
             className={styles.downloadBTN}
