@@ -130,17 +130,19 @@ router.post("/secure/create-outline", (req, res) => {
 });
 
 // Backend route to edit an outline
-router.post("/secure/edit-outline/:outlineID", (req, res) => {
+router.post("/secure/EditOutline/:outlineID", async (req, res) => {
   const oldID = req.params.outlineID;
 
-  CourseOutline.updateOne({ _id: oldID }, { $set: { recency: "Old" } });
-
-  CourseOutline.create({
-    userId: req.session.email,
-    ...req.body,
-  })
-    .then((outline) => res.json({ msg: "Outline added successfully!" }))
-    .catch((err) => res.status(400).json({ err }));
+  try {
+    await CourseOutline.updateOne({ _id: oldID }, { $set: { recency: "Old" } });
+    const outline = await CourseOutline.create({
+      userId: req.session.email,
+      ...req.body,
+    });
+    res.json({ msg: "Outline added successfully!", outline });
+  } catch (err) {
+    res.status(400).json({ err });
+  }
 });
 
 // Route to get all course outlines based on who is logged in.
