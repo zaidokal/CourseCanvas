@@ -208,6 +208,69 @@ const ViewSingleOutline = (props) => {
     setFormattedDateTime(formattedDateTime);
   }, []);
 
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/secure/user-info", {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      })
+      .then((response) => {
+        setUser(response.data[0].user_id);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const [comment, setComment] = useState("");
+  const [comments, setComments] = useState([]);
+
+  useEffect(() => {
+    fetchComments();
+  }, []);
+
+  const fetchComments = () => {
+    axios
+      .get(`http://localhost:8000/api/secure/comments/${id}`)
+      .then((res) => setComments(res.data))
+      .catch((err) => console.log(err));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post(
+        `http://localhost:8000/api/secure/${id}/comments`,
+        {
+          comment,
+          user_id: user,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        alert("Comment saved successfully.");
+        setComment("");
+        fetchComments();
+      })
+      .catch((err) => {
+        console.log(err.response);
+        alert("Failed to save comment.");
+      });
+  };
+
+  const handleComment = (e) => {
+    setComment(e.target.value);
+  };
+
   return (
     <>
       <div className={styles.Header}>
@@ -252,7 +315,26 @@ const ViewSingleOutline = (props) => {
         </div>
       </div>
 
-      <div class={styles.RightDiv}>Comments</div>
+      <div className={styles.RightDiv}>
+        <h2>Comments</h2>
+        <div className={styles.CommentContainer}>
+          {comments.map((comment) => (
+            <div key={comment._id} className={styles.Comment}>
+              <p className={styles.CommentText}>{comment.comment}</p>
+              <p className={styles.CommentDetails}>
+                Posted by: {comment.user_id} at{" "}
+                {new Date(comment.timestamp).toLocaleString()}
+              </p>
+            </div>
+          ))}
+        </div>
+        <div className={styles.NewComment}>
+          <form onSubmit={handleSubmit}>
+            <textarea value={comment} onChange={handleComment} />
+            <button type="submit">Save</button>
+          </form>
+        </div>
+      </div>
 
       <div ref={contentRef} className={styles.MainDiv}>
         <div className={styles.Page}>
