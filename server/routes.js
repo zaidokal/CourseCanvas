@@ -356,6 +356,7 @@ router.post("/secure/:outlineID/comments", async (req, res) => {
 
   const outlineID = req.params.outlineID;
   const decider = req.body.decider;
+  // const approval = req.body.approval;
 
   const findUserType = await UserAccount.find({ email: userEmail }).select(
     "user_type"
@@ -379,6 +380,7 @@ router.post("/secure/:outlineID/comments", async (req, res) => {
       const courseOutline = await CourseOutline.findByIdAndUpdate(
         { _id: outlineID },
         { decision: decider },
+        // { approved: approval },
         { new: true }
       );
 
