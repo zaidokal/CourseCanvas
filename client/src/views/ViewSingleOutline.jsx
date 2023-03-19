@@ -223,12 +223,12 @@ const ViewSingleOutline = (props) => {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
 
-  const fetchComments = () => {
+  useEffect(() => {
     axios
       .get(`http://localhost:8000/api/secure/comments/${id}`)
       .then((res) => setComments(res.data))
       .catch((err) => console.log(err));
-  };
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -239,7 +239,6 @@ const ViewSingleOutline = (props) => {
         {
           comment,
           user_id: user,
-          // approval: false,
           decider: "Comments Available",
         },
         {
@@ -251,9 +250,7 @@ const ViewSingleOutline = (props) => {
       )
       .then((res) => {
         console.log(res);
-        // alert("Comment saved successfully.");
         setComment("");
-        fetchComments();
       })
       .catch((err) => {
         console.log(err.response);
@@ -269,28 +266,6 @@ const ViewSingleOutline = (props) => {
     user_type === "admin" || user_type === "programDirector";
 
   const requestCOApproval = () => {
-    axios
-      .post(
-        `http://localhost:8000/api/secure/request/${id}`,
-        {
-          requestApprove: true,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-        // Call the onApprove prop function passed from the parent component
-        props.onApprove(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
     axios
       .post(
         `http://localhost:8000/api/secure/reply/${id}`,
@@ -320,11 +295,35 @@ const ViewSingleOutline = (props) => {
     window.location.href = `/EditOutline/${id}`;
   };
 
+  const [show, setShow] = useState(false);
+  const [isInstructor, setIsInstructor] = useState(false);
+
+  useEffect(() => {
+    if (comments.length > 0) {
+      setShow(true);
+    } else {
+      setShow(false);
+    }
+
+    if (user_type === "instructor") {
+      setIsInstructor(true);
+    } else {
+      setIsInstructor(false);
+    }
+  }, [comments, user_type]);
+
+  useEffect(() => {
+    console.log(show);
+    console.log(isInstructor);
+  }, [show, isInstructor]);
+
   return (
     <>
       <div className={styles.Header}>
         <Header />
       </div>
+
+      {comments.length}
 
       <div className={styles.Title}>
         Outline Editor - {userInput.decision}
@@ -372,7 +371,11 @@ const ViewSingleOutline = (props) => {
         </div>
       </div>
 
-      <div className={styles.RightDiv}>
+      <div
+        className={
+          !show && isInstructor ? styles.RightDivHidden : styles.RightDiv
+        }
+      >
         <div className={styles.CommentContainer}>
           {comments.map((comment) => (
             <div key={comment._id} className={styles.Comment}>
@@ -406,7 +409,12 @@ const ViewSingleOutline = (props) => {
         </div>
       </div>
 
-      <div ref={contentRef} className={styles.MainDiv}>
+      <div
+        ref={contentRef}
+        className={
+          !show && isInstructor ? styles.MainDivExpanded : styles.MainDiv
+        }
+      >
         <div className={styles.Page}>
           <p className={styles.Center}>
             <strong>Western University</strong> <br />
