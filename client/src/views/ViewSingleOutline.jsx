@@ -330,7 +330,10 @@ const ViewSingleOutline = (props) => {
         <div className={styles.icons}>
           <div className={styles.Date}> {formattedDateTime} </div>
 
-          <div className={styles.outericon}>
+          <div
+            className={styles.outericon}
+            disabled={userInput.recency !== "New"}
+          >
             <img
               onClick={requestCOApproval}
               className={styles.icon}
@@ -340,22 +343,22 @@ const ViewSingleOutline = (props) => {
           </div>
           <div
             className={styles.outericon}
-            disabled={userInput.decision !== "Approved"}
+            disabled={
+              userInput.decision !== "Approved" || userInput.recency !== "New"
+            }
             onClick={handleDownload}
           >
-            <img
-              className={styles.icon}
-              src={DownloadIcon}
-              disabled={userInput.decision !== "Approved"}
-              alt="Download"
-            />
+            <img className={styles.icon} src={DownloadIcon} alt="Download" />
           </div>
-          <div className={styles.outericon}>
+          <div
+            className={styles.outericon}
+            disabled={userInput.recency !== "New"}
+          >
             <img
               onClick={Edit}
               className={styles.icon}
               src={EditIcon}
-              alt="Request"
+              alt="Edit"
             />
           </div>
         </div>
