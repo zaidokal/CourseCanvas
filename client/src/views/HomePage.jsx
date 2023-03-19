@@ -84,6 +84,71 @@ const HomePage = () => {
     }
   });
 
+  const [courseNames, setCourseNames] = useState([]);
+  const [selectedCourse, setSelectedCourse] = useState("");
+  const [outlineList2, setOutlineList2] = useState({ outlines: [] });
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/secure/instructor/assigned-courses", {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log(response.data[0].assignedCourses);
+        setCourseNames(response.data[0].assignedCourses);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (selectedCourse) {
+      axios
+        .get(
+          `http://localhost:8000/api/secure/${selectedCourse}/all-outlines`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        )
+        .then((res) => {
+          setOutlineList2({
+            outlines: res.data,
+          });
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log("Error in OutlineList2");
+        });
+    }
+  }, [selectedCourse]);
+
+  const displayCourses = (
+    <select
+      className={styles.Display}
+      value={selectedCourse}
+      onChange={(e) => setSelectedCourse(e.target.value)}
+    >
+      <option>Select Course</option>
+      {courseNames
+        // .filter((out) => out.decision === "Requested")
+
+        .map((cou) => (
+          <option key={cou} value={cou}>
+            {cou}
+          </option>
+        ))}
+    </select>
+  );
+
+  const displayList2 = outlineList2.outlines.map((out) => (
+    <OutlineCard outline={out} key={out._id} />
+  ));
+
   return (
     <>
       <Header></Header>
@@ -112,7 +177,7 @@ const HomePage = () => {
         </div>
 
         <div className={styles.container}>
-          <div className={styles.title}>Previous Outlines</div>
+          <div className={styles.title}>Previous Outlines {displayCourses}</div>
           <div className={styles.PostTitle}></div>
           <div
             className={styles.LeftScroll}
@@ -121,10 +186,7 @@ const HomePage = () => {
             ref={left2}
           ></div>
           <div ref={containerRef2} className={styles.YOutline} id="Outlines">
-            <Link to="/COTemplate">
-              <button className={styles.COTemp}>+</button>
-            </Link>
-            {displayList}
+            {displayList2}
           </div>
           <div
             className={styles.RightScroll}

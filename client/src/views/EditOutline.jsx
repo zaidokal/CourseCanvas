@@ -163,15 +163,6 @@ const EditOutline = (props) => {
 
   const onSubmit = () => {
     axios
-      .post(`http://localhost:8000/api/secure/EditOutline/${id}`)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error.response.data);
-      });
-
-    axios
       .post(
         `http://localhost:8000/api/secure/create-outline`,
         {
@@ -242,10 +233,22 @@ const EditOutline = (props) => {
         console.log(res);
         alert("Save successful.");
         window.location.href = "/homepage";
+        onEdit();
       })
       .catch((err) => {
         alert("Bad Request, please fill out ALL required fields.");
         console.log(err.response);
+      });
+  };
+
+  const onEdit = () => {
+    axios
+      .post(`http://localhost:8000/api/secure/EditOutline/${id}`)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error.response.data);
       });
   };
 

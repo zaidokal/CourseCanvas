@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import DownloadIcon from "../Images/DownloadIcon.png";
 import RequestIcon from "../Images/RequestIcon.png";
 import { Link } from "react-router-dom";
+import EditIcon from "../Images/EditIcon.png";
 
 import html2pdf from "html2pdf.js";
 
@@ -222,12 +223,12 @@ const ViewSingleOutline = (props) => {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
 
-  const fetchComments = () => {
+  useEffect(() => {
     axios
       .get(`http://localhost:8000/api/secure/comments/${id}`)
       .then((res) => setComments(res.data))
       .catch((err) => console.log(err));
-  };
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -238,7 +239,6 @@ const ViewSingleOutline = (props) => {
         {
           comment,
           user_id: user,
-          // approval: false,
           decider: "Comments Available",
         },
         {
@@ -250,9 +250,7 @@ const ViewSingleOutline = (props) => {
       )
       .then((res) => {
         console.log(res);
-        // alert("Comment saved successfully.");
         setComment("");
-        fetchComments();
       })
       .catch((err) => {
         console.log(err.response);
@@ -268,28 +266,6 @@ const ViewSingleOutline = (props) => {
     user_type === "admin" || user_type === "programDirector";
 
   const requestCOApproval = () => {
-    axios
-      .post(
-        `http://localhost:8000/api/secure/request/${id}`,
-        {
-          requestApprove: true,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-        // Call the onApprove prop function passed from the parent component
-        props.onApprove(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
     axios
       .post(
         `http://localhost:8000/api/secure/reply/${id}`,
@@ -315,23 +291,45 @@ const ViewSingleOutline = (props) => {
     window.location.reload();
   };
 
+  const Edit = () => {
+    window.location.href = `/EditOutline/${id}`;
+  };
+
+  const [show, setShow] = useState(false);
+  const [isInstructor, setIsInstructor] = useState(false);
+
+  useEffect(() => {
+    if (comments.length > 0) {
+      setShow(true);
+    } else {
+      setShow(false);
+    }
+
+    if (user_type === "instructor") {
+      setIsInstructor(true);
+    } else {
+      setIsInstructor(false);
+    }
+  }, [comments, user_type]);
+
+  useEffect(() => {
+    console.log(show);
+    console.log(isInstructor);
+  }, [show, isInstructor]);
+
   return (
     <>
       <div className={styles.Header}>
         <Header />
       </div>
 
-      <Link
-        to={`/EditOutline/${id}`}
-        style={{ color: "inherit", textDecoration: "inherit" }}
-      >
-        <button> Edit </button>
-      </Link>
+      {comments.length}
 
       <div className={styles.Title}>
         Outline Editor - {userInput.decision}
         <div className={styles.icons}>
           <div className={styles.Date}> {formattedDateTime} </div>
+
           <div className={styles.outericon}>
             <img
               onClick={requestCOApproval}
@@ -340,7 +338,6 @@ const ViewSingleOutline = (props) => {
               alt="Request"
             />
           </div>
-
           <div
             className={styles.outericon}
             disabled={userInput.decision !== "Approved"}
@@ -351,6 +348,14 @@ const ViewSingleOutline = (props) => {
               src={DownloadIcon}
               disabled={userInput.decision !== "Approved"}
               alt="Download"
+            />
+          </div>
+          <div className={styles.outericon}>
+            <img
+              onClick={Edit}
+              className={styles.icon}
+              src={EditIcon}
+              alt="Request"
             />
           </div>
         </div>
@@ -366,7 +371,11 @@ const ViewSingleOutline = (props) => {
         </div>
       </div>
 
-      <div className={styles.RightDiv}>
+      <div
+        className={
+          !show && isInstructor ? styles.RightDivHidden : styles.RightDiv
+        }
+      >
         <div className={styles.CommentContainer}>
           {comments.map((comment) => (
             <div key={comment._id} className={styles.Comment}>
@@ -400,7 +409,12 @@ const ViewSingleOutline = (props) => {
         </div>
       </div>
 
-      <div ref={contentRef} className={styles.MainDiv}>
+      <div
+        ref={contentRef}
+        className={
+          !show && isInstructor ? styles.MainDivExpanded : styles.MainDiv
+        }
+      >
         <div className={styles.Page}>
           <p className={styles.Center}>
             <strong>Western University</strong> <br />
