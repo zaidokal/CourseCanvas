@@ -1,3 +1,29 @@
+@media print {
+  .RemovePrint {
+    display: none !important;
+  }
+  .header {
+    display: none !important;
+  }
+  .Header {
+    display: none !important;
+  }
+  .MainDiv {
+    width: 100% !important;
+    border: none !important;
+  }
+  .MainDivExpanded {
+    width: 100% !important;
+    border: none !important;
+  }
+  .RightDiv {
+    display: none !important;
+  }
+  .Title {
+    display: none !important;
+  }
+}
+
 .downloadBTN {
   /* formatting */
   width: 120px;
@@ -103,25 +129,6 @@ input::placeholder {
   border: none;
 
   max-width: 100%;
-}
-
-@media print {
-  .RemovePrint {
-    display: none !important;
-  }
-  .header {
-    display: none !important;
-  }
-  .Header {
-    display: none;
-  }
-  .MainDiv {
-    width: 90% !important;
-    border: none !important;
-  }
-  .RightDiv {
-    display: none;
-  }
 }
 
 .MainDiv {

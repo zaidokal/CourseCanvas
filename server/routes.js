@@ -134,7 +134,10 @@ router.post("/secure/EditOutline/:outlineID", async (req, res) => {
   const oldID = req.params.outlineID;
 
   try {
-    await CourseOutline.updateOne({ _id: oldID }, { $set: { recency: "Old" } });
+    await CourseOutline.updateOne(
+      { _id: oldID },
+      { $set: { recency: "Old", decision: "Not Requested" } }
+    );
     const outline = await CourseOutline.create({
       userId: req.session.email,
       ...req.body,
