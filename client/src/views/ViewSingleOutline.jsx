@@ -156,7 +156,7 @@ const ViewSingleOutline = (props) => {
     if (userInput.decision === "Approved") {
       const content = contentRef.current;
       const options = {
-        margin: 0.5,
+        margin: 1,
         filename: userInput.courseName,
         image: { type: "jpeg", quality: 0.98 },
         html2canvas: { scale: 2 },
@@ -228,7 +228,14 @@ const ViewSingleOutline = (props) => {
       .get(`http://localhost:8000/api/secure/comments/${id}`)
       .then((res) => setComments(res.data))
       .catch((err) => console.log(err));
-  }, []);
+  });
+
+  const fetchComments = () => {
+    axios
+      .get(`http://localhost:8000/api/secure/comments/${id}`)
+      .then((res) => setComments(res.data))
+      .catch((err) => console.log(err));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -239,6 +246,7 @@ const ViewSingleOutline = (props) => {
         {
           comment,
           user_id: user,
+          // approval: false,
           decider: "Comments Available",
         },
         {
@@ -250,7 +258,9 @@ const ViewSingleOutline = (props) => {
       )
       .then((res) => {
         console.log(res);
+        // alert("Comment saved successfully.");
         setComment("");
+        fetchComments();
       })
       .catch((err) => {
         console.log(err.response);
@@ -319,8 +329,47 @@ const ViewSingleOutline = (props) => {
 
   return (
     <>
-      <div className={styles.Header}>
-        <Header />
+      <div className={styles.Constant}>
+        <div className={styles.Header}>
+          <Header />
+        </div>
+        <div
+          className={
+            !show && isInstructor ? styles.RightDivHidden : styles.RightDiv
+          }
+        >
+          <div className={styles.CommentContainer}>
+            {comments.map((comment) => (
+              <div key={comment._id} className={styles.Comment}>
+                <div className={styles.CommentHeader}>
+                  <p className={styles.CommentUser}>{comment.user_id}</p>
+                  <p className={styles.CommentDate}>
+                    {new Date(comment.timestamp).toLocaleString()}
+                  </p>
+                </div>
+                <p className={styles.CommentText}>{comment.comment}</p>
+              </div>
+            ))}
+          </div>
+          <div className={styles.NewComment}>
+            <form onSubmit={handleSubmit}>
+              {isAdminOrProgramDirector && (
+                <textarea
+                  className={styles.NewCommentBox}
+                  value={comment}
+                  onChange={handleComment}
+                  onKeyPress={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      handleSubmit(e);
+                    }
+                  }}
+                  placeholder="Add a comment..."
+                />
+              )}
+            </form>
+          </div>
+        </div>
       </div>
 
       <div className={styles.Title}>
@@ -330,7 +379,7 @@ const ViewSingleOutline = (props) => {
 
           <div
             className={styles.outericon}
-            disabled={userInput.recency !== "New"}
+            disabled={userInput.recency !== "New" || user_type !== "instructor"}
           >
             <img
               onClick={requestCOApproval}
@@ -350,7 +399,7 @@ const ViewSingleOutline = (props) => {
           </div>
           <div
             className={styles.outericon}
-            disabled={userInput.recency !== "New"}
+            disabled={userInput.recency !== "New" || user_type !== "instructor"}
           >
             <img
               onClick={Edit}
@@ -359,44 +408,6 @@ const ViewSingleOutline = (props) => {
               alt="Edit"
             />
           </div>
-        </div>
-      </div>
-
-      <div
-        className={
-          !show && isInstructor ? styles.RightDivHidden : styles.RightDiv
-        }
-      >
-        <div className={styles.CommentContainer}>
-          {comments.map((comment) => (
-            <div key={comment._id} className={styles.Comment}>
-              <div className={styles.CommentHeader}>
-                <p className={styles.CommentUser}>{comment.user_id}</p>
-                <p className={styles.CommentDate}>
-                  {new Date(comment.timestamp).toLocaleString()}
-                </p>
-              </div>
-              <p className={styles.CommentText}>{comment.comment}</p>
-            </div>
-          ))}
-        </div>
-        <div className={styles.NewComment}>
-          <form onSubmit={handleSubmit}>
-            {isAdminOrProgramDirector && (
-              <textarea
-                className={styles.NewCommentBox}
-                value={comment}
-                onChange={handleComment}
-                onKeyPress={(e) => {
-                  if (e.key === "Enter" && !e.shiftKey) {
-                    e.preventDefault();
-                    handleSubmit(e);
-                  }
-                }}
-                placeholder="Add a comment..."
-              />
-            )}
-          </form>
         </div>
       </div>
 
