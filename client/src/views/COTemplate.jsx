@@ -4,6 +4,7 @@ import styles from "./COTemplate.module.css";
 import axios from "axios";
 import Header from "../components/Header";
 import FloppyDisk from "../Images/FloppyDisk.png";
+import GA from "../components/GA";
 
 const COTemplate = () => {
   const [userInput, setUserInput] = useState({
@@ -608,7 +609,9 @@ const COTemplate = () => {
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong></strong>
+                  <strong>
+                    <GA />
+                  </strong>
                 </p>
               </td>
             </tr>
@@ -637,7 +640,9 @@ const COTemplate = () => {
                   </strong>
                 </p>
               </td>
-              <td width="132" valign="top"></td>
+              <td width="132" valign="top">
+                <GA />
+              </td>
             </tr>
             <tr>
               <td width="491" valign="top">
@@ -656,7 +661,9 @@ const COTemplate = () => {
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong> </strong>
+                  <strong>
+                    <GA />
+                  </strong>
                 </p>
               </td>
             </tr>
@@ -678,7 +685,9 @@ const COTemplate = () => {
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong></strong>
+                  <strong>
+                    <GA />
+                  </strong>
                 </p>
               </td>
             </tr>
@@ -709,7 +718,9 @@ const COTemplate = () => {
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong></strong>
+                  <strong>
+                    <GA />
+                  </strong>
                 </p>
               </td>
             </tr>
@@ -730,7 +741,9 @@ const COTemplate = () => {
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong></strong>
+                  <strong>
+                    <GA />
+                  </strong>
                 </p>
               </td>
             </tr>
@@ -747,12 +760,14 @@ const COTemplate = () => {
                       placeholder="Topic X"
                     ></input>
                   </strong>
-                  <strong></strong>
+                  <strong> </strong>
                 </p>
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong></strong>
+                  <strong>
+                    <GA />
+                  </strong>
                 </p>
               </td>
             </tr>
@@ -783,7 +798,9 @@ const COTemplate = () => {
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong></strong>
+                  <strong>
+                    <GA />
+                  </strong>
                 </p>
               </td>
             </tr>
@@ -804,7 +821,9 @@ const COTemplate = () => {
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong></strong>
+                  <strong>
+                    <GA />
+                  </strong>
                 </p>
               </td>
             </tr>
@@ -826,7 +845,9 @@ const COTemplate = () => {
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong></strong>
+                  <strong>
+                    <GA />
+                  </strong>
                 </p>
               </td>
             </tr>
@@ -857,7 +878,9 @@ const COTemplate = () => {
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong></strong>
+                  <strong>
+                    <GA />
+                  </strong>
                 </p>
               </td>
             </tr>
@@ -878,7 +901,9 @@ const COTemplate = () => {
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong></strong>
+                  <strong>
+                    <GA />
+                  </strong>
                 </p>
               </td>
             </tr>
