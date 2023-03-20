@@ -142,10 +142,6 @@ input::placeholder {
   text-align: center;
 }
 
-.Header {
-  margin-bottom: 5vh;
-}
-
 .RemovePrint {
   display: flex;
   justify-content: center;
@@ -154,17 +150,6 @@ input::placeholder {
 
 td {
   border: 1px solid;
-}
-
-.Title {
-  font-size: 4vh;
-  position: relative;
-  margin-bottom: 4%;
-  margin-left: 3%;
-  border-bottom: 1px solid;
-  width: 65vw;
-  display: flex;
-  justify-content: space-between;
 }
 
 .icon {
@@ -190,15 +175,6 @@ td {
   margin-left: 0.1vw;
 }
 
-.icons {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  display: flex;
-  gap: 10px;
-  height: fit-content;
-}
-
 .downloadBTN:disabled {
   display: none;
 }
@@ -216,7 +192,7 @@ td {
 }
 
 .CommentContainer {
-  height: 89vh;
+  height: 80vh;
   width: 99%;
   overflow-y: scroll;
 }
@@ -298,10 +274,10 @@ form {
 .RightDiv {
   border-left: 2px solid;
   position: fixed;
-  top: 0;
+  top: 10vh;
   right: 0;
   width: 25vw;
-  height: 100%;
+  height: calc(100vh - 10vh);
   background-color: #fff;
 }
 
@@ -317,4 +293,38 @@ form {
   padding: 2%;
   /* margin: 5%; */
   width: 60%;
+}
+
+.Constant {
+  width: 100%;
+  height: 10vh;
+  right: 0;
+  top: 0;
+  position: fixed;
+}
+
+.Title {
+  margin-top: 15vh;
+  font-size: 4vh;
+  /* position: relative; */
+  /* position: fixed; */
+  margin-bottom: 4%;
+  margin-left: 3%;
+  border-bottom: 1px solid;
+  width: 65vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Header {
+  margin-bottom: 5vh;
+}
+
+.icons {
+  /* position: absolute; */
+  bottom: 0;
+  right: 0;
+  display: flex;
+  gap: 10px;
+  height: fit-content;
 }
