@@ -251,13 +251,6 @@ router.post("/secure/reply/:outlineID", async (req, res) => {
   const outlineID = req.params.outlineID;
   const decider = req.body.decider;
 
-  // First get session email to check if logged in user is an admin.
-  const userEmail = req.session.email;
-  const findUserType = await UserAccount.find({ email: userEmail }).select(
-    "user_type"
-  );
-  const userType = findUserType[0].user_type;
-
   try {
     const courseOutline = await CourseOutline.findByIdAndUpdate(
       { _id: outlineID },
@@ -319,9 +312,7 @@ router.post("/secure/:outlineID/comments", async (req, res) => {
   // First get session email to check if logged in user is an admin.
   const userEmail = req.session.email;
 
-  const outlineID = req.params.outlineID;
   const decider = req.body.decider;
-  // const approval = req.body.approval;
 
   const findUserType = await UserAccount.find({ email: userEmail }).select(
     "user_type"
@@ -343,9 +334,8 @@ router.post("/secure/:outlineID/comments", async (req, res) => {
       await newComment.save();
 
       const courseOutline = await CourseOutline.findByIdAndUpdate(
-        { _id: outlineID },
+        { _id: outline_id },
         { decision: decider },
-        // { approved: approval },
         { new: true }
       );
 
