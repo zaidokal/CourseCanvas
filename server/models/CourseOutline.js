@@ -117,6 +117,10 @@ const CourseOutlineSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.Mixed,
     required: true,
   },
+  GAs: {
+    type: mongoose.Schema.Types.Mixed,
+    required: true,
+  },
   assessments: {
     type: mongoose.Schema.Types.Mixed,
     required: true,
