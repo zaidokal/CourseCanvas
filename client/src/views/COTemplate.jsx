@@ -47,6 +47,18 @@ const COTemplate = () => {
     topic4: "",
     topic4a: "",
     topic4b: "",
+    GA1: "",
+    GA1a: "",
+    GA1b: "",
+    GA2: "",
+    GA2a: "",
+    GA2b: "",
+    GA3: "",
+    GA3a: "",
+    GA3b: "",
+    GA4: "",
+    GA4a: "",
+    GA4b: "",
     homeworkAssignments: "",
     quizzes: "",
     laboratory: "",
@@ -123,6 +135,20 @@ const COTemplate = () => {
             topic4a: userInput.topic4a,
             topic4b: userInput.topic4b,
           },
+          GAs: {
+            GA1: userInput.GA1,
+            GA1a: userInput.GA1a,
+            GA1b: userInput.GA1b,
+            GA2: userInput.GA2,
+            GA2a: userInput.GA2a,
+            GA2b: userInput.GA2b,
+            GA3: userInput.GA3,
+            GA3a: userInput.GA3a,
+            GA3b: userInput.GA3b,
+            GA4: userInput.GA4,
+            GA4a: userInput.GA4a,
+            GA4b: userInput.GA4b,
+          },
           assessments: {
             homeworkAssignments: userInput.homeworkAssignments,
             quizzes: userInput.quizzes,
@@ -189,6 +215,7 @@ const COTemplate = () => {
       ))}
     </select>
   );
+
   return (
     <>
       <div className={styles.Header}>
@@ -610,7 +637,7 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA />
+                    <GA value={userInput.GA1} />
                   </strong>
                 </p>
               </td>
@@ -641,7 +668,7 @@ const COTemplate = () => {
                 </p>
               </td>
               <td width="132" valign="top">
-                <GA />
+                <GA value={userInput.GA1a} />
               </td>
             </tr>
             <tr>
@@ -662,7 +689,7 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA />
+                    <GA value={userInput.GA1b} />
                   </strong>
                 </p>
               </td>
@@ -686,7 +713,7 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA />
+                    <GA value={userInput.GA2} />
                   </strong>
                 </p>
               </td>
@@ -719,7 +746,7 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA />
+                    <GA value={userInput.GA2a} />
                   </strong>
                 </p>
               </td>
@@ -742,7 +769,7 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA />
+                    <GA value={userInput.GA2b} />
                   </strong>
                 </p>
               </td>
@@ -766,7 +793,7 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA />
+                    <GA value={userInput.GA3} />
                   </strong>
                 </p>
               </td>
@@ -799,7 +826,7 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA />
+                    <GA value={userInput.GA3a} />
                   </strong>
                 </p>
               </td>
@@ -822,7 +849,7 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA />
+                    <GA value={userInput.GA3b} />
                   </strong>
                 </p>
               </td>
@@ -846,7 +873,7 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA />
+                    <GA value={userInput.GA4} />
                   </strong>
                 </p>
               </td>
@@ -879,7 +906,7 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA />
+                    <GA value={userInput.GA4a} />
                   </strong>
                 </p>
               </td>
@@ -902,7 +929,7 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA />
+                    <GA value={userInput.GA4b} />
                   </strong>
                 </p>
               </td>
