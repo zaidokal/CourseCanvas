@@ -16,11 +16,12 @@ const GA = ({ name, onChange, selectedOptions }) => {
     }
   };
 
-  const displaySelectedOptions = Array.isArray(selectedOptions)
-    ? selectedOptions.map((option) => (
-        <div key={option} onClick={handleClickOption} value={option}>
+  const displaySelectedOptionsWithSpaces = selectedOptions
+    ? selectedOptions.map((option, index) => (
+        <React.Fragment key={option}>
           {option}
-        </div>
+          {index !== selectedOptions.length - 1 ? ", " : ""}
+        </React.Fragment>
       ))
     : null;
 
@@ -72,7 +73,7 @@ const GA = ({ name, onChange, selectedOptions }) => {
   return (
     <>
       {displayIndicators}
-      <div>{displaySelectedOptions}</div>
+      <div>{displaySelectedOptionsWithSpaces}</div>
     </>
   );
 };
