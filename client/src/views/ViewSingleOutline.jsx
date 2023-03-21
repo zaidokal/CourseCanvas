@@ -882,7 +882,7 @@ const ViewSingleOutline = (props) => {
                   </td>
                   <td width="132" valign="top">
                     <p>
-                      <strong></strong>
+                      <strong> {userInput.GA1}</strong>
                     </p>
                   </td>
                 </tr>
@@ -912,7 +912,9 @@ const ViewSingleOutline = (props) => {
                       </strong>
                     </p>
                   </td>
-                  <td width="132" valign="top"></td>
+                  <td width="132" valign="top">
+                    {userInput.GA1a}
+                  </td>
                 </tr>
                 <tr>
                   <td width="491" valign="top">
@@ -932,7 +934,7 @@ const ViewSingleOutline = (props) => {
                   </td>
                   <td width="132" valign="top">
                     <p>
-                      <strong> </strong>
+                      <strong> {userInput.GA1b} </strong>
                     </p>
                   </td>
                 </tr>
@@ -955,7 +957,7 @@ const ViewSingleOutline = (props) => {
                   </td>
                   <td width="132" valign="top">
                     <p>
-                      <strong></strong>
+                      <strong>{userInput.GA2}</strong>
                     </p>
                   </td>
                 </tr>
@@ -965,7 +967,7 @@ const ViewSingleOutline = (props) => {
                   </td>
                   <td width="132" valign="top">
                     <p>
-                      <strong></strong>
+                      <strong>{userInput.GA2}</strong>
                     </p>
                   </td>
                 </tr>
@@ -987,7 +989,7 @@ const ViewSingleOutline = (props) => {
                   </td>
                   <td width="132" valign="top">
                     <p>
-                      <strong></strong>
+                      <strong>{userInput.GA2a}</strong>
                     </p>
                   </td>
                 </tr>
@@ -1009,7 +1011,7 @@ const ViewSingleOutline = (props) => {
                   </td>
                   <td width="132" valign="top">
                     <p>
-                      <strong></strong>
+                      <strong>{userInput.GA2b}</strong>
                     </p>
                   </td>
                 </tr>
@@ -1032,7 +1034,7 @@ const ViewSingleOutline = (props) => {
                   </td>
                   <td width="132" valign="top">
                     <p>
-                      <strong></strong>
+                      <strong>{userInput.GA3}</strong>
                     </p>
                   </td>
                 </tr>
@@ -1064,7 +1066,7 @@ const ViewSingleOutline = (props) => {
                   </td>
                   <td width="132" valign="top">
                     <p>
-                      <strong></strong>
+                      <strong>{userInput.GA3a}</strong>
                     </p>
                   </td>
                 </tr>
@@ -1086,7 +1088,7 @@ const ViewSingleOutline = (props) => {
                   </td>
                   <td width="132" valign="top">
                     <p>
-                      <strong></strong>
+                      <strong>{userInput.GA3b}</strong>
                     </p>
                   </td>
                 </tr>
@@ -1109,7 +1111,7 @@ const ViewSingleOutline = (props) => {
                   </td>
                   <td width="132" valign="top">
                     <p>
-                      <strong></strong>
+                      <strong>{userInput.GA4}</strong>
                     </p>
                   </td>
                 </tr>
@@ -1141,7 +1143,7 @@ const ViewSingleOutline = (props) => {
                   </td>
                   <td width="132" valign="top">
                     <p>
-                      <strong></strong>
+                      <strong>{userInput.GA4a}</strong>
                     </p>
                   </td>
                 </tr>
@@ -1163,7 +1165,7 @@ const ViewSingleOutline = (props) => {
                   </td>
                   <td width="132" valign="top">
                     <p>
-                      <strong></strong>
+                      <strong>{userInput.GA4b}</strong>
                     </p>
                   </td>
                 </tr>
