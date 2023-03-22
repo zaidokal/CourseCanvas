@@ -208,18 +208,6 @@ const ViewSingleOutline = (props) => {
     setText(event.target.value);
   };
 
-  const createdDate = new Date(userInput.createdDate);
-  const formattedDate = createdDate.toLocaleString("en-US", {
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-    hour12: true,
-  });
-
-  const displayDate = formattedDate.replace(",", "").replace(" ", " - ");
-  console.log(displayDate); // Mar. 17 - 7:46 PM
-
   const [formattedDateTime, setFormattedDateTime] = useState("");
 
   useEffect(() => {
@@ -412,7 +400,7 @@ const ViewSingleOutline = (props) => {
       </div>
 
       <div className={styles.Title}>
-        {userInput.createdDate}Outline Editor - {userInput.decision}
+        Outline Editor - {userInput.decision}
         <div className={styles.icons}>
           <div className={styles.Date}> {user} </div>
           <div className={styles.Date}> {formattedDateTime} </div>
