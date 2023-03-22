@@ -5,6 +5,7 @@ import axios from "axios";
 import Header from "../components/Header";
 import FloppyDisk from "../Images/FloppyDisk.png";
 import { useParams } from "react-router-dom";
+import GA from "../components/GA";
 
 const EditOutline = (props) => {
   const { id } = useParams();
@@ -49,6 +50,18 @@ const EditOutline = (props) => {
     topic4: "",
     topic4a: "",
     topic4b: "",
+    GA1: "",
+    GA1a: "",
+    GA1b: "",
+    GA2: "",
+    GA2a: "",
+    GA2b: "",
+    GA3: "",
+    GA3a: "",
+    GA3b: "",
+    GA4: "",
+    GA4a: "",
+    GA4b: "",
     homeworkAssignments: "",
     quizzes: "",
     laboratory: "",
@@ -121,6 +134,19 @@ const EditOutline = (props) => {
           topic4a: res.data.topics.topic4a,
           topic4b: res.data.topics.topic4b,
 
+          GA1: res.data.GAs.GA1,
+          GA1a: res.data.GAs.GA1a,
+          GA1b: res.data.GAs.GA1b,
+          GA2: res.data.GAs.GA2,
+          GA2a: res.data.GAs.GA2a,
+          GA2b: res.data.GAs.GA2b,
+          GA3: res.data.GAs.GA3,
+          GA3a: res.data.GAs.GA3a,
+          GA3b: res.data.GAs.GA3b,
+          GA4: res.data.GAs.GA4,
+          GA4a: res.data.GAs.GA4a,
+          GA4b: res.data.GAs.GA4b,
+
           homeworkAssignments: res.data.assessments.homeworkAssignments,
           quizzes: res.data.assessments.quizzes,
           laboratory: res.data.assessments.laboratory,
@@ -161,6 +187,12 @@ const EditOutline = (props) => {
     setIsButtonDisabled(!allFieldsFilledIn);
   };
 
+  const handleGAChange = (name, value) => {
+    setUserInput({
+      ...userInput,
+      [name]: value,
+    });
+  };
   const onSubmit = () => {
     axios
       .post(
@@ -206,6 +238,20 @@ const EditOutline = (props) => {
             topic4: userInput.topic4,
             topic4a: userInput.topic4a,
             topic4b: userInput.topic4b,
+          },
+          GAs: {
+            GA1: userInput.GA1,
+            GA1a: userInput.GA1a,
+            GA1b: userInput.GA1b,
+            GA2: userInput.GA2,
+            GA2a: userInput.GA2a,
+            GA2b: userInput.GA2b,
+            GA3: userInput.GA3,
+            GA3a: userInput.GA3a,
+            GA3b: userInput.GA3b,
+            GA4: userInput.GA4,
+            GA4a: userInput.GA4a,
+            GA4b: userInput.GA4b,
           },
           assessments: {
             homeworkAssignments: userInput.homeworkAssignments,
@@ -706,7 +752,13 @@ const EditOutline = (props) => {
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong></strong>
+                  <strong>
+                    <GA
+                      name="GA1"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA1}
+                    />
+                  </strong>
                 </p>
               </td>
             </tr>
@@ -735,7 +787,13 @@ const EditOutline = (props) => {
                   </strong>
                 </p>
               </td>
-              <td width="132" valign="top"></td>
+              <td width="132" valign="top">
+                <GA
+                  name="GA1a"
+                  onChange={handleGAChange}
+                  selectedOptions={userInput.GA1a}
+                />
+              </td>
             </tr>
             <tr>
               <td width="491" valign="top">
@@ -754,7 +812,14 @@ const EditOutline = (props) => {
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong> </strong>
+                  <strong>
+                    {" "}
+                    <GA
+                      name="GA1a"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA1b}
+                    />
+                  </strong>
                 </p>
               </td>
             </tr>
@@ -776,7 +841,13 @@ const EditOutline = (props) => {
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong></strong>
+                  <strong>
+                    <GA
+                      name="GA1a"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA2}
+                    />
+                  </strong>
                 </p>
               </td>
             </tr>
@@ -807,7 +878,13 @@ const EditOutline = (props) => {
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong></strong>
+                  <strong>
+                    <GA
+                      name="GA1a"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA2a}
+                    />
+                  </strong>
                 </p>
               </td>
             </tr>
@@ -828,7 +905,13 @@ const EditOutline = (props) => {
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong></strong>
+                  <strong>
+                    <GA
+                      name="GA1a"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA2b}
+                    />
+                  </strong>
                 </p>
               </td>
             </tr>
@@ -850,7 +933,13 @@ const EditOutline = (props) => {
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong></strong>
+                  <strong>
+                    <GA
+                      name="GA1a"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA3}
+                    />
+                  </strong>
                 </p>
               </td>
             </tr>
@@ -881,7 +970,13 @@ const EditOutline = (props) => {
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong></strong>
+                  <strong>
+                    <GA
+                      name="GA1a"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA3a}
+                    />
+                  </strong>
                 </p>
               </td>
             </tr>
@@ -902,7 +997,13 @@ const EditOutline = (props) => {
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong></strong>
+                  <strong>
+                    <GA
+                      name="GA1a"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA3b}
+                    />
+                  </strong>
                 </p>
               </td>
             </tr>
@@ -924,7 +1025,13 @@ const EditOutline = (props) => {
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong></strong>
+                  <strong>
+                    <GA
+                      name="GA1a"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA4}
+                    />
+                  </strong>
                 </p>
               </td>
             </tr>
@@ -955,7 +1062,13 @@ const EditOutline = (props) => {
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong></strong>
+                  <strong>
+                    <GA
+                      name="GA1a"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA4a}
+                    />
+                  </strong>
                 </p>
               </td>
             </tr>
@@ -976,7 +1089,13 @@ const EditOutline = (props) => {
               </td>
               <td width="132" valign="top">
                 <p>
-                  <strong></strong>
+                  <strong>
+                    <GA
+                      name="GA1a"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA4b}
+                    />
+                  </strong>
                 </p>
               </td>
             </tr>
