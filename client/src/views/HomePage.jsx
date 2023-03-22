@@ -119,7 +119,22 @@ const HomePage = () => {
           setOutlineList2({
             outlines: res.data,
           });
-          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log("Error in OutlineList2");
+        });
+    } else {
+      axios
+        .get("http://localhost:8000/api/secure/all-outlines", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        })
+        .then((res) => {
+          setOutlineList2({
+            outlines: res.data,
+          });
         })
         .catch((err) => {
           console.log("Error in OutlineList2");
@@ -133,15 +148,12 @@ const HomePage = () => {
       value={selectedCourse}
       onChange={(e) => setSelectedCourse(e.target.value)}
     >
-      <option>Select Course</option>
-      {courseNames
-        // .filter((out) => out.decision === "Requested")
-
-        .map((cou) => (
-          <option key={cou} value={cou}>
-            {cou}
-          </option>
-        ))}
+      <option value="">All Courses</option>
+      {courseNames.map((cou) => (
+        <option key={cou} value={cou}>
+          {cou}
+        </option>
+      ))}
     </select>
   );
 
