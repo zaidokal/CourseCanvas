@@ -1,28 +1,29 @@
 import React, { useEffect, useState } from "react";
 import styles from "./GA.module.css";
 
-const GA = () => {
-  const [selectedOptions, setSelectedOptions] = useState([]);
-
+const GA = ({ name, onChange, selectedOptions }) => {
   const handleClickOption = (event) => {
     const option = event.target.value;
     const index = selectedOptions.indexOf(option);
     if (index === -1) {
       // Add option to selectedOptions if it's not already selected
-      setSelectedOptions([...selectedOptions, option]);
+      onChange(name, [...selectedOptions, option]);
     } else {
       // Remove option from selectedOptions if it's already selected
       const selected = [...selectedOptions];
       selected.splice(index, 1);
-      setSelectedOptions(selected);
+      onChange(name, selected);
     }
   };
 
-  const displaySelectedOptions = selectedOptions.map((option) => (
-    <div key={option} onClick={handleClickOption} value={option}>
-      {option}
-    </div>
-  ));
+  const displaySelectedOptionsWithSpaces = selectedOptions
+    ? selectedOptions.map((option, index) => (
+        <React.Fragment key={option}>
+          {option}
+          {index !== selectedOptions.length - 1 ? ", " : ""}
+        </React.Fragment>
+      ))
+    : null;
 
   const displayIndicators = (
     <select multiple>
@@ -72,7 +73,7 @@ const GA = () => {
   return (
     <>
       {displayIndicators}
-      <div>{displaySelectedOptions}</div>
+      <div>{displaySelectedOptionsWithSpaces}</div>
     </>
   );
 };

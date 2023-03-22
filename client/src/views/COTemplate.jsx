@@ -89,6 +89,13 @@ const COTemplate = () => {
     setIsButtonDisabled(!allFieldsFilledIn);
   };
 
+  const handleGAChange = (name, value) => {
+    setUserInput({
+      ...userInput,
+      [name]: value,
+    });
+  };
+
   const onSubmit = () => {
     axios
       .post(
@@ -637,7 +644,11 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA value={userInput.GA1} />
+                    <GA
+                      name="GA1"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA1}
+                    />
                   </strong>
                 </p>
               </td>
@@ -668,7 +679,11 @@ const COTemplate = () => {
                 </p>
               </td>
               <td width="132" valign="top">
-                <GA value={userInput.GA1a} />
+                <GA
+                  name="GA1a"
+                  onChange={handleGAChange}
+                  selectedOptions={userInput.GA1a}
+                />
               </td>
             </tr>
             <tr>
@@ -689,7 +704,11 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA value={userInput.GA1b} />
+                    <GA
+                      name="GA1b"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA1b}
+                    />
                   </strong>
                 </p>
               </td>
@@ -713,7 +732,11 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA value={userInput.GA2} />
+                    <GA
+                      name="GA2"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA2}
+                    />{" "}
                   </strong>
                 </p>
               </td>
@@ -746,7 +769,11 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA value={userInput.GA2a} />
+                    <GA
+                      name="GA2a"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA2a}
+                    />{" "}
                   </strong>
                 </p>
               </td>
@@ -769,7 +796,11 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA value={userInput.GA2b} />
+                    <GA
+                      name="GA2b"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA2b}
+                    />{" "}
                   </strong>
                 </p>
               </td>
@@ -793,7 +824,11 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA value={userInput.GA3} />
+                    <GA
+                      name="GA3"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA3}
+                    />{" "}
                   </strong>
                 </p>
               </td>
@@ -826,7 +861,11 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA value={userInput.GA3a} />
+                    <GA
+                      name="GA3a"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA3a}
+                    />{" "}
                   </strong>
                 </p>
               </td>
@@ -849,7 +888,11 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA value={userInput.GA3b} />
+                    <GA
+                      name="GA3b"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA3b}
+                    />{" "}
                   </strong>
                 </p>
               </td>
@@ -873,7 +916,11 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA value={userInput.GA4} />
+                    <GA
+                      name="GA4"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA4}
+                    />{" "}
                   </strong>
                 </p>
               </td>
@@ -906,7 +953,11 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA value={userInput.GA4a} />
+                    <GA
+                      name="GA4a"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA4a}
+                    />{" "}
                   </strong>
                 </p>
               </td>
@@ -929,7 +980,11 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
-                    <GA value={userInput.GA4b} />
+                    <GA
+                      name="GA4b"
+                      onChange={handleGAChange}
+                      selectedOptions={userInput.GA4b}
+                    />{" "}
                   </strong>
                 </p>
               </td>
