@@ -87,11 +87,8 @@ const ViewSingleOutline = (props) => {
   });
 
   useEffect(() => {
-    const urlA = `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/${id}`;
-    const urlB = "/course-outline/:outlineID";
-
     axios
-      .get(urlA, urlB, {
+      .get(`http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/${id}`, {
         headers: {
           "Content-Type": "application/json",
         },
