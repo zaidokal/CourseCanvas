@@ -249,7 +249,7 @@ const COTemplate = () => {
       } else {
         window.location.href = "/Login";
       }
-    }, 50);
+    }, 1000);
 
     return () => clearTimeout(timeoutId);
   }, [user_type]);
