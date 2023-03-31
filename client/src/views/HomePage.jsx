@@ -168,6 +168,22 @@ const HomePage = () => {
     <OutlineCard outline={out} key={out._id} />
   ));
 
+  const [user_type, setUser_type] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get(`http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/user-info`, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      })
+      .then((response) => {
+        setUser_type(response.data[0].user_type);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (user_type !== null) {
