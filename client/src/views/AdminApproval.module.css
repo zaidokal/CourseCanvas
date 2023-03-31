@@ -1,7 +1,10 @@
 .MainDiv {
   /* formatting */
   width: 100%;
+  overflow-x: hidden;
+  position: relative;
   height: 100%;
+  margin-left: -10px;
 
   /* design */
 }
@@ -27,13 +30,6 @@
   /* design */
 }
 
-.MainDiv {
-  width: 100%;
-  overflow-x: hidden;
-  position: relative;
-  height: 100%;
-}
-
 .LinkButtons:hover {
   /* formatting */
   cursor: pointer;
@@ -45,15 +41,15 @@
 
 .title {
   /* formatting */
-  margin-top: 1%;
+  margin-top: -10px;
   margin-bottom: 1%;
   width: 70vw;
 
   /* design */
   font: bold;
-  font-size: 40px;
-  color: #4f2683;
-  border-bottom: 2px solid #4f2683;
+  font-size: 35px;
+  color: #797979;
+  border-bottom: 2px solid rgba(104, 104, 104, 0.2);
 }
 .PostTitle {
   width: 28vw;
@@ -120,23 +116,26 @@ div::-webkit-scrollbar-track {
 .footer {
   color: #4f2683;
 
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 300px;
-  margin: 0 auto;
-  margin-bottom: 1%;
+  position: fixed; /* or absolute if you prefer */
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
 }
 
 .LeftScroll,
 .RightScroll {
   margin-top: 1vh;
   justify-content: center;
-  background-color: grey;
+  background-color: #f1f1f1;
   width: 3vw;
-  height: 25vh;
+  height: 30vh;
   /* pointer-events: auto; */
+
+  border-radius: 5px;
+  transition: 0.3s;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 }
 
 .LeftScroll {
@@ -147,6 +146,11 @@ div::-webkit-scrollbar-track {
   margin-left: 10px;
 }
 
+.LeftScroll:hover,
+.RightScroll:hover {
+  background-color: #e9e9e9;
+}
+
 .container {
   /* formatting */
   margin: 2%;
@@ -154,10 +158,11 @@ div::-webkit-scrollbar-track {
   flex-wrap: wrap;
   display: flex;
   /* align-items: center; */
+  overflow-y: hidden;
 }
 
 .YOutline {
-  width: 85%;
+  width: 90%;
   overflow-x: scroll;
   height: min-content;
   /* formatting */

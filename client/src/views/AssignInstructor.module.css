@@ -1,3 +1,8 @@
+@font-face {
+  font-family: sspr;
+  src: url("../fonts/SourceSansPro-Regular.ttf");
+}
+
 .Container {
   /* formatting */
   width: 100%;
@@ -41,9 +46,10 @@
   width: 80%;
 
   /* design */
-  color: #4f2683;
-  border-bottom: 2px solid #4f2683;
-  font-size: 2.4vw;
+  color: #797979;
+  border-bottom: 2px solid rgba(104, 104, 104, 0.2);
+
+  font-size: 2vw;
 }
 
 .ListTitle {
@@ -56,15 +62,24 @@
   /* design */
   font-size: 24px;
   font-weight: bold;
+  color: #4f2683;
 }
 
 .Display {
   /* formatting */
   width: 80%;
-  height: 4vh;
+  height: 4.5vh;
   margin-bottom: 5vh;
+  padding-left: 10px;
+  padding-right: 10px;
 
   /* design */
+  background-color: #d9d9d9;
+  color: #797979;
+  border: none;
+  border-radius: 5px;
+  font-family: sspr;
+  font-size: 1.1vw;
 }
 
 .AssignBtn {
@@ -72,6 +87,21 @@
   width: 10vw;
 
   /* design */
+  background-color: #4f2683;
+  color: #ffffff;
+  font-size: 1.1vw;
+  width: 10vw;
+  height: 5vh;
+  border: none;
+  border-radius: 5px;
+  font-family: sspr;
+  transition: 0.3s;
+}
+
+.AssignBtn:hover {
+  /* design */
+  background-color: #7238bb;
+  cursor: pointer;
 }
 
 footer {

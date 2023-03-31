@@ -78,11 +78,11 @@ const HomePageDirector = () => {
 
   const displayCourses = (
     <select
-      className={styles.Display}
+      className={styles.DirectorCourseSelect}
       value={selectedCourse}
       onChange={(e) => setSelectedCourse(e.target.value)}
     >
-      <option>Select Course</option>
+      <option>Filter Course</option>
       {courseNames.map((cou) => (
         <option key={cou} value={cou}>
           {cou}
