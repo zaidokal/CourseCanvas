@@ -36,7 +36,7 @@
 
 .OutlineManager {
   font-size: 2vw;
-  width: 250px;
+  width: 15vw;
   background-color: transparent;
   border: none;
   color: white;
@@ -62,15 +62,10 @@
 .RightDiv {
   top: 0;
   bottom: 0;
-  /* margin: auto; */
-  margin-top: -4px;
-  margin-left: 48vw;
-  text-align: right;
-  justify-content: center;
   right: 0;
-  width: 30vw;
+  margin: auto;
+  text-align: right;
   margin-right: 1vw;
-  /* position: relative; */
 }
 
 .UsernameDiv {
