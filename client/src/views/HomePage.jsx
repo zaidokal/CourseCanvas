@@ -168,6 +168,17 @@ const HomePage = () => {
     <OutlineCard outline={out} key={out._id} />
   ));
 
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (user_type !== null) {
+      } else {
+        window.location.href = "/Login";
+      }
+    }, 50);
+
+    return () => clearTimeout(timeoutId);
+  }, [user_type]);
+
   return (
     <>
       <Header></Header>

@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import styles from "./Header.module.css";
 import WesternLogoMini from "../Images/WesternLogoMini.png";
 import axios from "axios";
+import { REACT_APP_IP, REACT_APP_PORT } from "../config";
 
 const Header = () => {
   const handleLogout = () => {
     axios
-      .get("http://localhost:8000/api/auth/logout", { withCredentials: true })
+      .get(`http://${REACT_APP_IP}:${REACT_APP_PORT}/api/auth/logout`, {
+        withCredentials: true,
+      })
       .then((response) => {
         console.log(response.data);
         window.location.href = "/";
@@ -22,7 +25,7 @@ const Header = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/secure/user-info", {
+      .get(`http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/user-info`, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       })

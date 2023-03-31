@@ -3,6 +3,7 @@ import styles from "./AdminApproval.module.css";
 import OutlineCardAdmin from "../components/OutlineCardAdmin";
 import OutlineCardAdminApproved from "../components/OutlineCardAdminApproved";
 import Header from "../components/Header";
+import { REACT_APP_IP, REACT_APP_PORT } from "../config";
 
 import axios from "axios";
 
@@ -11,7 +12,7 @@ const AdminApproval = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/secure/user-info", {
+      .get(`http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/user-info`, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       })
@@ -38,12 +39,15 @@ const AdminApproval = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/secure/all-outlines-approval", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      })
+      .get(
+        `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/all-outlines-approval`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         setOutlineList({
           outlines: res.data,
@@ -53,6 +57,17 @@ const AdminApproval = () => {
         console.log("Error in OutlineList");
       });
   }, []);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (user_type !== null) {
+      } else {
+        window.location.href = "/Login";
+      }
+    }, 50);
+
+    return () => clearTimeout(timeoutId);
+  }, [user_type]);
 
   const displayList = outlineList.outlines
     .filter((out) => out.decision === "Requested")

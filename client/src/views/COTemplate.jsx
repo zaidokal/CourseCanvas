@@ -227,6 +227,33 @@ const COTemplate = () => {
     </select>
   );
 
+  const [user_type, setUser_type] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get(`http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/user-info`, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      })
+      .then((response) => {
+        setUser_type(response.data[0].user_type);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (user_type !== null) {
+      } else {
+        window.location.href = "/Login";
+      }
+    }, 50);
+
+    return () => clearTimeout(timeoutId);
+  }, [user_type]);
+
   return (
     <>
       <div className={styles.Header}>

@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./RequestApproval.module.css";
 import axios from "axios";
+import { REACT_APP_IP, REACT_APP_PORT } from "../config";
 
 const RequestApproval = (props) => {
   let outline = props.outline;
@@ -8,7 +9,7 @@ const RequestApproval = (props) => {
   const requestCOApproval = () => {
     axios
       .post(
-        `http://localhost:8000/api/secure/reply/${outline._id}`,
+        `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/reply/${outline._id}`,
         {
           decider: "Requested",
         },

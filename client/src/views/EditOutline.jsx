@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import FloppyDisk from "../Images/FloppyDisk.png";
 import { useParams } from "react-router-dom";
 import GA from "../components/GA";
+import { REACT_APP_IP, REACT_APP_PORT } from "../config";
 
 const EditOutline = (props) => {
   const { id } = useParams();
@@ -80,7 +81,7 @@ const EditOutline = (props) => {
   });
 
   useEffect(() => {
-    const urlA = `http://localhost:8000/api/secure/${id}`;
+    const urlA = `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/${id}`;
     const urlB = "/course-outline/:outlineID";
 
     axios
@@ -196,7 +197,7 @@ const EditOutline = (props) => {
   const onSubmit = () => {
     axios
       .post(
-        `http://localhost:8000/api/secure/create-outline`,
+        `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/create-outline`,
         {
           courseName: selectedCourse,
           year: userInput.year,
@@ -289,7 +290,9 @@ const EditOutline = (props) => {
 
   const onEdit = () => {
     axios
-      .post(`http://localhost:8000/api/secure/EditOutline/${id}`)
+      .post(
+        `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/EditOutline/${id}`
+      )
       .then((response) => {
         console.log(response.data);
       })
@@ -302,10 +305,13 @@ const EditOutline = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/secure/instructor/assigned-courses", {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      })
+      .get(
+        `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/instructor/assigned-courses`,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      )
       .then((response) => {
         console.log(response.data[0].assignedCourses); // log the data returned by the server
         setCourseNames(response.data[0].assignedCourses);
@@ -331,6 +337,34 @@ const EditOutline = (props) => {
       ))}
     </select>
   );
+
+  const [user_type, setUser_type] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get(`http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/user-info`, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      })
+      .then((response) => {
+        setUser_type(response.data[0].user_type);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (user_type !== null) {
+      } else {
+        window.location.href = "/Login";
+      }
+    }, 50);
+
+    return () => clearTimeout(timeoutId);
+  }, [user_type]);
+
   return (
     <>
       <div className={styles.Header}>

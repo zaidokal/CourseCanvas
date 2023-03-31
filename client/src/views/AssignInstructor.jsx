@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import styles from "./AssignInstructor.module.css";
 import axios from "axios";
 import Header from "../components/Header";
+import { REACT_APP_IP, REACT_APP_PORT } from "../config";
 
 export const AssignInstructor = (props) => {
   const [user_type, setUser_type] = useState(null);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/secure/user-info", {
+      .get(`http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/user-info`, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       })
@@ -31,11 +32,22 @@ export const AssignInstructor = (props) => {
     }
   }, [user_type]);
 
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (user_type !== null) {
+      } else {
+        window.location.href = "/Login";
+      }
+    }, 50);
+
+    return () => clearTimeout(timeoutId);
+  }, [user_type]);
+
   const [courseNames, setCourseNames] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/secure/course-names", {
+      .get(`http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/course-names`, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       })
@@ -52,10 +64,13 @@ export const AssignInstructor = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/secure/instructor-names", {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      })
+      .get(
+        `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/instructor-names`,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      )
       .then((response) => {
         console.log(response.data); // log the data returned by the server
         setInstructorNames(response.data);
@@ -109,7 +124,7 @@ export const AssignInstructor = (props) => {
 
     axios
       .post(
-        `http://localhost:8000/api/secure/assignment/${inst}`,
+        `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/assignment/${inst}`,
         {
           course_title: cou,
         },

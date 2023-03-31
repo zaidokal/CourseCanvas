@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./OutlineCardAdmin.module.css";
 import axios from "axios";
+import { REACT_APP_IP, REACT_APP_PORT } from "../config";
 
 const OutlineCardAdmin = (props) => {
   let outline = props.outline;
@@ -8,7 +9,7 @@ const OutlineCardAdmin = (props) => {
   const approveCO = () => {
     axios
       .post(
-        `http://localhost:8000/api/secure/reply/${outline._id}`,
+        `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/reply/${outline._id}`,
         {
           decider: "Approved",
         },
@@ -34,7 +35,7 @@ const OutlineCardAdmin = (props) => {
   const rejectCO = () => {
     axios
       .post(
-        `http://localhost:8000/api/secure/reply/${outline._id}`,
+        `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/reply/${outline._id}`,
         {
           decider: "Rejected",
         },

@@ -356,6 +356,17 @@ const ViewSingleOutline = (props) => {
     console.log(isInstructor);
   }, [show, isInstructor]);
 
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (user_type !== null) {
+      } else {
+        window.location.href = "/Login";
+      }
+    }, 50);
+
+    return () => clearTimeout(timeoutId);
+  }, [user_type]);
+
   return (
     <>
       <div className={styles.Constant}>

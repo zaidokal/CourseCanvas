@@ -24,14 +24,22 @@ const HomePageAdmin = () => {
   }, []);
 
   useEffect(() => {
-    if (user_type !== null) {
-      if (user_type === "admin") {
-      } else if (user_type === "programDirector") {
-        window.location.href = "/HomePageDirector";
+    const timeoutId = setTimeout(() => {
+      console.log(user_type);
+
+      if (user_type !== null) {
+        if (user_type === "admin") {
+        } else if (user_type === "programDirector") {
+          window.location.href = "/HomePageDirector";
+        } else {
+          window.location.href = "/HomePage";
+        }
       } else {
-        window.location.href = "/HomePage";
+        window.location.href = "/Login";
       }
-    }
+    }, 50);
+
+    return () => clearTimeout(timeoutId);
   }, [user_type]);
 
   const [outlineList, setOutlineList] = useState({
