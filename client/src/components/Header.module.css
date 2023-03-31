@@ -1,3 +1,8 @@
+@font-face {
+  font-family: sspr;
+  src: url("../fonts/SourceSansPro-Regular.ttf");
+}
+
 .Head {
   width: 100%;
   height: 10vh;
@@ -11,9 +16,9 @@
 }
 
 .WesternLogoMini {
-  height: 90%;
-  margin-left: 1%;
-  margin-top: 0.3%;
+  height: 80%;
+  margin-left: 1.5%;
+  margin-top: 0.5%;
   margin-bottom: 0.3%;
 }
 
@@ -22,20 +27,21 @@
 
   margin-top: auto;
   margin-bottom: auto;
-  margin-left: 0vw;
+  margin-left: 1.25vw;
 
   justify-content: center;
-  width: 20vw;
+  max-width: fit-content;
   cursor: pointer;
 }
 
 .OutlineManager {
   font-size: 2vw;
-  width: 20vw;
+  width: 250px;
   background-color: transparent;
   border: none;
   color: white;
   cursor: pointer;
+  font-family: sspr;
 }
 
 .LinkButtons {
@@ -47,7 +53,7 @@
   color: #ffffff;
   position: relative;
   font-size: 16px;
-  font-family: Asap-Condensed-SemiBold;
+  font-family: sspr;
   border-radius: 10px;
   transition: 0.3s;
   background-color: rgb(6, 31, 255);
@@ -56,13 +62,15 @@
 .RightDiv {
   top: 0;
   bottom: 0;
-  margin: auto;
+  /* margin: auto; */
+  margin-top: -4px;
+  margin-left: 48vw;
   text-align: right;
   justify-content: center;
   right: 0;
   width: 30vw;
-  margin-right: 1%;
-  position: relative;
+  margin-right: 1vw;
+  /* position: relative; */
 }
 
 .UsernameDiv {
@@ -72,7 +80,9 @@
   z-index: 1;
   width: 100%;
 
-  margin-bottom: 0%;
+  margin-bottom: 15%;
+
+  font-size: 18px;
 }
 
 .logoutDiv {
@@ -80,9 +90,20 @@
   top: 0;
   left: 0;
   z-index: 2;
-  margin-top: 0%;
+  margin-top: -13%;
+  /* margin-right: 105px; */
 }
 
 .logoutBtn {
-  width: 5vw;
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  font-family: sspr;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.logoutBtn:hover {
+  cursor: pointer;
+  color: #797979;
 }

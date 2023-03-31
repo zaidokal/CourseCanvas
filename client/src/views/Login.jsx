@@ -40,7 +40,7 @@ export const Login = (props) => {
       .catch((err) => {
         const errorElement = document.getElementById(styles.loginError);
         errorElement.textContent =
-          "Please enter the correct username and password";
+          "Please enter the correct username and password.";
       });
   };
 
@@ -83,7 +83,7 @@ export const Login = (props) => {
                 Login
               </button>
             </div>
-            <p className={styles.version}>version 4.0</p>
+            <p className={styles.version}>version 1.0</p>
           </form>
           <footer>© Built and Designed by SRZ</footer>
         </div>

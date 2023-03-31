@@ -144,11 +144,11 @@ const HomePage = () => {
 
   const displayCourses = (
     <select
-      className={styles.Display}
+      className={styles.Filter}
       value={selectedCourse}
       onChange={(e) => setSelectedCourse(e.target.value)}
     >
-      <option value="">All Courses</option>
+      <option value="">Filter Course</option>
       {courseNames.map((cou) => (
         <option key={cou} value={cou}>
           {cou}
@@ -189,7 +189,9 @@ const HomePage = () => {
         </div>
 
         <div className={styles.container}>
-          <div className={styles.title}>Previous Outlines {displayCourses}</div>
+          <div className={styles.title}>
+            Previous Outlines - {displayCourses}
+          </div>
           <div className={styles.PostTitle}></div>
           <div
             className={styles.LeftScroll}
