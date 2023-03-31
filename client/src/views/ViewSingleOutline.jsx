@@ -85,11 +85,8 @@ const ViewSingleOutline = (props) => {
   });
 
   useEffect(() => {
-    const urlA = `http://localhost:8000/api/secure/${id}`;
-    const urlB = "/course-outline/:outlineID";
-
     axios
-      .get(urlA, urlB, {
+      .get(`http://localhost:8000/api/secure/${id}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -327,6 +324,17 @@ const ViewSingleOutline = (props) => {
 
     window.location.reload();
   };
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (user_type !== null) {
+      } else {
+        window.location.href = "/Login";
+      }
+    }, 50);
+
+    return () => clearTimeout(timeoutId);
+  }, [user_type]);
 
   const Edit = () => {
     window.location.href = `/EditOutline/${id}`;

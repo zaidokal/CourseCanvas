@@ -31,6 +31,17 @@ export const AssignInstructor = (props) => {
     }
   }, [user_type]);
 
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (user_type !== null) {
+      } else {
+        window.location.href = "/Login";
+      }
+    }, 50);
+
+    return () => clearTimeout(timeoutId);
+  }, [user_type]);
+
   const [courseNames, setCourseNames] = useState([]);
 
   useEffect(() => {

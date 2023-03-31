@@ -10,7 +10,6 @@ const OutlineCard = (props) => {
   };
 
   return (
-    // <Link to={`/${outline._id}`}>
     <button
       className={styles.square}
       id="createButton"
@@ -19,7 +18,6 @@ const OutlineCard = (props) => {
       <span>{outline.courseName}</span>
       <span>{outline.year}</span>
     </button>
-    // </Link>
   );
 };
 
