@@ -5,16 +5,21 @@ import styles from "./OutlineCard.module.css";
 const OutlineCard = (props) => {
   let outline = props.outline;
 
+  const handleOutlineRedirect = () => {
+    window.location.href = `http://localhost:3000/${outline._id}`;
+  };
+
   return (
-    <Link
-      to={`/${outline._id}`}
-      style={{ color: "inherit", textDecoration: "inherit" }}
+    // <Link to={`/${outline._id}`}>
+    <button
+      className={styles.square}
+      id="createButton"
+      onClick={handleOutlineRedirect}
     >
-      <button className={styles.square} id="createButton">
-        <span>{outline.courseName}</span>
-        <span>{outline.year}</span>
-      </button>
-    </Link>
+      <span>{outline.courseName}</span>
+      <span>{outline.year}</span>
+    </button>
+    // </Link>
   );
 };
 
