@@ -4,13 +4,14 @@ import { Link } from "react-router-dom";
 import OutlineCard from "../components/OutlineCard";
 import axios from "axios";
 import Header from "../components/Header";
+import { REACT_APP_IP, REACT_APP_PORT } from "../config";
 
 const HomePageDirector = () => {
   const [user_type, setUser_type] = useState(null);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/secure/user-info", {
+      .get(`http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/user-info`, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       })
@@ -39,10 +40,13 @@ const HomePageDirector = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/secure/instructor/assigned-courses", {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      })
+      .get(
+        `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/instructor/assigned-courses`,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      )
       .then((response) => {
         console.log(response.data[0].assignedCourses);
         setCourseNames(response.data[0].assignedCourses);
@@ -56,7 +60,7 @@ const HomePageDirector = () => {
     if (selectedCourse) {
       axios
         .get(
-          `http://localhost:8000/api/secure/${selectedCourse}/all-outlines`,
+          `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/${selectedCourse}/all-outlines`,
           {
             headers: {
               "Content-Type": "application/json",

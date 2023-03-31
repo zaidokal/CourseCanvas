@@ -4,13 +4,14 @@ import { Link } from "react-router-dom";
 import OutlineCard from "../components/OutlineCard";
 import axios from "axios";
 import Header from "../components/Header";
+import { REACT_APP_IP, REACT_APP_PORT } from "../config";
 
 const HomePageAdmin = () => {
   const [user_type, setUser_type] = useState(null);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/secure/user-info", {
+      .get(`http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/user-info`, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       })
@@ -46,12 +47,15 @@ const HomePageAdmin = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/secure/all-outlines-approval", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      })
+      .get(
+        `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/all-outlines-approval`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         setOutlineList({
           outlines: res.data,
