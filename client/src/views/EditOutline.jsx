@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import AccountButton from "../components/AccountButton";
-import styles from "./COTemplate.module.css";
+import styles from "./EditOutline.module.css";
 import axios from "axios";
-import { REACT_APP_IP, REACT_APP_PORT } from "../config";
 import Header from "../components/Header";
 import FloppyDisk from "../Images/FloppyDisk.png";
+import { useParams } from "react-router-dom";
 import GA from "../components/GA";
 
-const COTemplate = () => {
+const EditOutline = (props) => {
+  const { id } = useParams();
+
   const [userInput, setUserInput] = useState({
     courseName: "",
     year: "",
@@ -72,8 +74,103 @@ const COTemplate = () => {
     lockerNum: "",
     electronicDevices: "",
     clickers: "",
+    decision: "",
+    createdDate: "",
     recency: "",
   });
+
+  useEffect(() => {
+    const urlA = `http://localhost:8000/api/secure/${id}`;
+    const urlB = "/course-outline/:outlineID";
+
+    axios
+      .get(urlA, urlB, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      })
+
+      .then((res) => {
+        setUserInput({
+          courseName: res.data.courseName,
+          year: res.data.year,
+          description: res.data.description,
+          instructor: res.data.instructor,
+          instructorDetails: res.data.instructorDetails,
+          consultationHours: res.data.consultationHours,
+          academicCalendar: res.data.academicCalendar,
+          contactHours: res.data.contactHours,
+          antirequisite: res.data.antirequisite,
+          prerequisites: res.data.prerequisites,
+          corequisite: res.data.corequisite,
+          ceab: res.data.ceab,
+          textbook: res.data.textbook,
+          requiredReferences: res.data.requiredReferences,
+          recommendedReferences: res.data.recommendedReferences,
+          knowledgeBase: res.data.knowledgeBase,
+          engineeringTools: res.data.engineeringTools,
+          impact: res.data.impact,
+          problemAnalysis: res.data.problemAnalysis,
+          individualAndTeamWork: res.data.individualAndTeamWork,
+          ethicsEquity: res.data.ethicsEquity,
+          investigation: res.data.investigation,
+          communicationSkills: res.data.communicationSkills,
+          economicsProject: res.data.economicsProject,
+          design: res.data.design,
+          professionalism: res.data.professionalism,
+          lifeLongLearning: res.data.lifeLongLearning,
+
+          topic1: res.data.topics.topic1,
+          topic1a: res.data.topics.topic1a,
+          topic1b: res.data.topics.topic1b,
+          topic2: res.data.topics.topic2,
+          topic2a: res.data.topics.topic2a,
+          topic2b: res.data.topics.topic2b,
+          topic3: res.data.topics.topic3,
+          topic3a: res.data.topics.topic3a,
+          topic3b: res.data.topics.topic3b,
+          topic4: res.data.topics.topic4,
+          topic4a: res.data.topics.topic4a,
+          topic4b: res.data.topics.topic4b,
+
+          GA1: res.data.GAs.GA1,
+          GA1a: res.data.GAs.GA1a,
+          GA1b: res.data.GAs.GA1b,
+          GA2: res.data.GAs.GA2,
+          GA2a: res.data.GAs.GA2a,
+          GA2b: res.data.GAs.GA2b,
+          GA3: res.data.GAs.GA3,
+          GA3a: res.data.GAs.GA3a,
+          GA3b: res.data.GAs.GA3b,
+          GA4: res.data.GAs.GA4,
+          GA4a: res.data.GAs.GA4a,
+          GA4b: res.data.GAs.GA4b,
+
+          homeworkAssignments: res.data.assessments.homeworkAssignments,
+          quizzes: res.data.assessments.quizzes,
+          laboratory: res.data.assessments.laboratory,
+          midterm: res.data.assessments.midterm,
+          homeworkAssignmentsDesc: res.data.assessments.homeworkAssignmentsDesc,
+          quizzesDesc: res.data.assessments.quizzesDesc,
+          laboratoryDesc: res.data.assessments.laboratoryDesc,
+          midtermDesc: res.data.assessments.midtermDesc,
+
+          lateSubmission: res.data.lateSubmission,
+          lockerNum: res.data.lockerNum,
+          electronicDevices: res.data.electronicDevices,
+          clickers: res.data.clickers,
+
+          decision: res.data.decision,
+
+          createdDate: res.data.createdDate,
+          recency: res.data.recency,
+        });
+      })
+      .catch((err) => {
+        console.log("Error in MemoryList" + err);
+      });
+  }, []);
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
@@ -96,11 +193,10 @@ const COTemplate = () => {
       [name]: value,
     });
   };
-
   const onSubmit = () => {
     axios
       .post(
-        `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/create-outline`,
+        `http://localhost:8000/api/secure/create-outline`,
         {
           courseName: selectedCourse,
           year: userInput.year,
@@ -183,6 +279,7 @@ const COTemplate = () => {
         console.log(res);
         alert("Save successful.");
         window.location.href = "/homepage";
+        onEdit();
       })
       .catch((err) => {
         alert("Bad Request, please fill out ALL required fields.");
@@ -190,17 +287,25 @@ const COTemplate = () => {
       });
   };
 
+  const onEdit = () => {
+    axios
+      .post(`http://localhost:8000/api/secure/EditOutline/${id}`)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+  };
+
   const [courseNames, setCourseNames] = useState([]);
 
   useEffect(() => {
     axios
-      .get(
-        `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/instructor/assigned-courses`,
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      )
+      .get("http://localhost:8000/api/secure/instructor/assigned-courses", {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      })
       .then((response) => {
         console.log(response.data[0].assignedCourses); // log the data returned by the server
         setCourseNames(response.data[0].assignedCourses);
@@ -226,7 +331,6 @@ const COTemplate = () => {
       ))}
     </select>
   );
-
   return (
     <>
       <div className={styles.Header}>
@@ -286,6 +390,7 @@ const COTemplate = () => {
           ></input>
         </p>
         <input
+          contentEditable={true}
           className={styles.input2}
           value={userInput.instructorDetails}
           name="instructorDetails"
@@ -708,8 +813,9 @@ const COTemplate = () => {
               <td width="132" valign="top">
                 <p>
                   <strong>
+                    {" "}
                     <GA
-                      name="GA1b"
+                      name="GA1a"
                       onChange={handleGAChange}
                       selectedOptions={userInput.GA1b}
                     />
@@ -737,10 +843,10 @@ const COTemplate = () => {
                 <p>
                   <strong>
                     <GA
-                      name="GA2"
+                      name="GA1a"
                       onChange={handleGAChange}
                       selectedOptions={userInput.GA2}
-                    />{" "}
+                    />
                   </strong>
                 </p>
               </td>
@@ -774,10 +880,10 @@ const COTemplate = () => {
                 <p>
                   <strong>
                     <GA
-                      name="GA2a"
+                      name="GA1a"
                       onChange={handleGAChange}
                       selectedOptions={userInput.GA2a}
-                    />{" "}
+                    />
                   </strong>
                 </p>
               </td>
@@ -801,10 +907,10 @@ const COTemplate = () => {
                 <p>
                   <strong>
                     <GA
-                      name="GA2b"
+                      name="GA1a"
                       onChange={handleGAChange}
                       selectedOptions={userInput.GA2b}
-                    />{" "}
+                    />
                   </strong>
                 </p>
               </td>
@@ -822,17 +928,17 @@ const COTemplate = () => {
                       placeholder="Topic X"
                     ></input>
                   </strong>
-                  <strong> </strong>
+                  <strong></strong>
                 </p>
               </td>
               <td width="132" valign="top">
                 <p>
                   <strong>
                     <GA
-                      name="GA3"
+                      name="GA1a"
                       onChange={handleGAChange}
                       selectedOptions={userInput.GA3}
-                    />{" "}
+                    />
                   </strong>
                 </p>
               </td>
@@ -866,10 +972,10 @@ const COTemplate = () => {
                 <p>
                   <strong>
                     <GA
-                      name="GA3a"
+                      name="GA1a"
                       onChange={handleGAChange}
                       selectedOptions={userInput.GA3a}
-                    />{" "}
+                    />
                   </strong>
                 </p>
               </td>
@@ -893,10 +999,10 @@ const COTemplate = () => {
                 <p>
                   <strong>
                     <GA
-                      name="GA3b"
+                      name="GA1a"
                       onChange={handleGAChange}
                       selectedOptions={userInput.GA3b}
-                    />{" "}
+                    />
                   </strong>
                 </p>
               </td>
@@ -921,10 +1027,10 @@ const COTemplate = () => {
                 <p>
                   <strong>
                     <GA
-                      name="GA4"
+                      name="GA1a"
                       onChange={handleGAChange}
                       selectedOptions={userInput.GA4}
-                    />{" "}
+                    />
                   </strong>
                 </p>
               </td>
@@ -958,10 +1064,10 @@ const COTemplate = () => {
                 <p>
                   <strong>
                     <GA
-                      name="GA4a"
+                      name="GA1a"
                       onChange={handleGAChange}
                       selectedOptions={userInput.GA4a}
-                    />{" "}
+                    />
                   </strong>
                 </p>
               </td>
@@ -985,10 +1091,10 @@ const COTemplate = () => {
                 <p>
                   <strong>
                     <GA
-                      name="GA4b"
+                      name="GA1a"
                       onChange={handleGAChange}
                       selectedOptions={userInput.GA4b}
-                    />{" "}
+                    />
                   </strong>
                 </p>
               </td>
@@ -1352,4 +1458,4 @@ const COTemplate = () => {
   );
 };
 
-export default COTemplate;
+export default EditOutline;

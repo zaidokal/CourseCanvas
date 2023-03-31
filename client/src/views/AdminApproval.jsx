@@ -1,19 +1,44 @@
 import React, { useRef, useEffect, useState } from "react";
-import styles from "./HomePage.module.css";
-import { Link } from "react-router-dom";
-import OutlineCard from "../components/OutlineCard";
-import axios from "axios";
-import { REACT_APP_IP, REACT_APP_PORT } from "../config";
+import styles from "./AdminApproval.module.css";
+import OutlineCardAdmin from "../components/OutlineCardAdmin";
+import OutlineCardAdminApproved from "../components/OutlineCardAdminApproved";
 import Header from "../components/Header";
 
-const HomePage = () => {
+import axios from "axios";
+
+const AdminApproval = () => {
+  const [user_type, setUser_type] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/secure/user-info", {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      })
+      .then((response) => {
+        setUser_type(response.data[0].user_type);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (user_type !== null) {
+      if (user_type === "admin" || user_type === "programDirector") {
+      } else {
+        window.location.href = "/HomePage";
+      }
+    }
+  }, [user_type]);
+
   const [outlineList, setOutlineList] = useState({
     outlines: [],
   });
 
   useEffect(() => {
     axios
-      .get(`http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/all-outlines`, {
+      .get("http://localhost:8000/api/secure/all-outlines-approval", {
         headers: {
           "Content-Type": "application/json",
         },
@@ -30,9 +55,13 @@ const HomePage = () => {
   }, []);
 
   const displayList = outlineList.outlines
-    .filter((out) => out.recency === "New")
+    .filter((out) => out.decision === "Requested")
 
-    .map((out) => <OutlineCard outline={out} key={out._id} />);
+    .map((out) => <OutlineCardAdmin outline={out} key={out._id} />);
+
+  const displayApprovedList = outlineList.outlines
+    .filter((out) => out.decision === "Approved")
+    .map((out) => <OutlineCardAdminApproved outline={out} key={out._id} />);
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -85,95 +114,12 @@ const HomePage = () => {
     }
   });
 
-  const [courseNames, setCourseNames] = useState([]);
-  const [selectedCourse, setSelectedCourse] = useState("");
-  const [outlineList2, setOutlineList2] = useState({ outlines: [] });
-
-  useEffect(() => {
-    axios
-      .get(
-        `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/instructor/assigned-courses`,
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      )
-      .then((response) => {
-        console.log(response.data[0].assignedCourses);
-        setCourseNames(response.data[0].assignedCourses);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-
-  useEffect(() => {
-    if (selectedCourse) {
-      axios
-        .get(
-          `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/${selectedCourse}/all-outlines`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            withCredentials: true,
-          }
-        )
-        .then((res) => {
-          setOutlineList2({
-            outlines: res.data,
-          });
-        })
-        .catch((err) => {
-          console.log("Error in OutlineList2");
-        });
-    } else {
-      axios
-        .get(
-          `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/secure/all-outlines`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            withCredentials: true,
-          }
-        )
-        .then((res) => {
-          setOutlineList2({
-            outlines: res.data,
-          });
-        })
-        .catch((err) => {
-          console.log("Error in OutlineList2");
-        });
-    }
-  }, [selectedCourse]);
-
-  const displayCourses = (
-    <select
-      className={styles.Filter}
-      value={selectedCourse}
-      onChange={(e) => setSelectedCourse(e.target.value)}
-    >
-      <option value="">Filter Course</option>
-      {courseNames.map((cou) => (
-        <option key={cou} value={cou}>
-          {cou}
-        </option>
-      ))}
-    </select>
-  );
-
-  const displayList2 = outlineList2.outlines.map((out) => (
-    <OutlineCard outline={out} key={out._id} />
-  ));
-
   return (
     <>
       <Header></Header>
       <div className={styles.MainDiv}>
         <div className={styles.container}>
-          <div className={styles.title}>Current Outlines</div>
+          <div className={styles.title}>Requested Outlines</div>
           <div className={styles.PostTitle}></div>
           <div
             className={styles.LeftScroll}
@@ -182,9 +128,6 @@ const HomePage = () => {
             ref={left}
           ></div>
           <div ref={containerRef} className={styles.YOutline} id="Outlines">
-            <Link to="/COTemplate">
-              <button className={styles.COTemp}>+</button>
-            </Link>
             {displayList}
           </div>
           <div
@@ -196,9 +139,7 @@ const HomePage = () => {
         </div>
 
         <div className={styles.container}>
-          <div className={styles.title}>
-            Previous Outlines - {displayCourses}
-          </div>
+          <div className={styles.title}>Approved Outlines</div>
           <div className={styles.PostTitle}></div>
           <div
             className={styles.LeftScroll}
@@ -207,7 +148,7 @@ const HomePage = () => {
             ref={left2}
           ></div>
           <div ref={containerRef2} className={styles.YOutline} id="Outlines">
-            {displayList2}
+            {displayApprovedList}
           </div>
           <div
             className={styles.RightScroll}
@@ -223,4 +164,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default AdminApproval;

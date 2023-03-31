@@ -1,4 +1,4 @@
-.Button {
+.ApproveBtn {
   /* formatting */
   width: 120px;
   height: 45px;
@@ -13,7 +13,7 @@
   background-color: rgb(6, 31, 255);
 }
 
-.Button:hover {
+.ApproveBtn:hover {
   /* formatting */
   cursor: pointer;
 

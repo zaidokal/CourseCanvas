@@ -1,0 +1,115 @@
+.square {
+  /* formatting */
+  width: 100%;
+  height: 100%;
+
+  /* design */
+  border-radius: 5px;
+  border: none;
+  background-color: #efefef;
+  font-size: 20px;
+  color: #4f2683;
+  transition: 0.3s;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  font-family: sspr;
+}
+
+.square span {
+  display: block;
+  white-space: normal;
+  text-overflow: initial;
+}
+
+.square:hover {
+  /* formatting */
+  cursor: pointer;
+
+  /* design */
+  background-color: #4f2683;
+  color: white;
+}
+
+.container {
+  /* formatting */
+  width: 150px;
+  height: 200px;
+  margin: 1vw;
+  padding: 10px;
+
+  /* design */
+  border-radius: 5px;
+  border: none;
+  background-color: #efefef;
+  font-size: 20px;
+  color: #4f2683;
+  transition: 0.3s;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Decision {
+  bottom: 0;
+}
+
+.ApproveBtn {
+  /* formatting */
+  /* width: 1vh; */
+  /* height: 45px; */
+  display: inline-block;
+  margin: 0.4vh;
+
+  /* design */
+  color: #6200ff;
+  position: relative;
+  font-size: 16px;
+  border-radius: 10px;
+  transition: 0.3s;
+  /* background-color: rgb(6, 31, 255); */
+  font-family: sspr;
+}
+
+.ApproveBtn2 {
+  /* formatting */
+  /* width: 1vh; */
+  /* height: 45px; */
+  display: inline-block;
+  margin: 0.4vh;
+
+  /* design */
+  color: #6200ff;
+  position: relative;
+  font-size: 16px;
+  font-family: Asap-Condensed-SemiBold;
+  border-radius: 10px;
+  transition: 0.3s;
+  /* background-color: rgb(6, 31, 255); */
+}
+
+.ApproveBtn:hover {
+  /* formatting */
+  cursor: pointer;
+
+  /* design */
+  color: #7238bb;
+  /* background-color: #a4161a;
+  outline: #a4161a solid 2px; */
+}

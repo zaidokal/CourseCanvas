@@ -1,3 +1,70 @@
+@font-face {
+  font-family: sspr;
+  src: url("../fonts/SourceSansPro-Regular.ttf");
+}
+
+@media print {
+  .RemovePrint {
+    display: none !important;
+  }
+  .header {
+    display: none !important;
+  }
+  .Header {
+    display: none !important;
+  }
+  .MainDiv {
+    width: 100% !important;
+    border: none !important;
+  }
+  .MainDivExpanded {
+    width: 100% !important;
+    border: none !important;
+  }
+  .RightDiv {
+    display: none !important;
+  }
+  .Title {
+    display: none !important;
+  }
+}
+
+.downloadBTN {
+  /* formatting */
+  width: 120px;
+  height: 45px;
+
+  /* design */
+  color: #ffffff;
+  position: relative;
+  font-size: 16px;
+  font-family: Asap-Condensed-SemiBold;
+  border-radius: 10px;
+  transition: 0.3s;
+  background-color: rgb(6, 31, 255);
+}
+
+.downloadBTN:hover {
+  /* formatting */
+  cursor: pointer;
+
+  /* design */
+  background-color: #a4161a;
+  outline: #a4161a solid 2px;
+}
+
+.downloadBTN:disabled {
+  /* design */
+  color: #ffffff;
+  position: relative;
+  font-size: 16px;
+  font-family: Asap-Condensed-SemiBold;
+  border-radius: 10px;
+  transition: 0.3s;
+  background-color: rgb(132, 133, 136);
+  outline: rgb(132, 133, 136);
+}
+
 .input {
   border: none;
   border-radius: 4px;
@@ -65,4 +132,215 @@ input::placeholder {
   width: 100%;
   min-width: 0;
   border: none;
+
+  max-width: 100%;
+}
+
+.MainDiv {
+  border: 2px solid;
+  margin-left: 5%;
+  padding: 2%;
+  width: 60%;
+}
+
+.Center {
+  text-align: center;
+}
+
+.RemovePrint {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5vh;
+}
+
+td {
+  border: 1px solid;
+}
+
+.Date {
+  font-size: 2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.CommentContainer {
+  height: 80vh;
+  width: 99%;
+  overflow-y: scroll;
+}
+
+.Comment {
+  margin: 10px;
+  padding: 10px;
+  border-bottom: 1px solid black;
+  padding: 10px;
+  border-bottom: 2px solid rgba(104, 104, 104, 0.2);
+}
+
+.CommentDetails {
+  font-size: 0.8em;
+  color: gray;
+}
+
+.NewComment {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.NewCommentBox {
+  padding: 4%;
+  width: 92%;
+  height: 6vh;
+  border-top: 1px solid;
+  border-right: none;
+  border-left: none;
+  border-bottom: none;
+  resize: none;
+  overflow-y: auto;
+  outline: none;
+  border-top: 2px solid rgba(104, 104, 104, 0.2);
+  font-family: sspr;
+}
+
+.NewCommentBox::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.NewCommentBox::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.NewCommentBox::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 2px;
+}
+
+.NewCommentBox::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+form {
+  margin-top: 10%;
+}
+
+.CommentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.CommentUser {
+  font-weight: bold;
+  margin: 0;
+  color: #797979;
+}
+
+.CommentDate {
+  font-size: 0.8em;
+  margin: 0;
+  color: #797979;
+}
+
+.CommentText {
+  margin: 0;
+  word-wrap: break-word;
+  color: #797979;
+}
+
+.RightDiv {
+  border-left: 2px solid;
+  position: fixed;
+  top: 10vh;
+  right: 0;
+  width: 25vw;
+  height: calc(100vh - 10vh);
+  background-color: #fff;
+  border-left: 2px solid rgba(104, 104, 104, 0.2);
+}
+
+.RightDivHidden {
+  display: none;
+}
+
+.MainDivExpanded {
+  border: 2px solid;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 2%;
+  /* margin: 5%; */
+  width: 60%;
+}
+
+.Constant {
+  width: 100%;
+  height: 10vh;
+  right: 0;
+  top: 0;
+  position: fixed;
+}
+
+.Title {
+  margin-top: 15vh;
+  font-size: 4vh;
+  /* position: relative; */
+  /* position: fixed; */
+  margin-bottom: 4%;
+  margin-left: 3%;
+  border-bottom: 1px solid;
+  width: 65vw;
+  display: flex;
+  justify-content: space-between;
+  color: #797979;
+  border-bottom: 2px solid rgba(104, 104, 104, 0.2);
+}
+
+.Header {
+  margin-bottom: 5vh;
+}
+
+.icons {
+  /* position: absolute; */
+  bottom: 0;
+  right: 0;
+  display: flex;
+  gap: 10px;
+  height: fit-content;
+}
+
+.icon {
+  width: 1vw;
+  object-fit: contain;
+}
+
+.icon:hover {
+  cursor: pointer;
+}
+
+.outericon {
+  width: 2vw;
+  height: 2vw;
+  border-radius: 5px;
+  background-color: #efefef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.outericon + .outericon {
+  margin-left: 0.1vw;
+}
+
+.downloadBTN:disabled {
+  display: none;
+}
+
+.outericon:disabled,
+.outericon[disabled] {
+  display: none;
 }

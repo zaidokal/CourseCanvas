@@ -6,18 +6,9 @@
   margin-left: -10px;
 }
 
-.LinkButtons:hover {
-  /* formatting */
-  cursor: pointer;
-
-  /* design */
-  background-color: #a4161a;
-  outline: #a4161a solid 2px;
-}
-
 .title {
   /* formatting */
-  margin-top: -10px;
+  margin-top: -30px;
   margin-bottom: 1%;
   width: 70vw;
 
@@ -34,18 +25,16 @@
 .COTemp {
   /* formatting */
   width: 11vw;
-  height: 27vh;
+  height: 25vh;
   margin: 10px;
-  margin-right: 30px;
 
   /* design */
-  border-radius: 5px;
-  border: none;
-  background-color: #efefef;
+  border-radius: 10px;
+  border-style: solid;
+  background-color: rgb(201, 200, 200);
   font-size: 80px;
-  color: #4f2683;
+  color: rgb(0, 0, 0);
   transition: 0.3s;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .COTemp:hover {
@@ -53,8 +42,9 @@
   cursor: pointer;
 
   /* design */
-  background-color: #4f2683;
-  color: #efefef;
+  background-color: #a4161a;
+  outline: #a4161a solid 2px;
+  color: white;
 }
 
 .Arrow {
@@ -107,12 +97,11 @@ div::-webkit-scrollbar-track {
   justify-content: center;
   background-color: #f1f1f1;
   width: 3vw;
-  height: 28vh;
-  /* pointer-events: auto; */
-
+  height: 60vh;
   border-radius: 5px;
   transition: 0.3s;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  /* pointer-events: auto; */
 }
 
 .LeftScroll {
@@ -143,18 +132,58 @@ div::-webkit-scrollbar-track {
   height: min-content;
   /* formatting */
   display: flex;
-  /* flex-wrap: wrap; */
-  /* design */
+  display: grid;
+  grid-template-rows: auto auto; /* creates 2 rows with auto height */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(200px, 1fr)
+  ); /* creates infinite columns with a minimum width of 200px */
+  grid-gap: 10px; /* adds a 10px gap between grid items */
+  grid-auto-flow: column dense;
 }
 
-.Filter {
-  width: 190px;
+.LinkButtons {
+  /* formatting */
+  width: 150px;
+  height: 45px;
+
+  /* design */
+  color: #ffffff;
+  position: relative;
+  font-size: 16px;
+  font-family: sspr;
+  border-radius: 5px;
+  transition: 0.3s;
+  background-color: #4f2683;
+  /* border: none; */
+}
+
+.LinkButtons:hover {
+  /* formatting */
+  cursor: pointer;
+
+  /* design */
+  background-color: #7238bb;
+}
+
+.ButtonDiv {
+  text-align: center;
+}
+
+.ButtonDiv button:first-child {
+  margin-left: 20px;
+  border: none;
+}
+
+.DirectorCourseSelect {
+  margin-top: 10px;
+  margin-left: 1.75vw;
+  width: 175px;
   height: 4.5vh;
-  font-size: 25px;
+  font-size: 24px;
   border: none;
   outline: none;
   color: #797979;
   font: bold;
   font-family: sspr;
-  margin-left: -3px;
 }

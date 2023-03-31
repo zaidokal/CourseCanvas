@@ -1,62 +1,143 @@
-.MainDiv {
-  width: 500px;
+@font-face {
+  font-family: sspr;
+  src: url("../fonts/SourceSansPro-Regular.ttf");
+}
 
-  padding-left: 110px;
-  padding-top: 80px;
-  padding-bottom: 100px;
-  border-color: rgb(255, 0, 0);
-  background-color: #161a1d;
+body {
+  font-family: sspr;
+  margin: 0%;
+}
+.ContainerDiv {
+  /* formatting */
+  width: 100vw;
+  height: 100vh;
 
-  border-radius: 15px;
+  width: 70%;
+  float: left;
 
-  margin: 0;
+  position: relative;
+  overflow-y: hidden;
+
+  /* design */
+  background-image: url("../Images/LoginBackground.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* background-size: cover; */
+}
+
+.LoginDiv {
+  width: 30%;
+  float: right;
+  height: 100vh;
+  position: relative;
+
+  text-align: center;
+}
+
+.Container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.WesternLogo {
+  margin-top: 12vh;
+  width: 25vw;
+}
+
+.COM {
+  margin-top: 0%;
+  color: #4f2683;
+  font-size: 2.4vw;
+}
+
+form {
+  margin-top: 12vh;
+}
+
+footer {
+  color: #4f2683;
+
   position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  bottom: 0;
+  margin-bottom: 1%;
+  left: 0;
+  right: 0;
+
+  font-size: 2vh;
+}
+
+.EmailBox,
+.PasswordBox {
+  /* formatting */
+  height: 5vh;
+  width: 20vw;
+  padding-left: 1vw;
+  margin: 10px 0px;
+  margin-bottom: 3vh;
+  color: #797979;
+
+  /* design */
+  background-color: #d9d9d9;
+  font-size: 1.2vw;
+  font-family: sspr;
+  transition: 0.3s;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+.EmailBox::placeholder {
+  color: #797979;
+}
+
+.PasswordBox::placeholder {
+  color: #797979;
 }
 
 .AccountButton {
+  /* formatting */
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-
+  margin-top: 1vh;
+  margin-bottom: 2vh;
   width: 50%;
 }
 
-.EmailBox {
-  border-radius: 10px;
-  height: 50px;
-  width: 300px;
-  padding-left: 15px;
-  font-size: 20px;
-  padding-bottom: 20p;
-  margin: 10px 0px;
-  outline: none;
-  background-color: #d3d3d3;
-  font-family: Asap-Condensed-Regular;
-  transition: 0.3s;
-}
-
-.PasswordBox {
-  border-radius: 10px;
-  height: 50px;
-  width: 300px;
-  padding-left: 15px;
-  font-size: 20px;
-  margin: 10px 0px;
-  outline: none;
-  background-color: #d3d3d3;
-  font-family: Asap-Condensed-Regular;
-  transition: 0.3s;
-}
-
-.EmailBox:hover {
-  background-color: #f5f3f4;
-}
-
+.EmailBox:hover,
 .PasswordBox:hover {
-  background-color: #f5f3f4;
+  /* design */
+  color: #797979;
+}
+
+#loginError {
+  /* design */
+  margin-top: -15px;
+  color: red;
+}
+
+.LoginBtn {
+  /* design */
+  margin-top: 15px;
+  background-color: #4f2683;
+  color: #ffffff;
+  position: relative;
+  font-size: 1.1vw;
+  font-family: sspr;
+  border-radius: 5px;
+  width: 7vw;
+  height: 5vh;
+  transition: 0.3s;
+  border: none;
+}
+
+.LoginBtn:hover {
+  /* design */
+  background-color: #7238bb;
+  cursor: pointer;
+}
+
+.version {
+  font-size: 2vh;
+  color: #4f2683;
 }

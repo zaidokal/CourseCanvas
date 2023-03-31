@@ -117,6 +117,10 @@ const CourseOutlineSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.Mixed,
     required: true,
   },
+  GAs: {
+    type: mongoose.Schema.Types.Mixed,
+    required: true,
+  },
   assessments: {
     type: mongoose.Schema.Types.Mixed,
     required: true,
@@ -139,8 +143,16 @@ const CourseOutlineSchema = new mongoose.Schema({
   },
   createdDate: {
     type: Date,
-    default: Date.now(),
-  }
+    default: Date.now,
+  },
+  decision: {
+    type: String,
+    default: "Not Requested",
+  },
+  recency: {
+    type: String,
+    default: "New",
+  },
 });
 
 module.exports = Memory = mongoose.model("courseOutline", CourseOutlineSchema);

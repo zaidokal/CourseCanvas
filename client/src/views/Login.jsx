@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-// import HeaderAccount from "../components/HeaderAccount";
 import styles from "./Login.module.css";
-import AccountButton from "../components/AccountButton";
-import ChangeButton from "../components/ChangeButton";
-// import BackgroundOpacity from "../components/BackgroundOpacity";
 import axios from "axios";
 import { REACT_APP_IP, REACT_APP_PORT } from "../config";
+import WesternLogo from "../Images/WesternLogo.png";
 
 export const Login = (props) => {
   const [userInput, setUserInput] = useState({
@@ -25,7 +22,6 @@ export const Login = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userInput);
     axios
       .post(
         `http://${REACT_APP_IP}:${REACT_APP_PORT}/api/auth/login`,
@@ -38,51 +34,64 @@ export const Login = (props) => {
         }
       )
       .then((res) => {
-        alert(res.data);
+        if (res.data === "admin") {
+          window.location.href = "/HomePageAdmin";
+        } else if (res.data === "programDirector") {
+          window.location.href = "/HomePageDirector";
+        } else {
+          window.location.href = "/HomePage";
+        }
       })
       .catch((err) => {
-        alert(err);
+        const errorElement = document.getElementById(styles.loginError);
+        errorElement.textContent =
+          "Please enter the correct username and password.";
       });
   };
 
   return (
     <>
-      {/* <HeaderAccount /> */}
-      {/* <BackgroundOpacity /> */}
+      <div className={styles.Container}>
+        <div className={styles.ContainerDiv}></div>
 
-      <div className={styles.MainDiv}>
-        <form onSubmit={handleSubmit}>
-          <input
-            className={styles.EmailBox}
-            type="email"
-            name="email"
-            value={userInput.email}
-            placeholder="Email"
-            onChange={handleChange}
+        <div className={styles.LoginDiv}>
+          <img
+            className={styles.WesternLogo}
+            src={WesternLogo}
+            alt="Western Logo"
           />
-          <input
-            className={styles.PasswordBox}
-            type="password"
-            name="password"
-            value={userInput.password}
-            placeholder="Password"
-            onChange={handleChange}
-          />
-          <div className={styles.AccountButton}>
-            <AccountButton
-              text={"Login"}
-              linkTo={"/HomePage"}
-              onClick={handleSubmit}
+          <p className={styles.COM}>Course Outline Manager</p>
+
+          <form onSubmit={handleSubmit}>
+            <input
+              className={styles.EmailBox}
+              type="email"
+              name="email"
+              value={userInput.email}
+              placeholder="Email"
+              onChange={handleChange}
             />
-          </div>
-        </form>
+            <br />
+            <input
+              className={styles.PasswordBox}
+              type="password"
+              name="password"
+              value={userInput.password}
+              placeholder="Password"
+              onChange={handleChange}
+            />
 
-        {/* <ChangeButton text={"Update Password?"} linkTo={"/ChangePassword"} />
+            <div id={styles.loginError}></div>
 
-        <ChangeButton
-          text={"Don't have an account? Register here."}
-          linkTo={"/register"}
-        /> */}
+            <div className={styles.AccountButton}>
+              <button className={styles.LoginBtn} onClick={handleSubmit}>
+                Login
+              </button>
+            </div>
+            <p className={styles.version}>version 1.0</p>
+          </form>
+          <footer>© Built and Designed by SRZ</footer>
+        </div>
       </div>
     </>
   );
