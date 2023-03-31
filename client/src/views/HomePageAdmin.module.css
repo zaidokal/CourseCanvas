@@ -1,30 +1,31 @@
+@font-face {
+  font-family: sspr;
+  src: url("../fonts/SourceSansPro-Regular.ttf");
+}
+
+body {
+  font-family: sspr;
+}
+
 .MainDiv {
   width: 100%;
   overflow-x: hidden;
   position: relative;
   height: 100%;
-}
-
-.LinkButtons:hover {
-  /* formatting */
-  cursor: pointer;
-
-  /* design */
-  background-color: #a4161a;
-  outline: #a4161a solid 2px;
+  margin-left: -10px;
 }
 
 .title {
   /* formatting */
-  margin-top: 1%;
-  margin-bottom: 1%;
+  margin-top: 0.5%;
+  margin-bottom: 1.5%;
   width: 70vw;
 
   /* design */
   font: bold;
-  font-size: 40px;
-  color: #4f2683;
-  border-bottom: 2px solid #4f2683;
+  font-size: 35px;
+  color: #797979;
+  border-bottom: 2px solid rgba(104, 104, 104, 0.2);
 }
 .PostTitle {
   width: 28vw;
@@ -91,22 +92,24 @@ div::-webkit-scrollbar-track {
 .footer {
   color: #4f2683;
 
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 300px;
-  margin: 0 auto;
-  margin-bottom: 1%;
+  position: fixed; /* or absolute if you prefer */
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
 }
 
 .LeftScroll,
 .RightScroll {
   margin-top: 1vh;
   justify-content: center;
-  background-color: grey;
+  background-color: #f1f1f1;
   width: 3vw;
-  height: 53vh;
+  height: 60vh;
+  border-radius: 5px;
+  transition: 0.3s;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
   /* pointer-events: auto; */
 }
 
@@ -118,6 +121,11 @@ div::-webkit-scrollbar-track {
   margin-left: 10px;
 }
 
+.LeftScroll:hover,
+.RightScroll:hover {
+  background-color: #e9e9e9;
+}
+
 .container {
   /* formatting */
   margin: 2%;
@@ -127,9 +135,10 @@ div::-webkit-scrollbar-track {
 }
 
 .YOutline {
-  width: 85%;
-  overflow-x: scroll;
+  width: 90%;
   height: min-content;
+  overflow-x: scroll;
+
   /* formatting */
   display: flex;
   display: grid;
@@ -137,23 +146,43 @@ div::-webkit-scrollbar-track {
   grid-template-columns: repeat;
   grid-column-gap: 1vw;
   grid-auto-flow: column dense;
+  transition: 0.3s;
 }
 
 .LinkButtons {
   /* formatting */
-  width: 120px;
+  width: 150px;
   height: 45px;
 
   /* design */
   color: #ffffff;
   position: relative;
   font-size: 16px;
-  font-family: Asap-Condensed-SemiBold;
-  border-radius: 10px;
+  font-family: sspr;
+  border-radius: 5px;
   transition: 0.3s;
-  background-color: rgb(6, 31, 255);
+  background-color: #4f2683;
+  /* border: none; */
+}
+
+.LinkButtons:hover {
+  /* formatting */
+  cursor: pointer;
+
+  /* design */
+  background-color: #7238bb;
 }
 
 .ButtonDiv {
   text-align: center;
+}
+
+.ButtonDiv button:first-child {
+  margin-right: 10px;
+  border: none;
+}
+
+.ButtonDiv button:nth-child(1) {
+  margin-left: 20px;
+  border: none;
 }

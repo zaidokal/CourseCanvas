@@ -63,11 +63,9 @@ const Header = () => {
       <div className={styles.RightDiv}>
         <div className={styles.UsernameDiv}>
           <p>
-            {firstName} {lastName}
+            {firstName} {lastName} ({user_type})
           </p>
         </div>
-
-        {user_type}
 
         <div className={styles.logoutDiv}>
           <button className={styles.logoutBtn} onClick={handleLogout}>

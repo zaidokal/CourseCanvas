@@ -1,5 +1,10 @@
+@font-face {
+  font-family: sspr;
+  src: url("../fonts/SourceSansPro-Regular.ttf");
+}
+
 body {
-  /* formatting */
+  font-family: sspr;
   margin: 0%;
 }
 .ContainerDiv {
@@ -70,14 +75,24 @@ footer {
   padding-left: 1vw;
   margin: 10px 0px;
   margin-bottom: 3vh;
-  color: #d3d3d3;
+  color: #797979;
 
   /* design */
-  background-color: #ffffff;
+  background-color: #d9d9d9;
   font-size: 1.2vw;
-  font-family: Asap-Condensed-Regular;
+  font-family: sspr;
   transition: 0.3s;
-  border-radius: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+.EmailBox::placeholder {
+  color: #797979;
+}
+
+.PasswordBox::placeholder {
+  color: #797979;
 }
 
 .AccountButton {
@@ -92,31 +107,33 @@ footer {
 .EmailBox:hover,
 .PasswordBox:hover {
   /* design */
-  background-color: #9051e2;
-  color: #d3d3d3;
+  color: #797979;
 }
 
 #loginError {
   /* design */
+  margin-top: -15px;
   color: red;
 }
 
 .LoginBtn {
   /* design */
+  margin-top: 15px;
   background-color: #4f2683;
-  color: #d3d3d3;
+  color: #ffffff;
   position: relative;
-  font-size: 1vw;
-  font-family: Asap-Condensed-SemiBold;
-  border-radius: 10px;
+  font-size: 1.1vw;
+  font-family: sspr;
+  border-radius: 5px;
   width: 7vw;
   height: 5vh;
   transition: 0.3s;
+  border: none;
 }
 
 .LoginBtn:hover {
   /* design */
-  background-color: #9051e2;
+  background-color: #7238bb;
   cursor: pointer;
 }
 

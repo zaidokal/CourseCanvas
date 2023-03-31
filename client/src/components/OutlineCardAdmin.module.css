@@ -4,11 +4,11 @@
   height: 100%;
 
   /* design */
-  border-radius: 10px;
-  border-style: solid;
-  background-color: rgb(201, 200, 200);
+  border-radius: 5px;
+  border: none;
+  background-color: #efefef;
   font-size: 20px;
-  color: rgb(0, 0, 0);
+  color: #4f2683;
   transition: 0.3s;
 
   display: flex;
@@ -20,6 +20,8 @@
 
   overflow: hidden;
   text-overflow: ellipsis;
+
+  font-family: sspr;
 }
 
 .square span {
@@ -33,8 +35,7 @@
   cursor: pointer;
 
   /* design */
-  background-color: #a4161a;
-  outline: #a4161a solid 2px;
+  background-color: #4f2683;
   color: white;
 }
 
@@ -46,12 +47,13 @@
   padding: 10px;
 
   /* design */
-  border-radius: 10px;
-  border-style: solid;
-  background-color: rgb(201, 200, 200);
+  border-radius: 5px;
+  border: none;
+  background-color: #efefef;
   font-size: 20px;
-  color: rgb(0, 0, 0);
+  color: #4f2683;
   transition: 0.3s;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
   display: flex;
   flex-direction: column;
@@ -79,10 +81,10 @@
   color: #6200ff;
   position: relative;
   font-size: 16px;
-  font-family: Asap-Condensed-SemiBold;
   border-radius: 10px;
   transition: 0.3s;
   /* background-color: rgb(6, 31, 255); */
+  font-family: sspr;
 }
 
 .ApproveBtn2 {
@@ -107,7 +109,7 @@
   cursor: pointer;
 
   /* design */
-  color: #a4161a;
+  color: #7238bb;
   /* background-color: #a4161a;
   outline: #a4161a solid 2px; */
 }

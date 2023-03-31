@@ -1,3 +1,8 @@
+@font-face {
+  font-family: sspr;
+  src: url("../fonts/SourceSansPro-Regular.ttf");
+}
+
 @media print {
   .RemovePrint {
     display: none !important;
@@ -152,43 +157,12 @@ td {
   border: 1px solid;
 }
 
-.icon {
-  width: 1vw;
-  object-fit: contain;
-}
-
-.icon:hover {
-  cursor: pointer;
-}
-
-.outericon {
-  width: 2vw;
-  height: 2vw;
-  border-radius: 50%;
-  background-color: rgb(236, 232, 232);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.outericon + .outericon {
-  margin-left: 0.1vw;
-}
-
-.downloadBTN:disabled {
-  display: none;
-}
-
-.outericon:disabled,
-.outericon[disabled] {
-  display: none;
-}
-
 .Date {
   font-size: 2vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 15px;
 }
 
 .CommentContainer {
@@ -202,6 +176,7 @@ td {
   padding: 10px;
   border-bottom: 1px solid black;
   padding: 10px;
+  border-bottom: 2px solid rgba(104, 104, 104, 0.2);
 }
 
 .CommentDetails {
@@ -227,6 +202,8 @@ td {
   resize: none;
   overflow-y: auto;
   outline: none;
+  border-top: 2px solid rgba(104, 104, 104, 0.2);
+  font-family: sspr;
 }
 
 .NewCommentBox::-webkit-scrollbar {
@@ -259,16 +236,19 @@ form {
 .CommentUser {
   font-weight: bold;
   margin: 0;
+  color: #797979;
 }
 
 .CommentDate {
   font-size: 0.8em;
   margin: 0;
+  color: #797979;
 }
 
 .CommentText {
   margin: 0;
   word-wrap: break-word;
+  color: #797979;
 }
 
 .RightDiv {
@@ -279,6 +259,7 @@ form {
   width: 25vw;
   height: calc(100vh - 10vh);
   background-color: #fff;
+  border-left: 2px solid rgba(104, 104, 104, 0.2);
 }
 
 .RightDivHidden {
@@ -314,6 +295,8 @@ form {
   width: 65vw;
   display: flex;
   justify-content: space-between;
+  color: #797979;
+  border-bottom: 2px solid rgba(104, 104, 104, 0.2);
 }
 
 .Header {
@@ -327,4 +310,37 @@ form {
   display: flex;
   gap: 10px;
   height: fit-content;
+}
+
+.icon {
+  width: 1vw;
+  object-fit: contain;
+}
+
+.icon:hover {
+  cursor: pointer;
+}
+
+.outericon {
+  width: 2vw;
+  height: 2vw;
+  border-radius: 5px;
+  background-color: #efefef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.outericon + .outericon {
+  margin-left: 0.1vw;
+}
+
+.downloadBTN:disabled {
+  display: none;
+}
+
+.outericon:disabled,
+.outericon[disabled] {
+  display: none;
 }
