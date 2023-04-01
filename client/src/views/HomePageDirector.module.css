@@ -134,10 +134,8 @@ div::-webkit-scrollbar-track {
   display: flex;
   display: grid;
   grid-template-rows: auto auto; /* creates 2 rows with auto height */
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(200px, 1fr)
-  ); /* creates infinite columns with a minimum width of 200px */
+  grid-template-columns: repeat(7, 1fr);
+
   grid-gap: 10px; /* adds a 10px gap between grid items */
   grid-auto-flow: column dense;
 }
