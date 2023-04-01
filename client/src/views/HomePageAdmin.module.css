@@ -143,7 +143,7 @@ div::-webkit-scrollbar-track {
   display: flex;
   display: grid;
   grid-template-rows: auto auto;
-  grid-template-columns: repeat;
+  grid-template-columns: repeat(7, 1fr);
   grid-column-gap: 1vw;
   grid-auto-flow: column dense;
   transition: 0.3s;
