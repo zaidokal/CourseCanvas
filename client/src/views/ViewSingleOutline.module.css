@@ -4,6 +4,9 @@
 }
 
 @media print {
+  .noPrint {
+    display: none !important;
+  }
   .RemovePrint {
     display: none !important;
   }
@@ -26,6 +29,9 @@
   }
   .Title {
     display: none !important;
+  }
+  .CourseTopics {
+    width: 98% !important;
   }
 }
 
