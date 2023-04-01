@@ -327,6 +327,17 @@ const ViewSingleOutline = (props) => {
     window.location.reload();
   };
 
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (user_type !== null) {
+      } else {
+        window.location.href = "/Login";
+      }
+    }, 1000);
+
+    return () => clearTimeout(timeoutId);
+  }, [user_type]);
+
   const Edit = () => {
     window.location.href = `/EditOutline/${id}`;
   };
