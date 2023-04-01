@@ -7,7 +7,7 @@ const cors = require("cors");
 
 const app = express();
 
-let REACT_APP_IP = window.location.hostname;
+let REACT_APP_IP = "104.197.164.11";
 let REACT_APP_PORT = "3000";
 
 connectDB();
