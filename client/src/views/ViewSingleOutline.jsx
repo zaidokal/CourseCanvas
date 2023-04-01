@@ -414,7 +414,7 @@ const ViewSingleOutline = (props) => {
       <div className={styles.Title}>
         Outline Editor - {userInput.decision}
         <div className={styles.icons}>
-          <div className={styles.Date}> {userInput.userId} </div>
+          <div className={styles.Date}> {userInput.userId.split("@")[0]} </div>
           <div className={styles.Date}> {formattedDateTime} </div>
 
           <div
