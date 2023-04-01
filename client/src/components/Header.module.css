@@ -60,12 +60,14 @@
 }
 
 .RightDiv {
+  position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
   margin: auto;
   text-align: right;
   margin-right: 1vw;
+  height: 9vh;
 }
 
 .UsernameDiv {
