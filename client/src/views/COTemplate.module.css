@@ -89,6 +89,11 @@ input::placeholder {
   width: 78vw;
   display: flex;
   justify-content: space-between;
+
+  font: bold;
+  font-size: 35px;
+  color: #797979;
+  border-bottom: 2px solid rgba(104, 104, 104, 0.2);
 }
 
 .icon {
@@ -101,12 +106,12 @@ input::placeholder {
 }
 
 .outericon {
-  right: 0;
   width: 2vw;
   height: 2vw;
-  border-radius: 50%;
-  background-color: rgb(236, 232, 232); /* optional */
+  border-radius: 5px;
+  background-color: #efefef;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
