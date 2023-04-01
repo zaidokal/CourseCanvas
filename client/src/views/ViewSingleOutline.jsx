@@ -16,6 +16,7 @@ const ViewSingleOutline = (props) => {
   const { id } = useParams();
 
   const [userInput, setUserInput] = useState({
+    userId: "",
     courseName: "",
     year: "",
     description: "",
@@ -97,6 +98,7 @@ const ViewSingleOutline = (props) => {
 
       .then((res) => {
         setUserInput({
+          userId: res.data.userId,
           courseName: res.data.courseName,
           year: res.data.year,
           description: res.data.description,
@@ -412,7 +414,7 @@ const ViewSingleOutline = (props) => {
       <div className={styles.Title}>
         Outline Editor - {userInput.decision}
         <div className={styles.icons}>
-          <div className={styles.Date}> {user} </div>
+          <div className={styles.Date}> {userInput.userId} </div>
           <div className={styles.Date}> {formattedDateTime} </div>
 
           <div
