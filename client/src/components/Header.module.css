@@ -66,6 +66,8 @@
   margin: auto;
   text-align: right;
   margin-right: 1vw;
+  position: absolute;
+  height: 9vh;
 }
 
 .UsernameDiv {
