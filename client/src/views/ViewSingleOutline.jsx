@@ -412,7 +412,7 @@ const ViewSingleOutline = (props) => {
       <div className={styles.Title}>
         Outline Editor - {userInput.decision}
         <div className={styles.icons}>
-          <div className={styles.Date}> {userInput.userId} </div>
+          <div className={styles.Date}> {userInput.userId.split("@")[0]} </div>
           <div className={styles.Date}> {formattedDateTime} </div>
 
           <div
@@ -861,14 +861,14 @@ const ViewSingleOutline = (props) => {
             <table border="0" cellSpacing="0" cellPadding="0">
               <tbody>
                 <tr>
-                  <td width="491" valign="top">
+                  <td className={styles.CourseTopics} width="491" valign="top">
                     <p>
                       <strong>
                         Course Topics and Specific Learning Outcomes
                       </strong>
                     </p>
                   </td>
-                  <td width="132" valign="top">
+                  <td className={styles.noPrint} width="132" valign="top">
                     <p>
                       <strong>CEAB Graduate Attributes Indicators</strong>
                     </p>
@@ -891,7 +891,7 @@ const ViewSingleOutline = (props) => {
                       <strong></strong>
                     </p>
                   </td>
-                  <td width="132" valign="top">
+                  <td className={styles.noPrint} width="132" valign="top">
                     <p>
                       <strong>
                         {userInput.GA1 && userInput.GA1.length > 0 && (
@@ -927,7 +927,7 @@ const ViewSingleOutline = (props) => {
                       </strong>
                     </p>
                   </td>
-                  <td width="132" valign="top">
+                  <td className={styles.noPrint} width="132" valign="top">
                     {userInput.GA1a && userInput.GA1a.length > 0 && (
                       <div>{userInput.GA1a.join(", ")}</div>
                     )}
@@ -949,7 +949,7 @@ const ViewSingleOutline = (props) => {
                       </strong>
                     </p>
                   </td>
-                  <td width="132" valign="top">
+                  <td className={styles.noPrint} width="132" valign="top">
                     <p>
                       <strong>
                         {" "}
@@ -977,7 +977,7 @@ const ViewSingleOutline = (props) => {
                       <strong></strong>
                     </p>
                   </td>
-                  <td width="132" valign="top">
+                  <td className={styles.noPrint} width="132" valign="top">
                     <p>
                       <strong>
                         {userInput.GA2 && userInput.GA2.length > 0 && (
@@ -1013,7 +1013,7 @@ const ViewSingleOutline = (props) => {
                       </strong>
                     </p>
                   </td>
-                  <td width="132" valign="top">
+                  <td className={styles.noPrint} width="132" valign="top">
                     <p>
                       <strong>
                         {userInput.GA2a && userInput.GA2a.length > 0 && (
@@ -1039,7 +1039,7 @@ const ViewSingleOutline = (props) => {
                       </strong>
                     </p>
                   </td>
-                  <td width="132" valign="top">
+                  <td className={styles.noPrint} width="132" valign="top">
                     <p>
                       <strong>
                         {userInput.GA2b && userInput.GA2b.length > 0 && (
@@ -1066,7 +1066,7 @@ const ViewSingleOutline = (props) => {
                       <strong></strong>
                     </p>
                   </td>
-                  <td width="132" valign="top">
+                  <td className={styles.noPrint} width="132" valign="top">
                     <p>
                       <strong>
                         {userInput.GA3 && userInput.GA3.length > 0 && (
@@ -1102,7 +1102,7 @@ const ViewSingleOutline = (props) => {
                       </strong>
                     </p>
                   </td>
-                  <td width="132" valign="top">
+                  <td className={styles.noPrint} width="132" valign="top">
                     <p>
                       <strong>
                         {userInput.GA3a && userInput.GA3a.length > 0 && (
@@ -1128,7 +1128,7 @@ const ViewSingleOutline = (props) => {
                       </strong>
                     </p>
                   </td>
-                  <td width="132" valign="top">
+                  <td className={styles.noPrint} width="132" valign="top">
                     <p>
                       <strong>
                         {userInput.GA3b && userInput.GA3b.length > 0 && (
@@ -1155,7 +1155,7 @@ const ViewSingleOutline = (props) => {
                       <strong></strong>
                     </p>
                   </td>
-                  <td width="132" valign="top">
+                  <td className={styles.noPrint} width="132" valign="top">
                     <p>
                       <strong>
                         {userInput.GA4 && userInput.GA4.length > 0 && (
@@ -1191,7 +1191,7 @@ const ViewSingleOutline = (props) => {
                       </strong>
                     </p>
                   </td>
-                  <td width="132" valign="top">
+                  <td className={styles.noPrint} width="132" valign="top">
                     <p>
                       <strong>
                         {userInput.GA4a && userInput.GA4a.length > 0 && (
@@ -1217,7 +1217,7 @@ const ViewSingleOutline = (props) => {
                       </strong>
                     </p>
                   </td>
-                  <td width="132" valign="top">
+                  <td className={styles.noPrint} width="132" valign="top">
                     <p>
                       <strong>
                         {userInput.GA4b && userInput.GA4b.length > 0 && (
