@@ -82,19 +82,19 @@ CourseCanvas is a web-based application to automate the creation, editing, appro
 
 ### **Instructor View:**
 
-![CourseCanvas Instructor View Page](Screenshots/Instructor_View.png)
-![CourseCanvas Instructor Course View Page](Screenshots/Instructor_CourseView.png)
+![CourseCanvas Instructor View Page](screenshots/Instructor_View.png)
+![CourseCanvas Instructor Course View Page](screenshots/Instructor_CourseView.png)
 
 ### **Admin View**:
 
-![CourseCanvas Admin View Page](Screenshots/Admin_View.png)
-![CourseCanvas Admin Course View Page](Screenshots/Admin_CourseView.png)
-![CourseCanvas Admin Instructor Assignment Page](Screenshots/Admin_InstructorAssignment.png)
-![CourseCanvas Admin Approval Screen Page](Screenshots/Admin_ApprovalScreen.png)
+![CourseCanvas Admin View Page](screenshots/Admin_View.png)
+![CourseCanvas Admin Course View Page](screenshots/Admin_CourseView.png)
+![CourseCanvas Admin Instructor Assignment Page](screenshots/Admin_InstructorAssignment.png)
+![CourseCanvas Admin Approval Screen Page](screenshots/Admin_ApprovalScreen.png)
 
 ### **Program Director View**:
 
-![CourseCanvas ProgramDirector View Page](Screenshots/ProgramDirector_View.png)
-![CourseCanvas ProgramDirector View 2 Page](Screenshots/ProgramDirector_View2.png)
-![CourseCanvas ProgramDirector Course View Page](Screenshots/ProgramDirector_CourseView.png)
-![CourseCanvas ProgramDirector Approval Screen Page](Screenshots/ProgramDirector_ApprovalScreen.png)
+![CourseCanvas ProgramDirector View Page](screenshots/ProgramDirector_View.png)
+![CourseCanvas ProgramDirector View 2 Page](screenshots/ProgramDirector_View2.png)
+![CourseCanvas ProgramDirector Course View Page](screenshots/ProgramDirector_CourseView.png)
+![CourseCanvas ProgramDirector Approval Screen Page](screenshots/ProgramDirector_ApprovalScreen.png)
