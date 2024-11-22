@@ -4,7 +4,7 @@
 
 CourseCanvas is a web-based application to automate the creation, editing, approval, and tracking of course outlines in the ECE department at Western University. It provides role-based functionalities for instructors and administrators to streamline the process while ensuring compliance with departmental templates and guidelines.
 
-![CourseCanvas Login Page](Screenshots/LoginPage.png)
+![CourseCanvas Login Page](screenshots/LoginPage.png)
 
 ## Features
 
